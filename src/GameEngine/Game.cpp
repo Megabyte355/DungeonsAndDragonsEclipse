@@ -19,7 +19,7 @@ Game::Game(void)
 
 Game::~Game(void)
 {
-    delete screenManager;
+    screenManager.reset();
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
     SDL_Quit();

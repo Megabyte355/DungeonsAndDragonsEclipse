@@ -22,7 +22,7 @@ class ScreenManager;
 class Game
 {
 public:
-    ScreenManager * screenManager;
+    std::shared_ptr<ScreenManager> screenManager;
     SDL_Renderer * renderer;
     SDL_Window * window;
 

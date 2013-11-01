@@ -7,13 +7,13 @@
 
 #include "ScreenManager.h"
 
-ScreenManager* ScreenManager::screenManagerInstance = nullptr;
+std::shared_ptr<ScreenManager> ScreenManager::screenManagerInstance;
 
-ScreenManager::ScreenManager(void)
+ScreenManager::ScreenManager()
 {
 }
 
-ScreenManager::~ScreenManager(void)
+ScreenManager::~ScreenManager()
 {
     while (!storedScreens.empty())
     {
@@ -24,11 +24,11 @@ ScreenManager::~ScreenManager(void)
     screensToProcess.clear();
 }
 
-ScreenManager * ScreenManager::getInstance()
+std::shared_ptr<ScreenManager> ScreenManager::getInstance()
 {
-    if (screenManagerInstance == nullptr)
+    if (!screenManagerInstance)
     {
-        screenManagerInstance = new ScreenManager();
+        screenManagerInstance = std::shared_ptr<ScreenManager>(new ScreenManager());
     }
     return screenManagerInstance;
 }

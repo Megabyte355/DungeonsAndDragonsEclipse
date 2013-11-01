@@ -16,10 +16,6 @@
 class Game;
 union SDL_Event;
 
-
-
-
-
 class Screen
 {
     private:
