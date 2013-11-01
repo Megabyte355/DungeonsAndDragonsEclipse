@@ -28,12 +28,12 @@ class Screen
         Screen(std::string name);
         virtual ~Screen(void);
 
-        virtual std::string GetName();
-        virtual void Instance() = 0;
-        virtual void Initialize() = 0;
-        virtual void Update(float) = 0;
-        virtual void Draw() = 0;
-        virtual void HandleEvents(SDL_Event * event) = 0;
+        virtual std::string getName();
+        virtual void instance() = 0;
+        virtual void initialize() = 0;
+        virtual void update(float) = 0;
+        virtual void draw() = 0;
+        virtual void handleEvents(SDL_Event * event) = 0;
 
 };
 

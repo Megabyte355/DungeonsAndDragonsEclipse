@@ -8,16 +8,13 @@
 #ifndef GAME_H_
 #define GAME_H_
 
-#include <iostream>
-#include <string>
-#include "Config.h"
+#include "GameConfig.h"
 #include "Util.h"
 #include "ScreenManager.h"
 #include "Textures.h"
-
+#include <iostream>
+#include <string>
 #include <SDL.h>
-#include <SDL_image.h>
-#include <SDL_ttf.h>
 
 // Forward declaration
 class ScreenManager;

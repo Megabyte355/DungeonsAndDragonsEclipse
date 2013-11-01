@@ -17,7 +17,7 @@ Screen::~Screen(void)
 {
 }
 
-std::string Screen::GetName()
+std::string Screen::getName()
 {
     return uniqueName;
 }

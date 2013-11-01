@@ -8,8 +8,10 @@
 #ifndef UTIL_H_
 #define UTIL_H_
 
-#include <iostream>
+#include <ostream>
 #include <SDL.h>
+#include <string>
+
 
 class Util
 {

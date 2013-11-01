@@ -53,29 +53,29 @@ void Game::Initialize()
         return;
     }
     
-    Textures::SetRenderer(renderer);
-    Textures::LoadAllTextures();
-    screenManager = ScreenManager::GetInstance();
-    screenManager->Initialize();
+    Textures::setRenderer(renderer);
+    Textures::loadAllTextures();
+    screenManager = ScreenManager::getInstance();
+    screenManager->initialize();
 
-    GameConfig::gameIsRunning = true;
+    GameConfig::getInstance()->gameIsRunning = true;
 
     std::cout << "Game Started" << std::endl;
 }
 
 void Game::Update(float gameTime)
 {
-    screenManager->Update(gameTime);
+    screenManager->update(gameTime);
 }
 
 void Game::Draw()
 {
     SDL_RenderClear(renderer);
-    screenManager->Draw();
+    screenManager->draw();
     SDL_RenderPresent(renderer);
 }
 
 void Game::HandleEvents(SDL_Event * event)
 {
-    screenManager->HandleEvents(event);
+    screenManager->handleEvents(event);
 }

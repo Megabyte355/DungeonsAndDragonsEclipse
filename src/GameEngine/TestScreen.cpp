@@ -25,17 +25,17 @@ TestScreen::~TestScreen(void)
     }
 }
 
-void TestScreen::Instance()
+void TestScreen::instance()
 {
 
 }
 
-void TestScreen::Initialize()
+void TestScreen::initialize()
 {
     // Reset everything
 }
 
-void TestScreen::Update(float gameTime)
+void TestScreen::update(float gameTime)
 {
     for (auto kiwi : k)
     {
@@ -45,7 +45,7 @@ void TestScreen::Update(float gameTime)
     
 }
 
-void TestScreen::Draw()
+void TestScreen::draw()
 {
     for (auto kiwi : k)
     {
@@ -54,19 +54,19 @@ void TestScreen::Draw()
     o.Draw();
 }
 
-void TestScreen::HandleEvents(SDL_Event * event)
+void TestScreen::handleEvents(SDL_Event * event)
 {
     switch(event->type)
     {
         case SDL_QUIT:
-            GameConfig::gameIsRunning = false;
+            GameConfig::getInstance()->gameIsRunning = false;
             break;
         case SDL_KEYDOWN:
 
             //std::cout << "Key pressed: " << event->key.keysym.sym << endl;
             if (event->key.keysym.sym == SDLK_ESCAPE)
             {
-                GameConfig::gameIsRunning = false;
+                GameConfig::getInstance()->gameIsRunning = false;
             }
             switch (event->key.keysym.sym)
             {

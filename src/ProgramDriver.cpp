@@ -6,18 +6,24 @@
 //============================================================================
 
 #include "GameEngine/Game.h"
+#include "GameEngine/GameConfig.h"
 #include <iostream>
 #include <memory>
 
-int main(int argc, char *argv[])
+int main(int argc, char** argv)
 {
     // Initialization of Game object
     std::unique_ptr<Game> game = std::unique_ptr<Game>(new Game());
-    if (game)
+    if (!game)
     {
         std::cout << "Unable to load game" << std::endl;
         return 1;
     }
+
+
+    //GameConfig::getInstance()->gameIsRunning = true;
+    GameConfig * config = GameConfig::getInstance();
+    config->gameIsRunning = true;
 
     // Setting up the game loop with constant frame rate
     SDL_Event event;
@@ -28,7 +34,7 @@ int main(int argc, char *argv[])
     float deltaTime = 0;
 
     // Game loop logic
-    while (GameConfig::gameIsRunning)
+    while (config->gameIsRunning)
     {
         loopCount = 0;
 

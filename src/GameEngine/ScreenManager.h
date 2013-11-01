@@ -20,18 +20,18 @@ class Screen;
 class ScreenManager
 {
 public:
-    static ScreenManager * GetInstance();
+    static ScreenManager * getInstance();
     ~ScreenManager(void);
 
-    void Initialize();
-    void PushScreen(Screen * s);
-    void PushScreen(std::string s);
-    void PopScreen(Screen * s);
-    void PopScreen(std::string s);
+    void initialize();
+    void pushScreen(Screen * s);
+    void pushScreen(std::string s);
+    void popScreen(Screen * s);
+    void popScreen(std::string s);
 
-    void Update(float);
-    void Draw();
-    void HandleEvents(SDL_Event * event);
+    void update(float);
+    void draw();
+    void handleEvents(SDL_Event * event);
 
 private:
     ScreenManager(void);
@@ -41,8 +41,8 @@ private:
     std::vector<Screen*> activeScreens;
     std::vector<Screen*> screensToProcess;
 
-    void CopyActiveScreens();
-    void CleanCopiedScreens();
+    void copyActiveScreens();
+    void cleanCopiedScreens();
 };
 
 #endif /* SCREENMANAGER_H_ */

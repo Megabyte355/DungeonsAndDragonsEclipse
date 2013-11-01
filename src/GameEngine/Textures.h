@@ -13,6 +13,7 @@
 #include <SDL_ttf.h>
 #include "Util.h"
 #include <map>
+#include <iostream>
 
 class Textures
 {
@@ -20,8 +21,8 @@ public:
     Textures(void);
     ~Textures(void);
 
-    static void SetRenderer(SDL_Renderer *renderer);
-    static void LoadAllTextures();
+    static void setRenderer(SDL_Renderer *renderer);
+    static void loadAllTextures();
 
     // Test
 

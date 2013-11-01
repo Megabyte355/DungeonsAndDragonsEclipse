@@ -24,7 +24,7 @@ ScreenManager::~ScreenManager(void)
     screensToProcess.clear();
 }
 
-ScreenManager * ScreenManager::GetInstance()
+ScreenManager * ScreenManager::getInstance()
 {
     if (screenManagerInstance == nullptr)
     {
@@ -33,25 +33,25 @@ ScreenManager * ScreenManager::GetInstance()
     return screenManagerInstance;
 }
 
-void ScreenManager::Initialize()
+void ScreenManager::initialize()
 {
     storedScreens.push_back(new TestScreen());
 
-    PushScreen("TestScreen");
+    pushScreen("TestScreen");
 }
 
 // Move a screen from storedScreen to activeScreens
-void ScreenManager::PushScreen(Screen * s)
+void ScreenManager::pushScreen(Screen * s)
 {
-    s->Initialize();
+    s->initialize();
     activeScreens.push_back(s);
 }
 
-void ScreenManager::PushScreen(std::string s)
+void ScreenManager::pushScreen(std::string s)
 {
     for (std::vector<Screen*>::iterator it = storedScreens.begin(); it != storedScreens.end(); it++)
     {
-        if ((*it)->GetName() == s)
+        if ((*it)->getName() == s)
         {
             activeScreens.push_back(*it);
             break;
@@ -60,16 +60,16 @@ void ScreenManager::PushScreen(std::string s)
 }
 
 // Remove a screen from activeScreens and screensToUpdate
-void ScreenManager::PopScreen(Screen * s)
+void ScreenManager::popScreen(Screen * s)
 {
-    PopScreen(s->GetName());
+    popScreen(s->getName());
 }
 
-void ScreenManager::PopScreen(std::string s)
+void ScreenManager::popScreen(std::string s)
 {
     for (std::vector<Screen*>::iterator it = activeScreens.begin(); it != activeScreens.end(); it++)
     {
-        if ((*it)->GetName() == s)
+        if ((*it)->getName() == s)
         {
             activeScreens.erase(it);
             break;
@@ -77,41 +77,41 @@ void ScreenManager::PopScreen(std::string s)
     }
 }
 
-void ScreenManager::Update(float gameTime)
+void ScreenManager::update(float gameTime)
 {
     // For each screen in active screens, perform Update()
-    CopyActiveScreens();
+    copyActiveScreens();
     for (auto s : screensToProcess)
     {
-        s->Update(gameTime);
+        s->update(gameTime);
     }
-    CleanCopiedScreens();
+    cleanCopiedScreens();
 }
 
-void ScreenManager::Draw()
+void ScreenManager::draw()
 {
     // For each screen in active screens, perform Draw()
-    CopyActiveScreens();
+    copyActiveScreens();
     for (auto s : screensToProcess)
     {
-        s->Draw();
+        s->draw();
     }
-    CleanCopiedScreens();
+    cleanCopiedScreens();
 }
 
-void ScreenManager::HandleEvents(SDL_Event * event)
+void ScreenManager::handleEvents(SDL_Event * event)
 {
     // For each screen in active screens, perform HandleEvents()
-    CopyActiveScreens();
+    copyActiveScreens();
     for (auto s : screensToProcess)
     {
-        s->HandleEvents(event);
+        s->handleEvents(event);
     }
-    CleanCopiedScreens();
+    cleanCopiedScreens();
 }
 
 
-void ScreenManager::CopyActiveScreens()
+void ScreenManager::copyActiveScreens()
 {
     // Copy all screens in activeScreens to screensToProcess vector
     for (auto s : activeScreens)
@@ -120,7 +120,7 @@ void ScreenManager::CopyActiveScreens()
     }
 }
 
-void ScreenManager::CleanCopiedScreens()
+void ScreenManager::cleanCopiedScreens()
 {
     screensToProcess.clear();
 }

@@ -25,11 +25,11 @@ Textures::~Textures(void)
     // TO DO: Free all textures in textureMap
 }
 
-void Textures::SetRenderer(SDL_Renderer * ren)
+void Textures::setRenderer(SDL_Renderer * ren)
 {
     renderer = ren;
 }
-void Textures::LoadAllTextures()
+void Textures::loadAllTextures()
 {
     // Load all files here
     orange = LoadTexture("assets/orange.png");

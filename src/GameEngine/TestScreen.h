@@ -8,6 +8,7 @@
 #ifndef TESTSCREEN_H_
 #define TESTSCREEN_H_
 
+#include "GameConfig.h"
 #include "Screen.h"
 #include "Orange.h"
 #include "Kiwi.h"
@@ -25,11 +26,11 @@ public:
     TestScreen(void);
     ~TestScreen(void) override;
 
-    void Instance();
-    void Initialize() override;
-    void Update(float) override;
-    void Draw() override;
-    void HandleEvents(SDL_Event * event) override;
+    void instance();
+    void initialize() override;
+    void update(float) override;
+    void draw() override;
+    void handleEvents(SDL_Event * event) override;
 };
 
 #endif /* TESTSCREEN_H_ */
