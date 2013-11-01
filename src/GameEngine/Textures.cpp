@@ -11,10 +11,6 @@ SDL_Renderer * Textures::renderer;
 
 // Texture test
 std::map<std::string, SDL_Texture*> Textures::textureMap;
-SDL_Texture * Textures::orange;
-SDL_Texture * Textures::kiwi;
-SDL_Texture * Textures::background;
-SDL_Texture * Textures::floor;
 
 Textures::Textures(void)
 {
@@ -32,15 +28,12 @@ void Textures::setRenderer(SDL_Renderer * ren)
 void Textures::loadAllTextures()
 {
     // Load all files here
-    orange = loadTexture("assets/orange.png");
-    kiwi = loadTexture("assets/kiwi.png");
-    textureMap["orange"] = orange;
-    textureMap["kiwi"] = kiwi;
+    textureMap["orange"] = loadTexture("assets/orange.png");
+    textureMap["kiwi"] = loadTexture("assets/kiwi.png");
 
     // Test
-    background = loadTexture("assets/background.png");
-    floor = loadTexture("assets/floor.png");
-
+    textureMap["background"] = loadTexture("assets/background.png");
+    textureMap["floor"] = loadTexture("assets/floor.png");
 
 }
 
@@ -53,7 +46,9 @@ SDL_Texture* Textures::loadTexture(const std::string &file)
 {
     SDL_Texture *texture = IMG_LoadTexture(renderer, file.c_str());
     if (texture == nullptr)
+    {
         Util::logSDLError(std::cout, "LoadTexture");
+    }
     return texture;
 }
 
@@ -65,8 +60,9 @@ SDL_Texture* Textures::renderText(std::string message, std::string fontFile, SDL
         TTF_Font *font = nullptr;
         font = TTF_OpenFont(fontFile.c_str(), fontSize);
         if (font == nullptr)
+        {
             throw std::runtime_error("Failed to load font: " + fontFile + TTF_GetError());
-
+        }
         //Render the message to an SDL_Surface, as that's what TTF_RenderText_X returns
         SDL_Surface *surf = TTF_RenderText_Blended(font, message.c_str(), color);
         SDL_Texture *texture = SDL_CreateTextureFromSurface(renderer, surf);
