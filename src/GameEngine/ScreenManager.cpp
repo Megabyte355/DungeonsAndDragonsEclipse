@@ -7,7 +7,7 @@
 
 #include "ScreenManager.h"
 
-std::shared_ptr<ScreenManager> ScreenManager::screenManagerInstance;
+std::shared_ptr<ScreenManager> ScreenManager::instance;
 
 ScreenManager::ScreenManager()
 {
@@ -17,7 +17,7 @@ ScreenManager::~ScreenManager()
 {
     while (!storedScreens.empty())
     {
-        delete storedScreens.back();
+        storedScreens.back().reset();
         storedScreens.pop_back();
     }
     activeScreens.clear();
@@ -26,22 +26,22 @@ ScreenManager::~ScreenManager()
 
 std::shared_ptr<ScreenManager> ScreenManager::getInstance()
 {
-    if (!screenManagerInstance)
+    if (!instance)
     {
-        screenManagerInstance = std::shared_ptr<ScreenManager>(new ScreenManager());
+        instance = std::shared_ptr<ScreenManager>(new ScreenManager());
     }
-    return screenManagerInstance;
+    return instance;
 }
 
 void ScreenManager::initialize()
 {
-    storedScreens.push_back(new TestScreen());
+    storedScreens.push_back(std::make_shared<TestScreen>());
 
     pushScreen("TestScreen");
 }
 
 // Move a screen from storedScreen to activeScreens
-void ScreenManager::pushScreen(Screen * s)
+void ScreenManager::pushScreen(std::shared_ptr<Screen> s)
 {
     s->initialize();
     activeScreens.push_back(s);
@@ -49,7 +49,7 @@ void ScreenManager::pushScreen(Screen * s)
 
 void ScreenManager::pushScreen(std::string s)
 {
-    for (std::vector<Screen*>::iterator it = storedScreens.begin(); it != storedScreens.end(); it++)
+    for (std::vector<std::shared_ptr<Screen>>::iterator it = storedScreens.begin(); it != storedScreens.end(); it++)
     {
         if ((*it)->getName() == s)
         {
@@ -60,14 +60,14 @@ void ScreenManager::pushScreen(std::string s)
 }
 
 // Remove a screen from activeScreens and screensToUpdate
-void ScreenManager::popScreen(Screen * s)
+void ScreenManager::popScreen(std::shared_ptr<Screen> s)
 {
     popScreen(s->getName());
 }
 
 void ScreenManager::popScreen(std::string s)
 {
-    for (std::vector<Screen*>::iterator it = activeScreens.begin(); it != activeScreens.end(); it++)
+    for (std::vector<std::shared_ptr<Screen>>::iterator it = activeScreens.begin(); it != activeScreens.end(); it++)
     {
         if ((*it)->getName() == s)
         {
