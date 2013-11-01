@@ -7,9 +7,13 @@
 
 #include "Screen.h"
 
+int Screen::instanceIdCounter = 0;
+
 Screen::Screen(std::string name)
 {
     uniqueName = name;
+    active = false;
+    instanceId = instanceIdCounter++;
 }
 
 

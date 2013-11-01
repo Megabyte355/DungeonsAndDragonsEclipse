@@ -19,11 +19,15 @@ union SDL_Event;
 class Screen
 {
     private:
+        static int instanceIdCounter;
         std::string uniqueName;
+
     public:
         Screen(std::string name);
         virtual ~Screen(void);
 
+        bool active;
+        int instanceId;
         virtual std::string getName();
         virtual void initialize() = 0;
         virtual void update(float) = 0;

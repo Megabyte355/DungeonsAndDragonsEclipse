@@ -28,6 +28,7 @@ class ScreenManager
         void pushScreen(std::string s);
         void popScreen(std::shared_ptr<Screen> s);
         void popScreen(std::string s);
+        void popScreen(int instanceId);
 
         void update(float);
         void draw();

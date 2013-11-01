@@ -27,7 +27,6 @@ TestScreen::~TestScreen(void)
 
 void TestScreen::initialize()
 {
-    // Reset everything
 }
 
 void TestScreen::update(float gameTime)
@@ -61,7 +60,8 @@ void TestScreen::handleEvents(SDL_Event * event)
             //std::cout << "Key pressed: " << event->key.keysym.sym << endl;
             if (event->key.keysym.sym == SDLK_ESCAPE)
             {
-                GameConfig::getInstance()->gameIsRunning = false;
+                //GameConfig::getInstance()->gameIsRunning = false;
+                active = false;
             }
             switch (event->key.keysym.sym)
             {

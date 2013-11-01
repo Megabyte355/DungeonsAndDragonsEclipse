@@ -22,6 +22,8 @@ ScreenManager::~ScreenManager()
     }
     activeScreens.clear();
     screensToProcess.clear();
+
+    std::cout << "ScreenManager destroyed" << std::endl;
 }
 
 std::shared_ptr<ScreenManager> ScreenManager::getInstance()
@@ -43,7 +45,7 @@ void ScreenManager::initialize()
 // Move a screen from storedScreen to activeScreens
 void ScreenManager::pushScreen(std::shared_ptr<Screen> s)
 {
-    s->initialize();
+    s->active = true;
     activeScreens.push_back(s);
 }
 
@@ -53,6 +55,7 @@ void ScreenManager::pushScreen(std::string s)
     {
         if ((*it)->getName() == s)
         {
+            (*it)->active = true;
             activeScreens.push_back(*it);
             break;
         }
@@ -77,13 +80,37 @@ void ScreenManager::popScreen(std::string s)
     }
 }
 
+void ScreenManager::popScreen(int instanceId)
+{
+    for (std::vector<std::shared_ptr<Screen>>::iterator it = activeScreens.begin(); it != activeScreens.end(); it++)
+    {
+        if ((*it)->instanceId == instanceId)
+        {
+            activeScreens.erase(it);
+            break;
+        }
+    }
+}
+
 void ScreenManager::update(float gameTime)
 {
+    // End the program if there are no active screens
+    if (activeScreens.empty())
+    {
+        GameConfig::getInstance()->gameIsRunning = false;
+    }
+
     // For each screen in active screens, perform Update()
     copyActiveScreens();
     for (auto s : screensToProcess)
     {
         s->update(gameTime);
+        
+        // If no longer active, remove from activeScreens vector
+        if (!s->active)
+        {
+            popScreen(s->instanceId);
+        }
     }
     cleanCopiedScreens();
 }
