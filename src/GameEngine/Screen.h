@@ -29,7 +29,6 @@ class Screen
         virtual ~Screen(void);
 
         virtual std::string getName();
-        virtual void instance() = 0;
         virtual void initialize() = 0;
         virtual void update(float) = 0;
         virtual void draw() = 0;

@@ -33,15 +33,15 @@ public:
     static SDL_Texture * background;
     static SDL_Texture * floor;
 
-    static SDL_Texture* GetTexture(std::string textureName);
-    static SDL_Texture* RenderText(std::string message, std::string fontFile, SDL_Color color, int fontSize);
+    static SDL_Texture* getTexture(std::string textureName);
+    static SDL_Texture* renderText(std::string message, std::string fontFile, SDL_Color color, int fontSize);
 
     static void DrawTexture(std::string textureName, int x, int y, int w = 0, int h = 0);
     //static void ApplySurface(SDL_Texture *tex, int x, int y, int w = 0, int h = 0);
 
 private:
     static SDL_Renderer* renderer;
-    static SDL_Texture* LoadTexture(const std::string &file);
+    static SDL_Texture* loadTexture(const std::string &file);
 };
 
 #endif /* TEXTURES_H_ */

@@ -25,11 +25,6 @@ TestScreen::~TestScreen(void)
     }
 }
 
-void TestScreen::instance()
-{
-
-}
-
 void TestScreen::initialize()
 {
     // Reset everything
@@ -39,7 +34,7 @@ void TestScreen::update(float gameTime)
 {
     for (auto kiwi : k)
     {
-        kiwi->Update(gameTime);
+        kiwi->update(gameTime);
     }
     o.Move(gameTime);
     
@@ -49,9 +44,9 @@ void TestScreen::draw()
 {
     for (auto kiwi : k)
     {
-        kiwi->Draw();
+        kiwi->draw();
     }
-    o.Draw();
+    o.draw();
 }
 
 void TestScreen::handleEvents(SDL_Event * event)
@@ -71,16 +66,16 @@ void TestScreen::handleEvents(SDL_Event * event)
             switch (event->key.keysym.sym)
             {
                 case SDLK_UP:
-                    o.MoveUp(true);
+                    o.moveUp(true);
                     break;
                 case SDLK_DOWN:
-                    o.MoveDown(true);
+                    o.moveDown(true);
                     break;
                 case SDLK_LEFT:
-                    o.MoveLeft(true);
+                    o.moveLeft(true);
                     break;
                 case SDLK_RIGHT:
-                    o.MoveRight(true);
+                    o.moveRight(true);
                     break;
                 default:
                     break;
@@ -92,16 +87,16 @@ void TestScreen::handleEvents(SDL_Event * event)
             switch (event->key.keysym.sym)
             {
                 case SDLK_UP:
-                    o.MoveUp(false);
+                    o.moveUp(false);
                     break;
                 case SDLK_DOWN:
-                    o.MoveDown(false);
+                    o.moveDown(false);
                     break;
                 case SDLK_LEFT:
-                    o.MoveLeft(false);
+                    o.moveLeft(false);
                     break;
                 case SDLK_RIGHT:
-                    o.MoveRight(false);
+                    o.moveRight(false);
                     break;
                 default:
                     break;

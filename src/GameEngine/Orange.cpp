@@ -17,7 +17,7 @@ Orange::Orange(void)
     left = false;
     right = false;
 
-    moveSpeed = 0.20;
+    moveSpeed = 0.20f;
 }
 
 Orange::~Orange(void)
@@ -44,27 +44,27 @@ void Orange::Move(float gameTime)
     }
 }
 
-void Orange::MoveUp(bool x)
+void Orange::moveUp(bool x)
 {
     up = x;
 }
 
-void Orange::MoveDown(bool x)
+void Orange::moveDown(bool x)
 {
     down = x;
 }
 
-void Orange::MoveLeft(bool x)
+void Orange::moveLeft(bool x)
 {
     left = x;
 }
 
-void Orange::MoveRight(bool x)
+void Orange::moveRight(bool x)
 {
     right = x;
 }
 
-void Orange::Draw()
+void Orange::draw()
 {
     Textures::DrawTexture("orange", x, y);
 }

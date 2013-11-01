@@ -8,6 +8,8 @@
 #ifndef GAMECONFIG_H_
 #define GAMECONFIG_H_
 
+#include <string>
+
 class GameConfig
 {
     public:
@@ -15,20 +17,20 @@ class GameConfig
 
         static GameConfig * getInstance();
 
-        // Screen resolution
+        // Screen properties
         const static int SCREEN_WIDTH = 800;
         const static int SCREEN_HEIGHT = 600;
+        const static std::string GAME_TITLE;
 
         // Game loop settings
         const static int TICKS_PER_SECOND = 60;
         const static int SKIP_TICKS = 1000 / TICKS_PER_SECOND;
         const static int MAX_FRAMESKIP = 5;
-        bool gameIsRunning;
+        static bool gameIsRunning;
 
     private:
         GameConfig();
         static GameConfig * instance;
-
 };
 
 #endif /* GAMECONFIG_H_ */

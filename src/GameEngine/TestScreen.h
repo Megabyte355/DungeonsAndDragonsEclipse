@@ -15,7 +15,6 @@
 #include "Game.h"
 #include <vector>
 
-
 class TestScreen : public Screen
 {
 private:
@@ -26,7 +25,6 @@ public:
     TestScreen(void);
     ~TestScreen(void) override;
 
-    void instance();
     void initialize() override;
     void update(float) override;
     void draw() override;

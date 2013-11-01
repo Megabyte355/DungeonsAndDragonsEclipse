@@ -44,19 +44,19 @@ int main(int argc, char** argv)
             now = SDL_GetTicks();
             deltaTime = now - lastTick;
             lastTick = now;
-            game->Update(deltaTime);
+            game->update(deltaTime);
             nextGameTick += GameConfig::SKIP_TICKS;
             loopCount++;
 
             // Handle user input
             while (SDL_PollEvent(&event))
             {
-                game->HandleEvents(&event);
+                game->handleEvents(&event);
             }
         }
 
         // Draw graphics on screen
-        game->Draw();
+        game->draw();
     }
 
     return 0;

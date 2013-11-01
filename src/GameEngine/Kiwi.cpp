@@ -11,7 +11,7 @@ Kiwi::Kiwi(void)
 {
     x = 150;
     y = 100;
-    moveSpeed = 0.30;
+    moveSpeed = 0.30f;
 
     // I feel lazy
     right = 1;
@@ -35,12 +35,12 @@ Kiwi::~Kiwi(void)
 }
 
 
-void Kiwi::Draw()
+void Kiwi::draw()
 {
     Textures::DrawTexture("kiwi", x, y, 150, 150);
 }
 
-void Kiwi::Update(float gameTime)
+void Kiwi::update(float gameTime)
 {
     // ===========================================
     //                 Experiment

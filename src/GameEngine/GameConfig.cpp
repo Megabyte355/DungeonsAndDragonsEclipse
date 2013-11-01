@@ -7,11 +7,13 @@
 
 #include "GameConfig.h"
 
+// Variables that cannot be initialized in header file
 GameConfig* GameConfig::instance = nullptr;
+const std::string GameConfig::GAME_TITLE = "Dungeons and Dragons";
+bool GameConfig::gameIsRunning = false;
 
 GameConfig::GameConfig()
 {
-    gameIsRunning = false;
 }
 
 GameConfig::~GameConfig()

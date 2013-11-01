@@ -21,8 +21,8 @@ class Kiwi
         Kiwi(int, int, float);
         ~Kiwi(void);
 
-        void Draw();
-        void Update(float);
+        void draw();
+        void update(float);
     private:
         float x;
         float y;

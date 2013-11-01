@@ -32,24 +32,24 @@ void Textures::setRenderer(SDL_Renderer * ren)
 void Textures::loadAllTextures()
 {
     // Load all files here
-    orange = LoadTexture("assets/orange.png");
-    kiwi = LoadTexture("assets/kiwi.png");
+    orange = loadTexture("assets/orange.png");
+    kiwi = loadTexture("assets/kiwi.png");
     textureMap["orange"] = orange;
     textureMap["kiwi"] = kiwi;
 
     // Test
-    background = LoadTexture("assets/background.png");
-    floor = LoadTexture("assets/floor.png");
+    background = loadTexture("assets/background.png");
+    floor = loadTexture("assets/floor.png");
 
 
 }
 
-SDL_Texture* Textures::GetTexture(std::string textureName)
+SDL_Texture* Textures::getTexture(std::string textureName)
 {
     return textureMap[textureName];
 }
 
-SDL_Texture* Textures::LoadTexture(const std::string &file)
+SDL_Texture* Textures::loadTexture(const std::string &file)
 {
     SDL_Texture *texture = IMG_LoadTexture(renderer, file.c_str());
     if (texture == nullptr)
@@ -57,7 +57,7 @@ SDL_Texture* Textures::LoadTexture(const std::string &file)
     return texture;
 }
 
-SDL_Texture* Textures::RenderText(std::string message, std::string fontFile, SDL_Color color, int fontSize)
+SDL_Texture* Textures::renderText(std::string message, std::string fontFile, SDL_Color color, int fontSize)
 {
     if (renderer != nullptr)
     {

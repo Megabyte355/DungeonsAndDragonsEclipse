@@ -25,15 +25,14 @@ public:
     ScreenManager * screenManager;
     SDL_Renderer * renderer;
     SDL_Window * window;
-    bool isRunning;
 
     Game(void);
     ~Game(void);
 
-    void Initialize();
-    void Update(float);
-    void Draw();
-    void HandleEvents(SDL_Event * event);
+    void initialize();
+    void update(float);
+    void draw();
+    void handleEvents(SDL_Event * event);
 };
 
 #endif /* GAME_H_ */

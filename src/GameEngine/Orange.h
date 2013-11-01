@@ -23,14 +23,14 @@ class Orange
         Orange(void);
         ~Orange(void);
 
-        void Draw();
+        void draw();
         void Update();
         void Move(float);
 
-        void MoveUp(bool);
-        void MoveDown(bool);
-        void MoveLeft(bool);
-        void MoveRight(bool);
+        void moveUp(bool);
+        void moveDown(bool);
+        void moveLeft(bool);
+        void moveRight(bool);
 
     private:
         float x;

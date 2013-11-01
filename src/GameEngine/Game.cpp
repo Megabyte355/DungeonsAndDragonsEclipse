@@ -13,23 +13,21 @@ Game::Game(void)
     renderer = nullptr;
     window = nullptr;
 
-    Initialize();
+    initialize();
 }
 
 
 Game::~Game(void)
 {
-    isRunning = false;
     delete screenManager;
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
-
     SDL_Quit();
 
     std::cout << "Game Destroyed" << std::endl;
 }
 
-void Game::Initialize()
+void Game::initialize()
 {
     if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
     {
@@ -42,7 +40,7 @@ void Game::Initialize()
         return;
     }
 
-    window = SDL_CreateWindow("Lesson 6", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, GameConfig::SCREEN_WIDTH, GameConfig::SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
+    window = SDL_CreateWindow(GameConfig::GAME_TITLE.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, GameConfig::SCREEN_WIDTH, GameConfig::SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
     if (window == nullptr){
         Util::logSDLError(std::cout, "SDL_CreateWindow");
         return;
@@ -63,19 +61,19 @@ void Game::Initialize()
     std::cout << "Game Started" << std::endl;
 }
 
-void Game::Update(float gameTime)
+void Game::update(float gameTime)
 {
     screenManager->update(gameTime);
 }
 
-void Game::Draw()
+void Game::draw()
 {
     SDL_RenderClear(renderer);
     screenManager->draw();
     SDL_RenderPresent(renderer);
 }
 
-void Game::HandleEvents(SDL_Event * event)
+void Game::handleEvents(SDL_Event * event)
 {
     screenManager->handleEvents(event);
 }
