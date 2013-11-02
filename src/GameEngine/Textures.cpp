@@ -8,17 +8,24 @@
 #include "Textures.h"
 
 SDL_Renderer * Textures::renderer;
-
-// Texture test
 std::map<std::string, SDL_Texture*> Textures::textureMap;
 
-Textures::Textures(void)
+Textures::Textures()
 {
 }
 
-Textures::~Textures(void)
+Textures::~Textures()
 {
     // TO DO: Free all textures in textureMap
+}
+
+void Textures::destroy()
+{
+    for (auto t : textureMap)
+    {
+        SDL_DestroyTexture(t.second);
+        std::cout << "Texture " << t.first << " destroyed" << std::endl;
+    }
 }
 
 void Textures::setRenderer(SDL_Renderer * ren)
@@ -83,68 +90,13 @@ void Textures::drawTexture(std::string textureName, int x, int y, int w, int h)
     }
 }
 
-SDL_Texture* Textures::renderText(std::string message, std::string fontFile, SDL_Color color, int fontSize)
-{
-    if (renderer != nullptr)
-    {
-        //Open the font
-        TTF_Font *font = nullptr;
-        font = TTF_OpenFont(fontFile.c_str(), fontSize);
-
-        if (font == nullptr)
-        {
-            throw std::runtime_error("Failed to load font: " + fontFile + TTF_GetError());
-        }
-        //Render the message to an SDL_Surface, as that's what TTF_RenderText_X returns
-        SDL_Surface *surf = TTF_RenderText_Blended(font, message.c_str(), color);
-        SDL_Texture *texture = SDL_CreateTextureFromSurface(renderer, surf);
-
-        //Clean up unneeded stuff
-        SDL_FreeSurface(surf);
-        TTF_CloseFont(font);
-
-        return texture;
-    }
-    return nullptr;
-}
-
-void Textures::renderText(int x, int y, std::string message, std::string fontFile, SDL_Color color, int fontSize)
-{
-    if (renderer != nullptr)
-    {
-        //Open the font
-        TTF_Font *font = nullptr;
-        font = TTF_OpenFont(fontFile.c_str(), fontSize);
-
-        if (font == nullptr)
-        {
-            throw std::runtime_error("Failed to load font: " + fontFile + TTF_GetError());
-        }
-        //Render the message to an SDL_Surface, as that's what TTF_RenderText_X returns
-        SDL_Surface *surf = TTF_RenderText_Blended(font, message.c_str(), color);
-        SDL_Texture *texture = SDL_CreateTextureFromSurface(renderer, surf);
-
-        //Clean up unneeded stuff
-        SDL_FreeSurface(surf);
-        TTF_CloseFont(font);
-
-        SDL_Rect pos;
-        pos.x = x;
-        pos.y = y;
-        SDL_QueryTexture(texture, NULL, NULL, &pos.w, &pos.h);
-        SDL_RenderCopy(renderer, texture, NULL, &pos);
-//        SDL_RenderCopy(renderer, texture,)
-    }
-
-}
-
-void Textures::drawTexture(std::string textureName, int x, int y, SDL_Rect * clip)
+void Textures::drawTextureClip(std::string textureName, int x, int y, SDL_Rect * clip)
 {
     SDL_Texture * tex = textureMap[textureName];
     SDL_Rect pos;
     pos.x = x;
     pos.y = y;
-    if(clip != nullptr)
+    if (clip != nullptr)
     {
         pos.y = clip->w;
         pos.h = clip->h;

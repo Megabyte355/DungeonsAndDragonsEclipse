@@ -12,6 +12,7 @@
 #include "Util.h"
 #include "ScreenManager.h"
 #include "Textures.h"
+#include "TextRenderer.h"
 #include <iostream>
 #include <string>
 #include <SDL.h>
