@@ -10,6 +10,12 @@
 SDL_Renderer * TextRenderer::renderer;
 std::map<std::string, std::string> TextRenderer::fontMap;
 
+SDL_Color TextRenderer::black = {0, 0, 0};
+SDL_Color TextRenderer::white = {255, 255, 255};
+SDL_Color TextRenderer::red = {255, 0, 0};
+SDL_Color TextRenderer::green = {0, 255, 0};
+SDL_Color TextRenderer::blue = {0, 0, 255};
+
 TextRenderer::TextRenderer()
 {
 }
@@ -48,6 +54,11 @@ void TextRenderer::loadFontPaths()
 
 void TextRenderer::renderText(int x, int y, std::string message, std::string fontName, SDL_Color color, int fontSize)
 {
+    /*
+     * This function is currently very inefficient since it keeps re-reading the font files.
+     * A solution will be implemented in the near future.
+     */
+
     if (renderer != nullptr)
     {
         //Open the font with custom fontSize
@@ -74,8 +85,11 @@ void TextRenderer::renderText(int x, int y, std::string message, std::string fon
     }
 }
 
-TTF_Font * TextRenderer::loadFontPath(const std::string &fontFile)
+TTF_Font * TextRenderer::loadPath(const std::string &fontFile)
 {
+    /*
+     * This function will be used as part of the optimized font-loading algorithm later.
+     */
     TTF_Font *font = nullptr;
     font = TTF_OpenFont(fontFile.c_str(), GameConfig::DEFAULT_FONT_SIZE);
     if (font == nullptr)

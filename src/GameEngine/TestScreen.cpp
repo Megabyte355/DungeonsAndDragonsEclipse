@@ -48,16 +48,22 @@ void TestScreen::draw()
     o.draw();
 
     // Text test
-    SDL_Color color = {255, 255, 255};
-    SDL_Color color2 = {29, 209, 35};
-    SDL_Color red = {255, 0, 0};
+//    SDL_Color color = {255, 255, 255};
+//    SDL_Color color2 = {29, 209, 35};
+//    SDL_Color red = {255, 0, 0};
     //TextRenderer::renderText(10, 10, "StarCraft", "assets/starcraft_font.ttf", color, 32);
     //TextRenderer::renderText(10, 60, "Hello World!!!", "assets/starcraft_font.ttf", color2, 50);
     //TextRenderer::renderText(10, 100, "Dungeons and Dragons", "assets/starcraft_font.ttf", red, 45);
 
-    TextRenderer::renderText(10, 10, "StarCraft", "starcraft_font", color, 32);
-    TextRenderer::renderText(10, 60, "Hello World!!!", "arial_italic", color2, 50);
-    TextRenderer::renderText(10, 100, "Dungeons and Dragons", "calibri_bold", red, 100);
+    TextRenderer::renderText(10, 10, "StarCraft", "starcraft_font", TextRenderer::white, 32);
+    TextRenderer::renderText(10, 60, "Hello World!!!", "arial_italic", TextRenderer::blue, 50);
+    TextRenderer::renderText(10, 100, "Dungeons and Dragons", "calibri_bold", TextRenderer::red, 75);
+
+    TextRenderer::renderText(20, 200, "White", "arial_black", TextRenderer::white, 25);
+    TextRenderer::renderText(20, 230, "Red", "arial_black", TextRenderer::red, 25);
+    TextRenderer::renderText(20, 260, "Blue", "arial_black", TextRenderer::blue, 25);
+    TextRenderer::renderText(20, 290, "Green", "arial_black", TextRenderer::green, 25);
+    TextRenderer::renderText(20, 320, "Black", "arial_black", TextRenderer::black, 25);
 }
 
 void TestScreen::handleEvents(SDL_Event * event)
