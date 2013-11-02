@@ -37,7 +37,7 @@ Kiwi::~Kiwi(void)
 
 void Kiwi::draw()
 {
-    Textures::DrawTexture("kiwi", x, y, 150, 150);
+    Textures::drawTexture("kiwi", x, y, 150, 150);
 }
 
 void Kiwi::update(float gameTime)

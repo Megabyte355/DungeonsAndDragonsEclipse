@@ -28,6 +28,9 @@ class GameConfig
         const static int MAX_FRAMESKIP = 5;
         static bool gameIsRunning;
 
+        // Font settings
+        const static int DEFAULT_FONT_SIZE = 12;
+
     private:
         GameConfig();
         static GameConfig * instance;

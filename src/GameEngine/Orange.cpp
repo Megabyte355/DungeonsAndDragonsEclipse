@@ -66,7 +66,7 @@ void Orange::moveRight(bool x)
 
 void Orange::draw()
 {
-    Textures::DrawTexture("orange", x, y);
+    Textures::drawTexture("orange", x, y);
 }
 
 void Orange::Update()

@@ -16,7 +16,6 @@ Game::Game(void)
     initialize();
 }
 
-
 Game::~Game(void)
 {
     screenManager.reset();
@@ -39,14 +38,16 @@ void Game::initialize()
         std::cout << TTF_GetError() << std::endl;
         return;
     }
-
-    window = SDL_CreateWindow(GameConfig::GAME_TITLE.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, GameConfig::SCREEN_WIDTH, GameConfig::SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
-    if (window == nullptr){
+    window = SDL_CreateWindow(GameConfig::GAME_TITLE.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
+            GameConfig::SCREEN_WIDTH, GameConfig::SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
+    if (window == nullptr)
+    {
         Util::logSDLError(std::cout, "SDL_CreateWindow");
         return;
     }
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
-    if (renderer == nullptr){
+    if (renderer == nullptr)
+    {
         Util::logSDLError(std::cout, "SDL_CreateRenderer");
         return;
     }

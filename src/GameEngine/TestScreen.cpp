@@ -46,6 +46,14 @@ void TestScreen::draw()
         kiwi->draw();
     }
     o.draw();
+
+    // Text test
+    SDL_Color color = {255, 255, 255};
+    SDL_Color color2 = {29, 209, 35};
+    SDL_Color red = {255, 0, 0};
+    Textures::renderText(10, 10, "StarCraft", "assets/starcraft_font.ttf", color, 32);
+    Textures::renderText(10, 60, "Hello World!!!", "assets/starcraft_font.ttf", color2, 50);
+    Textures::renderText(10, 100, "Dungeons and Dragons", "assets/starcraft_font.ttf", red, 45);
 }
 
 void TestScreen::handleEvents(SDL_Event * event)

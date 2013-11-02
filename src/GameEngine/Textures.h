@@ -29,10 +29,12 @@ public:
     static std::map<std::string, SDL_Texture*> textureMap;
 
     static SDL_Texture* getTexture(std::string textureName);
-    static SDL_Texture* renderText(std::string message, std::string fontFile, SDL_Color color, int fontSize);
 
-    static void DrawTexture(std::string textureName, int x, int y, int w = 0, int h = 0);
-    //static void ApplySurface(SDL_Texture *tex, int x, int y, int w = 0, int h = 0);
+    static SDL_Texture* renderText(std::string message, std::string fontFile, SDL_Color color, int fontSize);
+    static void renderText(int,int,std::string message, std::string fontFile, SDL_Color color, int fontSize);
+    static void drawTexture(std::string textureName, int x, int y);
+    static void drawTexture(std::string textureName, int x, int y, int w, int h);
+    static void drawTexture(std::string textureName, int x, int y, SDL_Rect * clip);
 
 private:
     static SDL_Renderer* renderer;
