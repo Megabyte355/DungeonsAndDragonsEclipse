@@ -120,6 +120,21 @@ void TestScreen::handleEvents(SDL_Event * event)
                     break;
             }
             break;
+        case SDL_MOUSEBUTTONDOWN:
+            std::cout << "Left click? " << (event->button.button == SDL_BUTTON_LEFT) << std::endl;
+            std::cout << "Right click? " << (event->button.button == SDL_BUTTON_RIGHT) << std::endl;
+            std::cout << "Click at : (" << event->button.x << ", "<< event->button.y << ")" << std::endl;
+            break;
+
+        case SDL_MOUSEBUTTONUP:
+            std::cout << "Left up? " << (event->button.button == SDL_BUTTON_LEFT) << std::endl;
+            std::cout << "Right up? " << (event->button.button == SDL_BUTTON_RIGHT) << std::endl;
+            std::cout << "Click at : (" << event->button.x << ", "<< event->button.y << ")" << std::endl;
+            break;
+
+        case SDL_MOUSEMOTION:
+            std::cout << "Moving at : (" << event->motion.x << ", "<< event->motion.y << ")" << std::endl;
+            break;
         default:
             break;
     }
