@@ -5,8 +5,8 @@
 // Description : Implementation of the Observer Pattern over the Map classes
 //============================================================================
 
-#include "GameEngine/Game.h"
-#include "GameEngine/GameConfig.h"
+#include "Game.h"
+#include "GameConfig.h"
 #include <iostream>
 #include <memory>
 
