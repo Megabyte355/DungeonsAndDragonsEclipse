@@ -27,6 +27,8 @@
 								<option id="gnu.cpp.compiler.option.other.other.1574796705" name="Other flags" superClass="gnu.cpp.compiler.option.other.other" value="-c -fmessage-length=0 -std=c++11" valueType="string"/>
 								<option id="gnu.cpp.compiler.option.include.paths.1722881292" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DungeonsAndDragonsEclipse/SDL2_MinGW_combined_i686/i686-w64-mingw32/include/SDL2}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DungeonsAndDragonsEclipse/src/GameEngine}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DungeonsAndDragonsEclipse/src/Screen}&quot;"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.439431601" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 							</tool>
@@ -87,6 +89,7 @@
 								<option id="gnu.cpp.compiler.option.other.other.1942153353" name="Other flags" superClass="gnu.cpp.compiler.option.other.other" value="-c -fmessage-length=0 -std=c++11" valueType="string"/>
 								<option id="gnu.cpp.compiler.option.include.paths.1051655925" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DungeonsAndDragonsEclipse/SDL2_MinGW_combined_i686/i686-w64-mingw32/include/SDL2}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DungeonsAndDragonsEclipse/src/Screen}&quot;"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.1290104158" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 							</tool>

@@ -90,7 +90,7 @@ void TextRenderer::renderText(int x, int y, std::string message, std::string fon
      * A solution will be implemented in the near future.
      */
 
-    if (renderer != nullptr)
+    if (renderer != nullptr && !fontMap[fontName].empty())
     {
         // Open the font with custom font size
         TTF_Font *font = nullptr;
@@ -114,6 +114,10 @@ void TextRenderer::renderText(int x, int y, std::string message, std::string fon
         pos.y = y;
         SDL_QueryTexture(texture, NULL, NULL, &pos.w, &pos.h);
         SDL_RenderCopy(renderer, texture, NULL, &pos);
+    }
+    else
+    {
+        std::cout << "TextRenderer::renderText - renderer or fontMap error" << std::endl;
     }
 }
 

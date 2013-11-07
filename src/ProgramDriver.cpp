@@ -20,8 +20,6 @@ int main(int argc, char** argv)
         return 1;
     }
 
-
-    //GameConfig::getInstance()->gameIsRunning = true;
     GameConfig * config = GameConfig::getInstance();
     config->gameIsRunning = true;
 
