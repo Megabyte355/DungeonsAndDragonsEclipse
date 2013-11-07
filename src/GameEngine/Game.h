@@ -27,6 +27,9 @@ public:
     SDL_Renderer * renderer;
     SDL_Window * window;
 
+    TextureRenderer * textures;
+    TextRenderer * texts;
+
     Game(void);
     ~Game(void);
 

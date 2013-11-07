@@ -47,14 +47,7 @@ void TestScreen::draw()
     }
     o.draw();
 
-    // Text test
-//    SDL_Color color = {255, 255, 255};
-//    SDL_Color color2 = {29, 209, 35};
-//    SDL_Color red = {255, 0, 0};
-    //TextRenderer::renderText(10, 10, "StarCraft", "assets/starcraft_font.ttf", color, 32);
-    //TextRenderer::renderText(10, 60, "Hello World!!!", "assets/starcraft_font.ttf", color2, 50);
-    //TextRenderer::renderText(10, 100, "Dungeons and Dragons", "assets/starcraft_font.ttf", red, 45);
-
+    // Test
     TextRenderer::getInstance()->renderText(10, 10, "StarCraft", "starcraft_font", TextRenderer::white, 32);
     TextRenderer::getInstance()->renderText(10, 60, "Hello World!!!", "arial_italic", TextRenderer::blue, 50);
     TextRenderer::getInstance()->renderText(10, 100, "Dungeons and Dragons", "calibri_bold", TextRenderer::red, 75);

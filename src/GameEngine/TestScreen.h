@@ -15,7 +15,7 @@
 #include "Game.h"
 #include <vector>
 
-class TestScreen : public Screen
+class TestScreen : public virtual Screen
 {
 private:
     Orange o;

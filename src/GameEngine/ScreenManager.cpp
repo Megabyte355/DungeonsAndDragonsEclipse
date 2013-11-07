@@ -84,7 +84,7 @@ void ScreenManager::popScreen(int instanceId)
 {
     for (std::vector<std::shared_ptr<Screen>>::iterator it = activeScreens.begin(); it != activeScreens.end(); it++)
     {
-        if ((*it)->instanceId == instanceId)
+        if ((*it)->getInstanceId() == instanceId)
         {
             activeScreens.erase(it);
             break;
@@ -109,7 +109,7 @@ void ScreenManager::update(float gameTime)
         // If no longer active, remove from activeScreens vector
         if (!s->active)
         {
-            popScreen(s->instanceId);
+            popScreen(s->getInstanceId());
         }
     }
     cleanCopiedScreens();
