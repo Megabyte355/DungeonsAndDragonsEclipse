@@ -23,8 +23,6 @@ Game::~Game(void)
     SDL_DestroyWindow(window);
     SDL_Quit();
 
-    Textures::destroy();
-
     std::cout << "Game Destroyed" << std::endl;
 }
 
@@ -54,10 +52,10 @@ void Game::initialize()
         return;
     }
     
-    Textures::setRenderer(renderer);
-    Textures::loadAllTextures();
-    TextRenderer::setRenderer(renderer);
-    TextRenderer::loadFontPaths();
+    TextureRenderer::getInstance()->setRenderer(renderer);
+    TextureRenderer::getInstance()->loadAllTextures();
+    TextRenderer::getInstance()->setRenderer(renderer);
+    TextRenderer::getInstance()->loadFontPaths();
     screenManager = ScreenManager::getInstance();
     screenManager->initialize();
 

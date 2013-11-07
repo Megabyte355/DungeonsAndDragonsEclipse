@@ -8,7 +8,7 @@
 #ifndef KIWI_H_
 #define KIWI_H_
 
-#include "Textures.h"
+#include "TextureRenderer.h"
 
 class Kiwi
 {
