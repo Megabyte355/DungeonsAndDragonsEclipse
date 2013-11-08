@@ -12,6 +12,7 @@
 #include <memory>
 #include "Screen.h"
 #include "TestScreen.h"
+#include "MenuScreen.h"
 
 // Forward declaration
 class Game;

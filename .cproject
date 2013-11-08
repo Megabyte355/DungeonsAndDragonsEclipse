@@ -30,6 +30,7 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DungeonsAndDragonsEclipse/src/GameEngine}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DungeonsAndDragonsEclipse/src/Screen}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DungeonsAndDragonsEclipse/src/TestEntities}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DungeonsAndDragonsEclipse/src/GameObjects}&quot;"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.439431601" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 							</tool>
@@ -59,12 +60,13 @@
 					</folderInfo>
 					<folderInfo id="cdt.managedbuild.config.gnu.mingw.exe.debug.1286164744.914589845" name="/" resourcePath="src/GameObjects">
 						<toolChain id="cdt.managedbuild.toolchain.gnu.mingw.exe.debug.1574396720" name="MinGW GCC" superClass="cdt.managedbuild.toolchain.gnu.mingw.exe.debug" unusedChildren="">
+							<targetPlatform id="cdt.managedbuild.target.gnu.platform.mingw.exe.debug" name="Debug Platform" superClass="cdt.managedbuild.target.gnu.platform.mingw.exe.debug"/>
 							<tool id="cdt.managedbuild.tool.gnu.assembler.mingw.exe.debug.1040864695" name="GCC Assembler" superClass="cdt.managedbuild.tool.gnu.assembler.mingw.exe.debug.1610489326">
 								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.1924003815" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
 							</tool>
 							<tool id="cdt.managedbuild.tool.gnu.archiver.mingw.base.215043590" name="GCC Archiver" superClass="cdt.managedbuild.tool.gnu.archiver.mingw.base.1059671943"/>
 							<tool id="cdt.managedbuild.tool.gnu.cpp.compiler.mingw.exe.debug.1458947953" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.mingw.exe.debug.1726040880">
-								<option id="gnu.cpp.compiler.option.include.paths.142375953" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
+								<option id="gnu.cpp.compiler.option.include.paths.142375953" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DungeonsAndDragonsEclipse/SDL2_MinGW_combined_i686/i686-w64-mingw32/include/SDL2}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DungeonsAndDragonsEclipse/src/GameEngine}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DungeonsAndDragonsEclipse/src/Screen}&quot;"/>
@@ -117,6 +119,7 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DungeonsAndDragonsEclipse/src/GameEngine}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DungeonsAndDragonsEclipse/src/Screen}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DungeonsAndDragonsEclipse/src/TestEntities}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DungeonsAndDragonsEclipse/src/GameObjects}&quot;"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.1290104158" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 							</tool>
@@ -146,12 +149,13 @@
 					</folderInfo>
 					<folderInfo id="cdt.managedbuild.config.gnu.mingw.exe.release.376028989.8205493" name="/" resourcePath="src/GameObjects">
 						<toolChain id="cdt.managedbuild.toolchain.gnu.mingw.exe.release.1808000543" name="MinGW GCC" superClass="cdt.managedbuild.toolchain.gnu.mingw.exe.release" unusedChildren="">
+							<targetPlatform id="cdt.managedbuild.target.gnu.platform.mingw.exe.release" name="Debug Platform" superClass="cdt.managedbuild.target.gnu.platform.mingw.exe.release"/>
 							<tool id="cdt.managedbuild.tool.gnu.assembler.mingw.exe.release.1295970830" name="GCC Assembler" superClass="cdt.managedbuild.tool.gnu.assembler.mingw.exe.release.636297847">
 								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.1489433683" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
 							</tool>
 							<tool id="cdt.managedbuild.tool.gnu.archiver.mingw.base.1002124456" name="GCC Archiver" superClass="cdt.managedbuild.tool.gnu.archiver.mingw.base.474876385"/>
 							<tool id="cdt.managedbuild.tool.gnu.cpp.compiler.mingw.exe.release.995715955" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.mingw.exe.release.769052278">
-								<option id="gnu.cpp.compiler.option.include.paths.199016922" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
+								<option id="gnu.cpp.compiler.option.include.paths.199016922" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DungeonsAndDragonsEclipse/SDL2_MinGW_combined_i686/i686-w64-mingw32/include/SDL2}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DungeonsAndDragonsEclipse/src/GameEngine}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DungeonsAndDragonsEclipse/src/Screen}&quot;"/>
@@ -197,10 +201,10 @@
 		<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.mingw.exe.debug.1286164744;cdt.managedbuild.config.gnu.mingw.exe.debug.1286164744.;cdt.managedbuild.tool.gnu.cpp.compiler.mingw.exe.debug.1726040880;cdt.managedbuild.tool.gnu.cpp.compiler.input.439431601">
 			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
 		</scannerConfigBuildInfo>
-		<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.mingw.exe.debug.1286164744;cdt.managedbuild.config.gnu.mingw.exe.debug.1286164744.;cdt.managedbuild.tool.gnu.c.compiler.mingw.exe.debug.42197281;cdt.managedbuild.tool.gnu.c.compiler.input.2104106979">
+		<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.mingw.exe.release.376028989;cdt.managedbuild.config.gnu.mingw.exe.release.376028989.;cdt.managedbuild.tool.gnu.cpp.compiler.mingw.exe.release.769052278;cdt.managedbuild.tool.gnu.cpp.compiler.input.1290104158">
 			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
 		</scannerConfigBuildInfo>
-		<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.mingw.exe.release.376028989;cdt.managedbuild.config.gnu.mingw.exe.release.376028989.;cdt.managedbuild.tool.gnu.cpp.compiler.mingw.exe.release.769052278;cdt.managedbuild.tool.gnu.cpp.compiler.input.1290104158">
+		<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.mingw.exe.debug.1286164744;cdt.managedbuild.config.gnu.mingw.exe.debug.1286164744.;cdt.managedbuild.tool.gnu.c.compiler.mingw.exe.debug.42197281;cdt.managedbuild.tool.gnu.c.compiler.input.2104106979">
 			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
 		</scannerConfigBuildInfo>
 	</storageModule>
