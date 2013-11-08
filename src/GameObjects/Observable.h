@@ -1,12 +1,12 @@
 /*
- * IObservable.h
+ * Observable.h
  *
  *  Created on: Oct 27, 2013
  *      Author: Gary
  */
 
-#ifndef IOBSERVABLE_H_
-#define IOBSERVABLE_H_
+#ifndef OBSERVABLE_H_
+#define OBSERVABLE_H_
 
 #include "Observer.h"
 #include <memory>
@@ -31,4 +31,4 @@ class Observable
         long observableID;
 };
 
-#endif /* IOBSERVABLE_H_ */
+#endif /* OBSERVABLE_H_ */

@@ -51,6 +51,7 @@ void TextureRenderer::loadAllTextures()
     textureMap["finish"] = loadTexture("assets/finish.png");
     textureMap["empty"] = loadTexture("assets/empty.png");
     textureMap["dot"] = loadTexture("assets/dot.png");
+    textureMap["outer_space"] = loadTexture("assets/outer_space.png");
 
     // Test
     textureMap["kiwi"] = loadTexture("assets/kiwi.png");
@@ -100,6 +101,15 @@ void TextureRenderer::drawTexture(std::string textureName, int x, int y, int w, 
     else
     {
         std::cout << "Textures::drawTexture error with " << textureName.c_str() << std::endl;
+    }
+}
+
+void TextureRenderer::drawTexture(std::string textureName, SDL_Rect * pos, SDL_Rect * clip)
+{
+    SDL_Texture * tex = textureMap[textureName];
+    if (renderer != nullptr && pos != nullptr)
+    {
+        SDL_RenderCopy(renderer, tex, clip, pos);
     }
 }
 

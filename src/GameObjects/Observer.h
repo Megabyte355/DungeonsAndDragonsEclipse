@@ -1,12 +1,12 @@
 /*
- * IObserver.h
+ * Observer.h
  *
  *  Created on: Oct 27, 2013
  *      Author: Gary
  */
 
-#ifndef IOBSERVER_H_
-#define IOBSERVER_H_
+#ifndef OBSERVER_H_
+#define OBSERVER_H_
 
 class Observer
 {
@@ -21,4 +21,4 @@ class Observer
         static long observerIDtracker;
 };
 
-#endif /* IOBSERVER_H_ */
+#endif /* OBSERVER_H_ */

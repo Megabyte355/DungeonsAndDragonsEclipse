@@ -37,9 +37,10 @@ std::shared_ptr<ScreenManager> ScreenManager::getInstance()
 
 void ScreenManager::initialize()
 {
-    storedScreens.push_back(std::make_shared<TestScreen>());
-
-    pushScreen("TestScreen");
+    //storedScreens.push_back(std::make_shared<TestScreen>());
+    //pushScreen("TestScreen");
+    storedScreens.push_back(std::make_shared<MenuScreen>());
+    pushScreen("MenuScreen");
 }
 
 // Move a screen from storedScreen to activeScreens
