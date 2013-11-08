@@ -1,12 +1,12 @@
 /*
- * StringStreamable.h
+ * StringConvertible.h
  *
  *  Created on: Nov 7, 2013
  *      Author: Gary
  */
 
-#ifndef STRINGSTREAMABLE_H_
-#define STRINGSTREAMABLE_H_
+#ifndef STRINGCONVERTIBLE_H_
+#define STRINGCONVERTIBLE_H_
 
 #include <sstream>
 
@@ -21,4 +21,4 @@ class StringConvertible
         virtual void fromString(std::string) = 0;
 };
 
-#endif /* STRINGSTREAMABLE_H_ */
+#endif /* STRINGCONVERTIBLE_H_ */

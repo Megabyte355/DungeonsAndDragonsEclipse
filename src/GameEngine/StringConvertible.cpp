@@ -1,5 +1,5 @@
 /*
- * StringStreamable.cpp
+ * StringConvertible.cpp
  *
  *  Created on: Nov 7, 2013
  *      Author: Gary
@@ -14,4 +14,3 @@ StringConvertible::StringConvertible()
 StringConvertible::~StringConvertible()
 {
 }
-
