@@ -49,6 +49,7 @@ class Map: public virtual Observable, public virtual StringConvertible
         std::vector<CellLocation> getShortestPath(Cell&, Cell&);
         std::vector<CellLocation> getStartToEndPath();
 
+    protected:
         // Save/Load functions
         std::string toString() override;
         void fromString(std::string) override;

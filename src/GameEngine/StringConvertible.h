@@ -16,10 +16,9 @@ class StringConvertible
         StringConvertible();
         virtual ~StringConvertible();
 
+    protected:
         virtual std::string toString() = 0;
         virtual void fromString(std::string) = 0;
-    protected:
-        std::stringstream ss;
 };
 
 #endif /* STRINGSTREAMABLE_H_ */
