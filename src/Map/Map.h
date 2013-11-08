@@ -12,11 +12,12 @@
 #include "Cell.h"
 #include "PathFinder.h"
 #include "Observable.h"
-#include "StringConvertible.h"
+#include "Recordable.h"
 #include <vector>
 #include <iostream>
+#include <functional>
 
-class Map: public virtual Observable, public virtual StringConvertible
+class Map: public virtual Observable, public virtual Recordable
 {
     public:
         Map();

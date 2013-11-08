@@ -8,19 +8,26 @@
 #ifndef FILEIO_H_
 #define FILEIO_H_
 
-#include "StringConvertible.h"
-#include <iostream>
+
 #include <iostream>
 #include <fstream>
+#include <string>
+#include <functional>
+#include <sstream>
+
 
 class FileIO
 {
     public:
-        FileIO();
+        FileIO(std::string prefix, std::string postfix);
         virtual ~FileIO();
 
-        virtual void save(int) = 0;
-        virtual void load(int) = 0;
+        void save(int, std::string);
+        std::string load(int);
+
+    private:
+        std::string prefix;
+        std::string postfix;
 };
 
 #endif /* FILEIO_H_ */

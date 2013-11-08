@@ -10,6 +10,7 @@
 Map::Map()
 {
     initialize(10, 10);
+    fileHandler = new FileIO("map_", ".txt");
 }
 
 Map::Map(int width, int height)
@@ -19,6 +20,7 @@ Map::Map(int width, int height)
 
 Map::~Map()
 {
+    delete fileHandler;
 }
 
 void Map::initialize(int width, int height)
