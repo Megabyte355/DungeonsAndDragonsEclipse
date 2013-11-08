@@ -41,7 +41,7 @@ void MenuScreen::draw()
     dest.w = GameConfig::SCREEN_WIDTH;
     dest.h = GameConfig::SCREEN_HEIGHT;
 
-    textures->drawTexture("outer_space", dest.y, dest.y, dest.w, dest.h);
+    textures->drawTexture("outer_space", dest.x, dest.y, dest.w, dest.h);
 
 }
 
