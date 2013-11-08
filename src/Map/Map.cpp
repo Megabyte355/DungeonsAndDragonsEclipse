@@ -9,18 +9,18 @@
 
 Map::Map()
 {
+    fileHandler = nullptr;
     initialize(10, 10);
-    fileHandler = new FileIO("map_", ".txt");
 }
 
 Map::Map(int width, int height)
 {
+    fileHandler = nullptr;
     initialize(width, height);
 }
 
 Map::~Map()
 {
-    delete fileHandler;
 }
 
 void Map::initialize(int width, int height)
@@ -36,6 +36,10 @@ void Map::initialize(int width, int height)
         {
             matrix[i][j] = std::make_shared<Cell>(i, j);
         }
+    }
+    if (fileHandler == nullptr)
+    {
+        fileHandler = new FileIO("map_", ".txt");
     }
 }
 
@@ -225,7 +229,7 @@ std::string Map::toString()
     ss << mapWidth << "\n";
     ss << mapHeight << "\n";
 
-    for (int row = 0; row < mapWidth; row++)
+    for (int row = 0; row < mapHeight; row++)
     {
         for (int col = 0; col < mapWidth; col++)
         {
@@ -294,9 +298,9 @@ void Map::fromString(std::string input)
     // Read the string
     while (std::getline(ss, line))
     {
-        for (int row = 0; row < mapWidth; row++)
+        for (int row = 0; row < mapHeight; row++)
         {
-            for (int col = 0; col < mapHeight; col++)
+            for (int col = 0; col < mapWidth; col++)
             {
                 for (unsigned int k = 0; k < line.size(); k++)
                 {
