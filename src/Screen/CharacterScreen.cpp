@@ -39,7 +39,7 @@ void CharacterScreen::initialize()
     option = nullptr;
 }
 
-void CharacterScreen::update(float)
+void CharacterScreen::update(float deltaTime)
 {
     if (characterCreation)
     {
