@@ -37,9 +37,10 @@ class TextRenderer
         static TextRenderer * instance;
         static const int DEFAULT_FONT_SIZE = 20;
         SDL_Renderer* renderer;
-        std::map<std::string, std::string> fontMap;
+        std::map<std::string, std::string> fontPathMap;
+        std::map<std::string, std::map<int, TTF_Font*>> fontMap;
 
-        TTF_Font* loadPath(const std::string &file);
+        TTF_Font* loadPath(const std::string &file, int fontSize);
 };
 
 #endif /* TEXTRENDERER_H_ */
