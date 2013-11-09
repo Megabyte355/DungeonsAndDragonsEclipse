@@ -281,3 +281,140 @@ Character::Character(string charName, int level)
     setAC();
 }
 
+std::string Character::toFileString()
+{
+    std::stringstream ss;
+
+    ss << charName << "\n";
+    ss << level << "\n";
+    ss << hitPoints << "\n";
+    ss << armorClass << "\n";
+
+    ss << str << "\n";
+    ss << dex << "\n";
+    ss << con << "\n";
+    ss << intel << "\n";
+    ss << wis << "\n";
+    ss << cha << "\n";
+    ss << baseAttack << "\n";
+    ss << damageBonus << "\n";
+
+    ss << helmet.name << "\n";
+    ss << ring1.name << "\n";
+    ss << ring2.name << "\n";
+    ss << weapon.name << "\n";
+    ss << shield.name << "\n";
+    ss << armor.name << "\n";
+    ss << belt.name << "\n";
+    ss << boots.name << "\n";
+
+    return ss.str();
+}
+
+void Character::fromFileString(std::string data)
+{
+    std::stringstream ss;
+    std::string line;
+    ss << data;
+
+    std::getline(ss, line);
+    std::stringstream temp;
+    temp << line;
+    temp >> charName;
+    temp.str(std::string());
+
+    std::getline(ss, line);
+    temp << line;
+    temp >> level;
+    temp.str(std::string());
+
+    std::getline(ss, line);
+    temp << line;
+    temp >> hitPoints;
+    temp.str(std::string());
+
+    std::getline(ss, line);
+    temp << line;
+    temp >> armorClass;
+    temp.str(std::string());
+
+    std::getline(ss, line);
+    temp << line;
+    temp >> str;
+    temp.str(std::string());
+
+    std::getline(ss, line);
+    temp << line;
+    temp >> dex;
+    temp.str(std::string());
+
+    std::getline(ss, line);
+    temp << line;
+    temp >> con;
+    temp.str(std::string());
+
+    std::getline(ss, line);
+    temp << line;
+    temp >> intel;
+    temp.str(std::string());
+
+    std::getline(ss, line);
+    temp << line;
+    temp >> wis;
+    temp.str(std::string());
+
+    std::getline(ss, line);
+    temp << line;
+    temp >> cha;
+    temp.str(std::string());
+
+    std::getline(ss, line);
+    temp << line;
+    temp >> baseAttack;
+    temp.str(std::string());
+
+    std::getline(ss, line);
+    temp << line;
+    temp >> damageBonus;
+    temp.str(std::string());
+
+    std::getline(ss, line);
+    temp << line;
+    temp >> helmet.name;
+    temp.str(std::string());
+
+    std::getline(ss, line);
+    temp << line;
+    temp >> ring1.name;
+    temp.str(std::string());
+
+    std::getline(ss, line);
+    temp << line;
+    temp >> ring2.name;
+    temp.str(std::string());
+
+    std::getline(ss, line);
+    temp << line;
+    temp >> weapon.name;
+    temp.str(std::string());
+
+    std::getline(ss, line);
+    temp << line;
+    temp >> shield.name;
+    temp.str(std::string());
+
+    std::getline(ss, line);
+    temp << line;
+    temp >> armor.name;
+    temp.str(std::string());
+
+    std::getline(ss, line);
+    temp << line;
+    temp >> belt.name;
+    temp.str(std::string());
+
+    std::getline(ss, line);
+    temp << line;
+    temp >> boots.name;
+    temp.str(std::string());
+}

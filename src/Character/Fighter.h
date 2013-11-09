@@ -9,6 +9,7 @@
 #define	FIGHTER_H
 #include "Character.h"
 #include <string>
+
 using namespace std;
 
 class Fighter: public Character
