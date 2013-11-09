@@ -135,7 +135,6 @@ void TextRenderer::renderText(int x, int y, std::string message, std::string fon
         font = nullptr;
         surf = nullptr;
         texture = nullptr;
-        //TTF_CloseFont(font);
     }
     else
     {
