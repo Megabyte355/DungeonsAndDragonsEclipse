@@ -13,6 +13,7 @@
 #include "Screen.h"
 #include "TestScreen.h"
 #include "MenuScreen.h"
+#include "CharacterScreen.h"
 
 // Forward declaration
 class Game;
@@ -35,6 +36,9 @@ class ScreenManager
         void draw();
         void handleEvents(SDL_Event * event);
 
+        // Screen change request function
+        static void requestScreenChange(std::string, std::string);
+
     private:
         ScreenManager();
 
@@ -45,6 +49,11 @@ class ScreenManager
 
         void copyActiveScreens();
         void cleanCopiedScreens();
+
+        // Screen change request variables
+        static bool changeScreenRequest;
+        static std::string nextScreenName;
+        static std::string previousScreenName;
 };
 
 #endif /* SCREENMANAGER_H_ */

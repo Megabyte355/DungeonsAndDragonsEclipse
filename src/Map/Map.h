@@ -52,8 +52,8 @@ class Map: public virtual Observable, public virtual Recordable
 
     protected:
         // Save/Load functions
-        std::string toString() override;
-        void fromString(std::string) override;
+        std::string toFileString() override;
+        void fromFileString(std::string) override;
 
     private:
         // Map variables

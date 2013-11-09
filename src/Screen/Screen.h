@@ -30,11 +30,12 @@ class Screen
         virtual void update(float) = 0;
         virtual void draw() = 0;
         virtual void handleEvents(SDL_Event * event) = 0;
-
+        virtual void reset() = 0;
 
     private:
         std::string uniqueName;
         int instanceId;
+
     protected:
         static int instanceIdCounter;
 };
