@@ -29,6 +29,7 @@ public:
     void update(float) override;
     void draw() override;
     void handleEvents(SDL_Event * event) override;
+    void reset() override;
 };
 
 #endif /* TESTSCREEN_H_ */

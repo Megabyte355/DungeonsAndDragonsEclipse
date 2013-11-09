@@ -25,10 +25,15 @@ class MenuScreen: public virtual Screen
         void update(float) override;
         void draw() override;
         void handleEvents(SDL_Event * event) override;
+        void reset() override;
 
     private:
         TextureRenderer * textures;
         TextRenderer * texts;
+
+        bool pressAnyKeyDisplay;
+        float displayDelay;
+        float currentTime;
 };
 
 #endif /* MENUSCREEN_H_ */

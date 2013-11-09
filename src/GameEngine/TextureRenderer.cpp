@@ -43,6 +43,8 @@ void TextureRenderer::setRenderer(SDL_Renderer * ren)
 void TextureRenderer::loadAllTextures()
 {
     // Load all files here
+    textureMap["bizzare_landscape"] = loadTexture("assets/bizzare_landscape.png");
+    textureMap["ddlogo"] = loadTexture("assets/ddlogo.png");
     textureMap["background"] = loadTexture("assets/background.png");
     textureMap["floor"] = loadTexture("assets/floor.png");
     textureMap["bricks"] = loadTexture("assets/bricks.png");

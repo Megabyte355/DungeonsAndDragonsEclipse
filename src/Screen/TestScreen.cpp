@@ -7,15 +7,15 @@
 
 #include "TestScreen.h"
 
-TestScreen::TestScreen(void) : Screen("TestScreen")
+TestScreen::TestScreen(void) :
+        Screen("TestScreen")
 {
     int instances = rand() % 100 + 50;
     for (int i = instances; i > 0; i--)
     {
-        k.push_back(new Kiwi(rand() % 800, rand() % 600, (rand() % 500 + 1) / (float)1000 ));
+        k.push_back(new Kiwi(rand() % 800, rand() % 600, (rand() % 500 + 1) / (float) 1000));
     }
 }
-
 
 TestScreen::~TestScreen(void)
 {
@@ -61,7 +61,7 @@ void TestScreen::draw()
 
 void TestScreen::handleEvents(SDL_Event * event)
 {
-    switch(event->type)
+    switch (event->type)
     {
         case SDL_QUIT:
             GameConfig::getInstance()->gameIsRunning = false;
@@ -116,19 +116,24 @@ void TestScreen::handleEvents(SDL_Event * event)
         case SDL_MOUSEBUTTONDOWN:
             std::cout << "Left click? " << (event->button.button == SDL_BUTTON_LEFT) << std::endl;
             std::cout << "Right click? " << (event->button.button == SDL_BUTTON_RIGHT) << std::endl;
-            std::cout << "Click at : (" << event->button.x << ", "<< event->button.y << ")" << std::endl;
+            std::cout << "Click at : (" << event->button.x << ", " << event->button.y << ")" << std::endl;
             break;
 
         case SDL_MOUSEBUTTONUP:
             std::cout << "Left up? " << (event->button.button == SDL_BUTTON_LEFT) << std::endl;
             std::cout << "Right up? " << (event->button.button == SDL_BUTTON_RIGHT) << std::endl;
-            std::cout << "Click at : (" << event->button.x << ", "<< event->button.y << ")" << std::endl;
+            std::cout << "Click at : (" << event->button.x << ", " << event->button.y << ")" << std::endl;
             break;
 
         case SDL_MOUSEMOTION:
-            std::cout << "Moving at : (" << event->motion.x << ", "<< event->motion.y << ")" << std::endl;
+            std::cout << "Moving at : (" << event->motion.x << ", " << event->motion.y << ")" << std::endl;
             break;
         default:
             break;
     }
+}
+
+void TestScreen::reset()
+{
+
 }
