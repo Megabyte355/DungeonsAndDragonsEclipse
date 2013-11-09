@@ -223,7 +223,7 @@ bool Map::isOccupiable(CellLocation loc)
     return temp != nullptr && temp->isOccupiable();
 }
 
-std::string Map::toString()
+std::string Map::toFileString()
 {
     std::stringstream ss;
     ss << mapWidth << "\n";
@@ -264,7 +264,7 @@ std::string Map::toString()
     return ss.str();
 }
 
-void Map::fromString(std::string input)
+void Map::fromFileString(std::string input)
 {
     // Reset all
     for (int i = 0; i < mapWidth; i++)

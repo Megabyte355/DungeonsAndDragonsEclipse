@@ -16,7 +16,7 @@ void Recordable::save(int slot)
 {
     if (fileHandler != nullptr)
     {
-        fileHandler->save(slot, toString());
+        fileHandler->save(slot, toFileString());
     }
 }
 
@@ -24,6 +24,6 @@ void Recordable::load(int slot)
 {
     if (fileHandler != nullptr)
     {
-        fromString(fileHandler->load(slot));
+        fromFileString(fileHandler->load(slot));
     }
 }

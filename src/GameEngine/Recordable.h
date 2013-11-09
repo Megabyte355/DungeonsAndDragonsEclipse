@@ -20,8 +20,8 @@ class Recordable
         void load(int);
 
     protected:
-        virtual std::string toString() = 0;
-        virtual void fromString(std::string) = 0;
+        virtual std::string toFileString() = 0;
+        virtual void fromFileString(std::string) = 0;
 
         FileIO * fileHandler;
 };
