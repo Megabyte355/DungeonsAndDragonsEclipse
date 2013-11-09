@@ -31,6 +31,10 @@ void MenuScreen::initialize()
     OptionLabel * option = new OptionLabel(325, 325, 150, 25, "Character Editor");
     option->setFunction(goToCharacterScreen);
     menuOptions.push_back(option);
+
+    option = new OptionLabel(325, 400, 150, 25, "Map Editor");
+    option->setFunction(goToMapScreen);
+    menuOptions.push_back(option);
     option = nullptr;
 
     pressAnyKeyDisplay = true;
@@ -137,3 +141,7 @@ void MenuScreen::goToCharacterScreen()
     ScreenManager::requestScreenChange("MenuScreen", "CharacterScreen");
 }
 
+void MenuScreen::goToMapScreen()
+{
+    ScreenManager::requestScreenChange("MenuScreen", "MapScreen");
+}
