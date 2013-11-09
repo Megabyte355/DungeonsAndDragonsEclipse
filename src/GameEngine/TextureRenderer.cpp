@@ -38,6 +38,7 @@ TextureRenderer * TextureRenderer::getInstance()
 void TextureRenderer::setRenderer(SDL_Renderer * ren)
 {
     renderer = ren;
+    SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
 }
 
 void TextureRenderer::loadAllTextures()
@@ -131,4 +132,9 @@ void TextureRenderer::drawTextureClip(std::string textureName, int x, int y, SDL
         SDL_QueryTexture(tex, NULL, NULL, &pos.w, &pos.h);
     }
     SDL_RenderCopy(renderer, tex, clip, &pos);
+}
+
+void TextureRenderer::drawLine(int x1, int y1, int x2, int y2)
+{
+    SDL_RenderDrawLine(renderer, x1, y1, x2, y2);
 }

@@ -31,6 +31,8 @@ class TextureRenderer
         void drawTexture(std::string textureName, SDL_Rect * pos, SDL_Rect * clip);
         void drawTextureClip(std::string textureName, int x, int y, SDL_Rect * clip);
 
+        void drawLine(int,int,int,int);
+
     private:
         TextureRenderer();
         static TextureRenderer * instance;
