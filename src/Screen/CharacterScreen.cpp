@@ -26,12 +26,12 @@ void CharacterScreen::initialize()
     textures = TextureRenderer::getInstance();
     texts = TextRenderer::getInstance();
 
-    OptionLabel * option = new OptionLabel(700, 0, 100, 50, "Back");
+    Button * option = new Button(700, 0, 100, 50, "Back");
     option->setFunction(returnToMenu);
     options.push_back(option);
     option->toggleVisibility();
 
-    option = new OptionLabel(300, 250, 225, 50, "Begin Character Creation");
+    option = new Button(300, 250, 225, 50, "Begin Character Creation");
     option->setFunction(beginCharacterCreation);
     options.push_back(option);
     option->toggleVisibility();

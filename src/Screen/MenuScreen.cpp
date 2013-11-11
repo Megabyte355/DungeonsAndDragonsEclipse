@@ -28,11 +28,11 @@ void MenuScreen::initialize()
     displayDelay = 500;
     currentTime = 0;
 
-    OptionLabel * option = new OptionLabel(325, 325, 150, 25, "Character Editor");
+    Button * option = new Button(325, 325, 150, 25, "Character Editor");
     option->setFunction(goToCharacterScreen);
     menuOptions.push_back(option);
 
-    option = new OptionLabel(325, 400, 150, 25, "Map Editor");
+    option = new Button(325, 400, 150, 25, "Map Editor");
     option->setFunction(goToMapScreen);
     menuOptions.push_back(option);
     option = nullptr;

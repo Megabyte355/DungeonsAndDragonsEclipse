@@ -12,7 +12,7 @@
 #include "ScreenManager.h"
 #include "TextureRenderer.h"
 #include "TextRenderer.h"
-#include "OptionLabel.h"
+#include "Button.h"
 #include "CharacterDriver.h"
 #include "FileIO.h"
 
@@ -38,7 +38,7 @@ class CharacterScreen : public virtual Screen
         TextureRenderer * textures;
         TextRenderer * texts;
         std::string textInput;
-        std::vector<OptionLabel*> options;
+        std::vector<Button*> options;
         static bool characterCreation;
 };
 

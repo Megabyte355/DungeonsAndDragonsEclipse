@@ -1,13 +1,13 @@
 /*
- * OptionLabel.cpp
+ * Button.cpp
  *
  *  Created on: Nov 9, 2013
  *      Author: Gary
  */
 
-#include "OptionLabel.h"
+#include "Button.h"
 
-OptionLabel::OptionLabel(int x, int y, int w, int h, std::string label) :
+Button::Button(int x, int y, int w, int h, std::string label) :
         Clickable(x, y, w, h)
 {
     visible = false;
@@ -16,14 +16,14 @@ OptionLabel::OptionLabel(int x, int y, int w, int h, std::string label) :
     functionPointer = nullptr;
 }
 
-OptionLabel::~OptionLabel()
+Button::~Button()
 {
     visible = false;
     hover = false;
     functionPointer = nullptr;
 }
 
-void OptionLabel::draw()
+void Button::draw()
 {
     TextRenderer::getInstance()->renderText(x, y, label, "arial", TextRenderer::white, 20);
     if(hover)
@@ -35,7 +35,7 @@ void OptionLabel::draw()
     }
 }
 
-void OptionLabel::handleEvents(SDL_Event& event)
+void Button::handleEvents(SDL_Event& event)
 {
     if (visible)
     {
@@ -66,17 +66,17 @@ void OptionLabel::handleEvents(SDL_Event& event)
     }
 }
 
-void OptionLabel::toggleVisibility()
+void Button::toggleVisibility()
 {
     visible = !visible;
 }
 
-void OptionLabel::setFunction(std::function<void()> funct)
+void Button::setFunction(std::function<void()> funct)
 {
     functionPointer = funct;
 }
 
-bool OptionLabel::getVisibility()
+bool Button::getVisibility()
 {
     return visible;
 }

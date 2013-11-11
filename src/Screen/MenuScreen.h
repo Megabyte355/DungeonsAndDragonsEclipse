@@ -12,7 +12,7 @@
 #include "ScreenManager.h"
 #include "TextureRenderer.h"
 #include "TextRenderer.h"
-#include "OptionLabel.h"
+#include "Button.h"
 #include <iostream>
 #include <SDL.h>
 
@@ -41,7 +41,7 @@ class MenuScreen: public virtual Screen
         float displayDelay;
         float currentTime;
 
-        std::vector<OptionLabel*> menuOptions;
+        std::vector<Button*> menuOptions;
         bool showMenu;
 
 };

@@ -1,12 +1,12 @@
 /*
- * OptionLabel.h
+ * Button.h
  *
  *  Created on: Nov 9, 2013
  *      Author: Gary
  */
 
-#ifndef OPTIONLABEL_H_
-#define OPTIONLABEL_H_
+#ifndef BUTTON_H_
+#define BUTTON_H_
 
 #include "Clickable.h"
 #include "TextRenderer.h"
@@ -14,11 +14,11 @@
 #include <string>
 #include <functional>
 
-class OptionLabel : public virtual Clickable
+class Button : public virtual Clickable
 {
     public:
-        OptionLabel(int,int,int,int,std::string);
-        ~OptionLabel();
+        Button(int,int,int,int,std::string);
+        ~Button();
 
         void draw();
         void handleEvents(SDL_Event &);
@@ -34,4 +34,4 @@ class OptionLabel : public virtual Clickable
         std::function<void()> functionPointer;
 };
 
-#endif /* OPTIONLABEL_H_ */
+#endif /* BUTTON_H_ */
