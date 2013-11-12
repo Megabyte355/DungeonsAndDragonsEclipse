@@ -20,22 +20,14 @@ class Clickable : public virtual Observable
         int x;
         int y;
 
-        // Space occupied on screen
-        int width;
-        int height;
-
-        Clickable(int, int, int, int);
+        Clickable(int, int);
         virtual ~Clickable() override;
 
-        bool isClicked();
         virtual void handleEvents(SDL_Event &) = 0;
         virtual void draw() = 0;
 
     protected:
         Clickable();
-
-        // variables used for updating
-        bool click;
 };
 
 #endif /* CLICKABLE_H_ */

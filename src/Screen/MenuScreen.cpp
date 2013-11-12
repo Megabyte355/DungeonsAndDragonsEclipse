@@ -28,14 +28,14 @@ void MenuScreen::initialize()
     displayDelay = 500;
     currentTime = 0;
 
-    Button * option = new Button(325, 325, 150, 25, "Character Editor");
-    option->setFunction(goToCharacterScreen);
-    menuOptions.push_back(option);
+    Button * button = new Button(325, 325, 15, "Character Editor");
+    button->setOnClick(std::bind(&MenuScreen::goToCharacterScreen, this));
+    menuOptions.push_back(button);
 
-    option = new Button(325, 400, 150, 25, "Map Editor");
-    option->setFunction(goToMapScreen);
-    menuOptions.push_back(option);
-    option = nullptr;
+    button = new Button(325, 400, 15, "Map Editor");
+    button->setOnClick(std::bind(&MenuScreen::goToMapScreen, this));
+    menuOptions.push_back(button);
+    button = nullptr;
 
     pressAnyKeyDisplay = true;
     showMenu = false;
@@ -77,7 +77,7 @@ void MenuScreen::draw()
 
     for (auto o : menuOptions)
     {
-        if (o->getVisibility())
+        if (o->isVisible())
         {
             o->draw();
         }

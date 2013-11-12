@@ -17,7 +17,7 @@ class Observable
 {
     public:
         Observable();
-        virtual ~Observable() {}
+        virtual ~Observable();
 
         void attach(Observer*);
         void detach(Observer*);

@@ -29,8 +29,8 @@ class MenuScreen: public virtual Screen
         void reset() override;
 
         // Functions passed to buttons
-        static void goToCharacterScreen();
-        static void goToMapScreen();
+        void goToCharacterScreen();
+        void goToMapScreen();
 
     private:
         TextureRenderer * textures;

@@ -26,13 +26,13 @@ void CharacterScreen::initialize()
     textures = TextureRenderer::getInstance();
     texts = TextRenderer::getInstance();
 
-    Button * option = new Button(700, 0, 100, 50, "Back");
-    option->setFunction(returnToMenu);
+    Button * option = new Button(700, 0, 15, "Back");
+    option->setOnClick(returnToMenu);
     options.push_back(option);
     option->toggleVisibility();
 
-    option = new Button(300, 250, 225, 50, "Begin Character Creation");
-    option->setFunction(beginCharacterCreation);
+    option = new Button(300, 250, 15, "Begin Character Creation");
+    option->setOnClick(beginCharacterCreation);
     options.push_back(option);
     option->toggleVisibility();
 
@@ -84,7 +84,7 @@ void CharacterScreen::draw()
 
     for (auto o : options)
     {
-        if (o->getVisibility())
+        if (o->isVisible())
         {
             o->draw();
         }

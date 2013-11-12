@@ -58,7 +58,7 @@ void MapScreen::draw()
 
     for (Button * o : optionLabels)
     {
-        if (o->getVisibility())
+        if (o->isVisible())
         {
             o->draw();
         }
@@ -77,14 +77,14 @@ void MapScreen::draw()
         if (!validPath.empty())
         {
             // Certainly, the path vector has at least 2 elements
-            for(unsigned int i = 1; i < validPath.size() - 1; i++)
+            for (unsigned int i = 1; i < validPath.size() - 1; i++)
             {
-                for(auto mt : mapTiles)
+                for (auto mt : mapTiles)
                 {
                     if (mt != nullptr && (mt->i == validPath[i].x) && (mt->j == validPath[i].y))
                     {
                         // Draw the path
-                        textures->drawTexture("dot",mt->x, mt->y, mt->w, mt->h);
+                        textures->drawTexture("dot", mt->x, mt->y, mt->w, mt->h);
                     }
                 }
             }
@@ -215,13 +215,15 @@ void MapScreen::initData(int width, int height)
 
     tileOption = nullptr;
 
-    Button * option = new Button(650, 550, 150, 50, "Validate map");
+//    Button * option = new Button(650, 550, 150, 50, "Validate map");
+    Button * option = new Button(650, 550, 15, "Validate map");
     option->toggleVisibility();
     optionLabels.push_back(option);
-    option->setFunction(validatePath);
+    option->setOnClick(validatePath);
 
-    option = new Button(700, 0, 100, 50, "Back");
-    option->setFunction(returnToMenu);
+//    option = new Button(700, 0, 100, 50, "Back");
+    option = new Button(700, 0, 15, "Back");
+    option->setOnClick(returnToMenu);
     optionLabels.push_back(option);
     option->toggleVisibility();
 

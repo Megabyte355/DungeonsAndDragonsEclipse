@@ -17,21 +17,22 @@
 class Button : public virtual Clickable
 {
     public:
-        Button(int,int,int,int,std::string);
+        Button(int x,int y,int padding ,std::string label);
         ~Button();
 
         void draw();
         void handleEvents(SDL_Event &);
-        void setFunction(std::function<void()>);
+        void setOnClick(std::function<void()>);
         void toggleVisibility();
-        bool getVisibility();
+        bool isVisible();
 
     private:
+        int padding;
         std::string label;
         bool visible;
         bool hover;
         SDL_Rect boundary;
-        std::function<void()> functionPointer;
+        std::function<void()> onClick;
 };
 
 #endif /* BUTTON_H_ */
