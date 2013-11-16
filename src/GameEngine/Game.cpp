@@ -82,7 +82,7 @@ void Game::draw()
     SDL_RenderPresent(renderer);
 }
 
-void Game::handleEvents(SDL_Event * event)
+void Game::handleEvents(SDL_Event &event)
 {
     screenManager->handleEvents(event);
 }

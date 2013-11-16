@@ -49,7 +49,7 @@ int main(int argc, char** argv)
             // Handle user input
             while (SDL_PollEvent(&event))
             {
-                game->handleEvents(&event);
+                game->handleEvents(event);
             }
         }
 

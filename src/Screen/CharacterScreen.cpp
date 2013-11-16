@@ -96,15 +96,15 @@ void CharacterScreen::draw()
     }
 }
 
-void CharacterScreen::handleEvents(SDL_Event * event)
+void CharacterScreen::handleEvents(SDL_Event &event)
 {
-    switch (event->type)
+    switch (event.type)
     {
         case SDL_QUIT:
             GameConfig::getInstance()->gameIsRunning = false;
             break;
         case SDL_KEYDOWN:
-            if (event->key.keysym.sym == SDLK_ESCAPE)
+            if (event.key.keysym.sym == SDLK_ESCAPE)
             {
                 active = false;
             }
@@ -112,13 +112,13 @@ void CharacterScreen::handleEvents(SDL_Event * event)
         case SDL_MOUSEBUTTONDOWN:
             for (auto o : options)
             {
-                o->handleEvents(*event);
+                o->handleEvents(event);
             }
             break;
         case SDL_MOUSEMOTION:
             for (auto o : options)
             {
-                o->handleEvents(*event);
+                o->handleEvents(event);
             }
             break;
         default:

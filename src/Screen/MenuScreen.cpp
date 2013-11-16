@@ -84,18 +84,18 @@ void MenuScreen::draw()
     }
 }
 
-void MenuScreen::handleEvents(SDL_Event* event)
+void MenuScreen::handleEvents(SDL_Event &event)
 {
 
-    if (event->type == SDL_QUIT)
+    if (event.type == SDL_QUIT)
     {
         GameConfig::getInstance()->gameIsRunning = false;
     }
-    else if (event->key.keysym.sym == SDLK_ESCAPE)
+    else if (event.key.keysym.sym == SDLK_ESCAPE)
     {
         active = false;
     }
-    else if (event->type == SDL_MOUSEBUTTONDOWN || event->type == SDL_KEYDOWN)
+    else if (event.type == SDL_MOUSEBUTTONDOWN || event.type == SDL_KEYDOWN)
     {
         if (!showMenu)
         {
@@ -111,15 +111,15 @@ void MenuScreen::handleEvents(SDL_Event* event)
         {
             for (auto o : menuOptions)
             {
-                o->handleEvents(*event);
+                o->handleEvents(event);
             }
         }
     }
-    else if (event->type == SDL_MOUSEMOTION)
+    else if (event.type == SDL_MOUSEMOTION)
     {
         for (auto o : menuOptions)
         {
-            o->handleEvents(*event);
+            o->handleEvents(event);
         }
     }
 }

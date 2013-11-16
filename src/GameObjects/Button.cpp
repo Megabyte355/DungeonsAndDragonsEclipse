@@ -48,7 +48,7 @@ void Button::draw()
     r = nullptr;
 }
 
-void Button::handleEvents(SDL_Event& event)
+void Button::handleEvents(SDL_Event &event)
 {
     if (visible)
     {

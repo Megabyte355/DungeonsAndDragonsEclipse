@@ -97,7 +97,7 @@ void MapScreen::draw()
 
 }
 
-void MapScreen::handleEvents(SDL_Event* event)
+void MapScreen::handleEvents(SDL_Event &event)
 {
     // Hack - only this time
     if (firstLoop)
@@ -108,13 +108,13 @@ void MapScreen::handleEvents(SDL_Event* event)
         initData(mapWidth, mapHeight);
     }
 
-    switch (event->type)
+    switch (event.type)
     {
         case SDL_QUIT:
             GameConfig::getInstance()->gameIsRunning = false;
             break;
         case SDL_KEYDOWN:
-            if (event->key.keysym.sym == SDLK_ESCAPE)
+            if (event.key.keysym.sym == SDLK_ESCAPE)
             {
                 active = false;
             }
@@ -125,29 +125,29 @@ void MapScreen::handleEvents(SDL_Event* event)
             validPath.clear();
             for (auto o : optionLabels)
             {
-                o->handleEvents(*event);
+                o->handleEvents(event);
             }
             for (TileOption * t : tileOptions)
             {
-                t->handleEvents(*event);
+                t->handleEvents(event);
             }
             for (MapTile * mt : mapTiles)
             {
-                mt->handleEvents(*event);
+                mt->handleEvents(event);
             }
             break;
         case SDL_MOUSEMOTION:
             for (auto o : optionLabels)
             {
-                o->handleEvents(*event);
+                o->handleEvents(event);
             }
             for (TileOption * t : tileOptions)
             {
-                t->handleEvents(*event);
+                t->handleEvents(event);
             }
             for (MapTile * mt : mapTiles)
             {
-                mt->handleEvents(*event);
+                mt->handleEvents(event);
             }
             break;
         default:

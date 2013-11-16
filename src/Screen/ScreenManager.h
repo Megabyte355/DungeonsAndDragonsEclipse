@@ -35,7 +35,7 @@ class ScreenManager
 
         void update(float);
         void draw();
-        void handleEvents(SDL_Event * event);
+        void handleEvents(SDL_Event &event);
 
         // Screen change request function
         static void requestScreenChange(std::string, std::string);

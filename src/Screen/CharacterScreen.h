@@ -28,7 +28,7 @@ class CharacterScreen : public virtual Screen
         void initialize() override;
         void update(float) override;
         void draw() override;
-        void handleEvents(SDL_Event * event) override;
+        void handleEvents(SDL_Event &event) override;
         void reset() override;
 
         // Function pointers

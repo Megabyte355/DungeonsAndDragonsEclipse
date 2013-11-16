@@ -153,7 +153,7 @@ void ScreenManager::draw()
     cleanCopiedScreens();
 }
 
-void ScreenManager::handleEvents(SDL_Event * event)
+void ScreenManager::handleEvents(SDL_Event &event)
 {
     // For each screen in active screens, perform HandleEvents()
     copyActiveScreens();
