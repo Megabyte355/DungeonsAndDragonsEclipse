@@ -14,10 +14,11 @@
 #include <string>
 #include <functional>
 
-class Button : public virtual Clickable
+class Button: public virtual Clickable
 {
     public:
-        Button(int x,int y,int padding ,std::string label);
+        Button(int x, int y, int padding, std::string label);
+        Button(int x, int y, int w, int h, std::string label);
         ~Button();
 
         void draw();
@@ -27,7 +28,8 @@ class Button : public virtual Clickable
         bool isVisible();
 
     private:
-        int padding;
+        int paddingX;
+        int paddingY;
         std::string label;
         bool visible;
         bool hover;

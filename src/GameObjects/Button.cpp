@@ -7,14 +7,31 @@
 
 #include "Button.h"
 
+// Constructor takes location of button, padding and a string to display.
+// The size of the button is automatically calculated.
 Button::Button(int x, int y, int padding, std::string label) :
-        Clickable(x, y)
+        Clickable(x + padding, y + padding)
 {
-    this->padding = padding;
     visible = false;
     hover = false;
     this->label = label;
     onClick = nullptr;
+    paddingX = padding;
+    paddingY = padding;
+}
+
+// Padding is not used. The label is centered in the button.
+Button::Button(int x, int y, int w, int h, std::string label)
+{
+    visible = false;
+    hover = false;
+    this->label = label;
+    onClick = nullptr;
+    SDL_Rect pos(TextRenderer::getInstance()->queryTextSize(x, y, label));
+    paddingX = (w - pos.w) / 2;
+    paddingY = (h - pos.h) / 2;
+    this->x = x + paddingX;
+    this->y = y + paddingY;
 }
 
 Button::~Button()
@@ -26,26 +43,23 @@ Button::~Button()
 
 void Button::draw()
 {
-    TextRenderer * r = TextRenderer::getInstance();
-    r->setSettings("arial", 20, TextRenderer::white);
-    r->renderText(x, y, label);
+    TextRenderer * texts = TextRenderer::getInstance();
+    texts->setSettings("arial", 20, TextRenderer::white);
+
+    SDL_Rect pos(texts->queryTextSize(x, y, label));
     if (hover)
     {
-        TextureRenderer * ren = TextureRenderer::getInstance();
-        SDL_Rect pos(r->queryTextSize(x, y, label));
-
-        ren->drawLine(x - padding, y - padding, x + pos.w + padding, y - padding);
-        ren->drawLine(x + pos.w + padding, y - padding, x + pos.w + padding, y + pos.h + padding);
-        ren->drawLine(x + pos.w + padding, y + pos.h + padding, x - padding, y + pos.h + padding);
-        ren->drawLine(x - padding, y + pos.h + padding, x - padding, y - padding);
-
-//        TextureRenderer::getInstance()->drawLine(x, y, x + width, y);
-//        TextureRenderer::getInstance()->drawLine(x + width, y, x + width, y + height);
-//        TextureRenderer::getInstance()->drawLine(x + width, y + height, x, y + height);
-//        TextureRenderer::getInstance()->drawLine(x, y + height, x, y);
-        ren = nullptr;
+        TextureRenderer::getInstance()->drawTexture("black_button_clicked", x - paddingX, y - paddingY,
+                pos.w + 2 * paddingX, pos.h + 2 * paddingY);
     }
-    r = nullptr;
+    else
+    {
+        TextureRenderer::getInstance()->drawTexture("black_button_on", x - paddingX, y - paddingY, pos.w + 2 * paddingX,
+                pos.h + 2 * paddingY);
+    }
+
+    texts->renderText(x, y, label);
+    texts = nullptr;
 }
 
 void Button::handleEvents(SDL_Event &event)
@@ -59,13 +73,10 @@ void Button::handleEvents(SDL_Event &event)
         SDL_Rect pos(r->queryTextSize(x, y, label));
         r = nullptr;
 
-
-
-        int left = x - padding;
-        int right = x + pos.w + padding;
-        int up = y - padding;
-        int down = y + pos.h + padding;
-
+        int left = x - paddingX;
+        int right = x + pos.w + paddingX;
+        int up = y - paddingY;
+        int down = y + pos.h + paddingY;
 
         if (event.type == SDL_MOUSEBUTTONDOWN)
         {

@@ -28,11 +28,11 @@ void MenuScreen::initialize()
     displayDelay = 500;
     currentTime = 0;
 
-    Button * button = new Button(325, 325, 15, "Character Editor");
+    Button * button = new Button(305, 325, 200, 50, "Character Editor");
     button->setOnClick(std::bind(&MenuScreen::goToCharacterScreen, this));
     menuOptions.push_back(button);
 
-    button = new Button(325, 400, 15, "Map Editor");
+    button = new Button(305, 400, 200, 50, "Map Editor");
     button->setOnClick(std::bind(&MenuScreen::goToMapScreen, this));
     menuOptions.push_back(button);
     button = nullptr;
