@@ -10,7 +10,6 @@
 MenuScreen::MenuScreen() :
         Screen("MenuScreen")
 {
-    initialize();
 }
 
 MenuScreen::~MenuScreen()

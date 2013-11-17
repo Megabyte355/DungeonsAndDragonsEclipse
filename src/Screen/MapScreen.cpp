@@ -14,7 +14,6 @@ int MapScreen::mapHeight = 0;
 MapScreen::MapScreen() :
         Screen("MapScreen")
 {
-    initialize();
 }
 
 MapScreen::~MapScreen()

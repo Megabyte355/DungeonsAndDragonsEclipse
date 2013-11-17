@@ -28,12 +28,10 @@ class Button: public virtual Clickable
         bool isVisible();
 
     private:
-        int paddingX;
-        int paddingY;
         std::string label;
         bool visible;
         bool hover;
-        SDL_Rect boundary;
+        SDL_Rect labelBoundary;
         std::function<void()> onClick;
 };
 

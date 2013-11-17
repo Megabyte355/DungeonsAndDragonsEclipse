@@ -12,7 +12,6 @@ bool CharacterScreen::characterCreation = false;
 CharacterScreen::CharacterScreen() :
         Screen("CharacterScreen")
 {
-    initialize();
 }
 
 CharacterScreen::~CharacterScreen()

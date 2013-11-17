@@ -10,11 +10,6 @@
 TestScreen::TestScreen(void) :
         Screen("TestScreen")
 {
-    int instances = rand() % 100 + 50;
-    for (int i = instances; i > 0; i--)
-    {
-        k.push_back(new Kiwi(rand() % 800, rand() % 600, (rand() % 500 + 1) / (float) 1000));
-    }
 }
 
 TestScreen::~TestScreen(void)
@@ -27,6 +22,11 @@ TestScreen::~TestScreen(void)
 
 void TestScreen::initialize()
 {
+    int instances = rand() % 100 + 50;
+    for (int i = instances; i > 0; i--)
+    {
+        k.push_back(new Kiwi(rand() % 800, rand() % 600, (rand() % 500 + 1) / (float) 1000));
+    }
 }
 
 void TestScreen::update(float gameTime)
