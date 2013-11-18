@@ -12,7 +12,7 @@
 #include "ScreenManager.h"
 #include "TextureRenderer.h"
 #include "TextRenderer.h"
-#include "OptionLabel.h"
+#include "Button.h"
 #include "CharacterDriver.h"
 #include "FileIO.h"
 
@@ -28,7 +28,7 @@ class CharacterScreen : public virtual Screen
         void initialize() override;
         void update(float) override;
         void draw() override;
-        void handleEvents(SDL_Event * event) override;
+        void handleEvents(SDL_Event &event) override;
         void reset() override;
 
         // Function pointers
@@ -38,7 +38,7 @@ class CharacterScreen : public virtual Screen
         TextureRenderer * textures;
         TextRenderer * texts;
         std::string textInput;
-        std::vector<OptionLabel*> options;
+        std::vector<Button*> options;
         static bool characterCreation;
 };
 

@@ -36,7 +36,7 @@ public:
     void initialize();
     void update(float);
     void draw();
-    void handleEvents(SDL_Event * event);
+    void handleEvents(SDL_Event &event);
 };
 
 #endif /* GAME_H_ */

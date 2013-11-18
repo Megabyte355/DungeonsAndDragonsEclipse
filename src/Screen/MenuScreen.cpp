@@ -10,7 +10,6 @@
 MenuScreen::MenuScreen() :
         Screen("MenuScreen")
 {
-    initialize();
 }
 
 MenuScreen::~MenuScreen()
@@ -28,14 +27,14 @@ void MenuScreen::initialize()
     displayDelay = 500;
     currentTime = 0;
 
-    OptionLabel * option = new OptionLabel(325, 325, 150, 25, "Character Editor");
-    option->setFunction(goToCharacterScreen);
-    menuOptions.push_back(option);
+    Button * button = new Button(305, 325, 200, 50, "Character Editor");
+    button->setOnClick(std::bind(&MenuScreen::goToCharacterScreen, this));
+    menuOptions.push_back(button);
 
-    option = new OptionLabel(325, 400, 150, 25, "Map Editor");
-    option->setFunction(goToMapScreen);
-    menuOptions.push_back(option);
-    option = nullptr;
+    button = new Button(305, 400, 200, 50, "Map Editor");
+    button->setOnClick(std::bind(&MenuScreen::goToMapScreen, this));
+    menuOptions.push_back(button);
+    button = nullptr;
 
     pressAnyKeyDisplay = true;
     showMenu = false;
@@ -77,25 +76,25 @@ void MenuScreen::draw()
 
     for (auto o : menuOptions)
     {
-        if (o->getVisibility())
+        if (o->isVisible())
         {
             o->draw();
         }
     }
 }
 
-void MenuScreen::handleEvents(SDL_Event* event)
+void MenuScreen::handleEvents(SDL_Event &event)
 {
 
-    if (event->type == SDL_QUIT)
+    if (event.type == SDL_QUIT)
     {
         GameConfig::getInstance()->gameIsRunning = false;
     }
-    else if (event->key.keysym.sym == SDLK_ESCAPE)
+    else if (event.key.keysym.sym == SDLK_ESCAPE)
     {
         active = false;
     }
-    else if (event->type == SDL_MOUSEBUTTONDOWN || event->type == SDL_KEYDOWN)
+    else if (event.type == SDL_MOUSEBUTTONDOWN || event.type == SDL_KEYDOWN)
     {
         if (!showMenu)
         {
@@ -111,15 +110,15 @@ void MenuScreen::handleEvents(SDL_Event* event)
         {
             for (auto o : menuOptions)
             {
-                o->handleEvents(*event);
+                o->handleEvents(event);
             }
         }
     }
-    else if (event->type == SDL_MOUSEMOTION)
+    else if (event.type == SDL_MOUSEMOTION)
     {
         for (auto o : menuOptions)
         {
-            o->handleEvents(*event);
+            o->handleEvents(event);
         }
     }
 }

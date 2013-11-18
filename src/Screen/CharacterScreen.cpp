@@ -12,7 +12,6 @@ bool CharacterScreen::characterCreation = false;
 CharacterScreen::CharacterScreen() :
         Screen("CharacterScreen")
 {
-    initialize();
 }
 
 CharacterScreen::~CharacterScreen()
@@ -26,13 +25,13 @@ void CharacterScreen::initialize()
     textures = TextureRenderer::getInstance();
     texts = TextRenderer::getInstance();
 
-    OptionLabel * option = new OptionLabel(700, 0, 100, 50, "Back");
-    option->setFunction(returnToMenu);
+    Button * option = new Button(700, 0, 15, "Back");
+    option->setOnClick(returnToMenu);
     options.push_back(option);
     option->toggleVisibility();
 
-    option = new OptionLabel(300, 250, 225, 50, "Begin Character Creation");
-    option->setFunction(beginCharacterCreation);
+    option = new Button(300, 250, 15, "Begin Character Creation");
+    option->setOnClick(beginCharacterCreation);
     options.push_back(option);
     option->toggleVisibility();
 
@@ -84,7 +83,7 @@ void CharacterScreen::draw()
 
     for (auto o : options)
     {
-        if (o->getVisibility())
+        if (o->isVisible())
         {
             o->draw();
         }
@@ -96,15 +95,15 @@ void CharacterScreen::draw()
     }
 }
 
-void CharacterScreen::handleEvents(SDL_Event * event)
+void CharacterScreen::handleEvents(SDL_Event &event)
 {
-    switch (event->type)
+    switch (event.type)
     {
         case SDL_QUIT:
             GameConfig::getInstance()->gameIsRunning = false;
             break;
         case SDL_KEYDOWN:
-            if (event->key.keysym.sym == SDLK_ESCAPE)
+            if (event.key.keysym.sym == SDLK_ESCAPE)
             {
                 active = false;
             }
@@ -112,13 +111,13 @@ void CharacterScreen::handleEvents(SDL_Event * event)
         case SDL_MOUSEBUTTONDOWN:
             for (auto o : options)
             {
-                o->handleEvents(*event);
+                o->handleEvents(event);
             }
             break;
         case SDL_MOUSEMOTION:
             for (auto o : options)
             {
-                o->handleEvents(*event);
+                o->handleEvents(event);
             }
             break;
         default:

@@ -12,7 +12,7 @@
 #include "ScreenManager.h"
 #include "TextureRenderer.h"
 #include "TextRenderer.h"
-#include "OptionLabel.h"
+#include "Button.h"
 #include <iostream>
 #include <SDL.h>
 
@@ -25,12 +25,12 @@ class MenuScreen: public virtual Screen
         void initialize() override;
         void update(float) override;
         void draw() override;
-        void handleEvents(SDL_Event * event) override;
+        void handleEvents(SDL_Event &event) override;
         void reset() override;
 
         // Functions passed to buttons
-        static void goToCharacterScreen();
-        static void goToMapScreen();
+        void goToCharacterScreen();
+        void goToMapScreen();
 
     private:
         TextureRenderer * textures;
@@ -41,7 +41,7 @@ class MenuScreen: public virtual Screen
         float displayDelay;
         float currentTime;
 
-        std::vector<OptionLabel*> menuOptions;
+        std::vector<Button*> menuOptions;
         bool showMenu;
 
 };

@@ -7,7 +7,6 @@
 
 #include "MapScreen.h"
 
-Cell::CellType MapScreen::selectedTile = Cell::CellType::Empty;
 bool MapScreen::pathCheckRequest = false;
 int MapScreen::mapWidth = 0;
 int MapScreen::mapHeight = 0;
@@ -15,7 +14,6 @@ int MapScreen::mapHeight = 0;
 MapScreen::MapScreen() :
         Screen("MapScreen")
 {
-    initialize();
 }
 
 MapScreen::~MapScreen()
@@ -32,6 +30,7 @@ void MapScreen::initialize()
     texts = TextRenderer::getInstance();
     displayGreen = false;
     displayRed = false;
+    selectedTile = Cell::CellType::Empty;
 }
 
 void MapScreen::update(float deltaTime)
@@ -56,9 +55,9 @@ void MapScreen::draw()
     textures->drawTexture("background", 0, 0, GameConfig::SCREEN_WIDTH, GameConfig::SCREEN_HEIGHT);
     texts->renderText(25, 25, "Map Editor", "arial", TextRenderer::white, 35);
 
-    for (OptionLabel * o : optionLabels)
+    for (Button * o : optionLabels)
     {
-        if (o->getVisibility())
+        if (o->isVisible())
         {
             o->draw();
         }
@@ -77,14 +76,14 @@ void MapScreen::draw()
         if (!validPath.empty())
         {
             // Certainly, the path vector has at least 2 elements
-            for(unsigned int i = 1; i < validPath.size() - 1; i++)
+            for (unsigned int i = 1; i < validPath.size() - 1; i++)
             {
-                for(auto mt : mapTiles)
+                for (auto mt : mapTiles)
                 {
                     if (mt != nullptr && (mt->i == validPath[i].x) && (mt->j == validPath[i].y))
                     {
                         // Draw the path
-                        textures->drawTexture("dot",mt->x, mt->y, mt->w, mt->h);
+                        textures->drawTexture("dot", mt->x, mt->y, mt->w, mt->h);
                     }
                 }
             }
@@ -97,7 +96,7 @@ void MapScreen::draw()
 
 }
 
-void MapScreen::handleEvents(SDL_Event* event)
+void MapScreen::handleEvents(SDL_Event &event)
 {
     // Hack - only this time
     if (firstLoop)
@@ -108,13 +107,13 @@ void MapScreen::handleEvents(SDL_Event* event)
         initData(mapWidth, mapHeight);
     }
 
-    switch (event->type)
+    switch (event.type)
     {
         case SDL_QUIT:
             GameConfig::getInstance()->gameIsRunning = false;
             break;
         case SDL_KEYDOWN:
-            if (event->key.keysym.sym == SDLK_ESCAPE)
+            if (event.key.keysym.sym == SDLK_ESCAPE)
             {
                 active = false;
             }
@@ -125,29 +124,29 @@ void MapScreen::handleEvents(SDL_Event* event)
             validPath.clear();
             for (auto o : optionLabels)
             {
-                o->handleEvents(*event);
+                o->handleEvents(event);
             }
             for (TileOption * t : tileOptions)
             {
-                t->handleEvents(*event);
+                t->handleEvents(event);
             }
             for (MapTile * mt : mapTiles)
             {
-                mt->handleEvents(*event);
+                mt->handleEvents(event);
             }
             break;
         case SDL_MOUSEMOTION:
             for (auto o : optionLabels)
             {
-                o->handleEvents(*event);
+                o->handleEvents(event);
             }
             for (TileOption * t : tileOptions)
             {
-                t->handleEvents(*event);
+                t->handleEvents(event);
             }
             for (MapTile * mt : mapTiles)
             {
-                mt->handleEvents(*event);
+                mt->handleEvents(event);
             }
             break;
         default:
@@ -189,7 +188,7 @@ void MapScreen::initData(int width, int height)
         {
             mt = new MapTile(mapModel, i, j, currentX, currentY, tileTextureWidth, tileTextureHeight);
             mapTiles.push_back(mt);
-            mt->getSelectedCellType = selectedCellType;
+            mt->getSelectedCellType = std::bind(&MapScreen::selectedCellType, this);
             mt = nullptr;
             currentY += tileTextureHeight;
         }
@@ -198,30 +197,32 @@ void MapScreen::initData(int width, int height)
     }
 
     TileOption * tileOption = new TileOption(Cell::CellType::Wall, 600, 100, 200, 50);
-    tileOption->functionPointer = selectTileOption;
+    tileOption->functionPointer = std::bind(&MapScreen::selectTileOption, this, std::placeholders::_1);
     tileOptions.push_back(tileOption);
     tileOption = new TileOption(Cell::CellType::Floor, 600, 175, 200, 50);
-    tileOption->functionPointer = selectTileOption;
+    tileOption->functionPointer = std::bind(&MapScreen::selectTileOption, this, std::placeholders::_1);
     tileOptions.push_back(tileOption);
     tileOption = new TileOption(Cell::CellType::Start, 600, 250, 200, 50);
-    tileOption->functionPointer = selectTileOption;
+    tileOption->functionPointer = std::bind(&MapScreen::selectTileOption, this, std::placeholders::_1);
     tileOptions.push_back(tileOption);
     tileOption = new TileOption(Cell::CellType::End, 600, 325, 200, 50);
-    tileOption->functionPointer = selectTileOption;
+    tileOption->functionPointer = std::bind(&MapScreen::selectTileOption, this, std::placeholders::_1);
     tileOptions.push_back(tileOption);
     tileOption = new TileOption(Cell::CellType::Empty, 600, 400, 200, 50);
-    tileOption->functionPointer = selectTileOption;
+    tileOption->functionPointer = std::bind(&MapScreen::selectTileOption, this, std::placeholders::_1);
     tileOptions.push_back(tileOption);
 
     tileOption = nullptr;
 
-    OptionLabel * option = new OptionLabel(650, 550, 150, 50, "Validate map");
+//    Button * option = new Button(650, 550, 150, 50, "Validate map");
+    Button * option = new Button(650, 550, 15, "Validate map");
     option->toggleVisibility();
     optionLabels.push_back(option);
-    option->setFunction(validatePath);
+    option->setOnClick(validatePath);
 
-    option = new OptionLabel(700, 0, 100, 50, "Back");
-    option->setFunction(returnToMenu);
+//    option = new Button(700, 0, 100, 50, "Back");
+    option = new Button(700, 0, 15, "Back");
+    option->setOnClick(returnToMenu);
     optionLabels.push_back(option);
     option->toggleVisibility();
 

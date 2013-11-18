@@ -10,11 +10,6 @@
 TestScreen::TestScreen(void) :
         Screen("TestScreen")
 {
-    int instances = rand() % 100 + 50;
-    for (int i = instances; i > 0; i--)
-    {
-        k.push_back(new Kiwi(rand() % 800, rand() % 600, (rand() % 500 + 1) / (float) 1000));
-    }
 }
 
 TestScreen::~TestScreen(void)
@@ -27,6 +22,11 @@ TestScreen::~TestScreen(void)
 
 void TestScreen::initialize()
 {
+    int instances = rand() % 100 + 50;
+    for (int i = instances; i > 0; i--)
+    {
+        k.push_back(new Kiwi(rand() % 800, rand() % 600, (rand() % 500 + 1) / (float) 1000));
+    }
 }
 
 void TestScreen::update(float gameTime)
@@ -59,9 +59,9 @@ void TestScreen::draw()
     TextRenderer::getInstance()->renderText(20, 320, "Black", "arial_black", TextRenderer::black, 25);
 }
 
-void TestScreen::handleEvents(SDL_Event * event)
+void TestScreen::handleEvents(SDL_Event &event)
 {
-    switch (event->type)
+    switch (event.type)
     {
         case SDL_QUIT:
             GameConfig::getInstance()->gameIsRunning = false;
@@ -69,12 +69,12 @@ void TestScreen::handleEvents(SDL_Event * event)
         case SDL_KEYDOWN:
 
             //std::cout << "Key pressed: " << event->key.keysym.sym << endl;
-            if (event->key.keysym.sym == SDLK_ESCAPE)
+            if (event.key.keysym.sym == SDLK_ESCAPE)
             {
                 //GameConfig::getInstance()->gameIsRunning = false;
                 active = false;
             }
-            switch (event->key.keysym.sym)
+            switch (event.key.keysym.sym)
             {
                 case SDLK_UP:
                     o.moveUp(true);
@@ -95,7 +95,7 @@ void TestScreen::handleEvents(SDL_Event * event)
         case SDL_KEYUP:
             //std::cout << "Key released: " << event->key.keysym.sym << endl;
 
-            switch (event->key.keysym.sym)
+            switch (event.key.keysym.sym)
             {
                 case SDLK_UP:
                     o.moveUp(false);
@@ -114,19 +114,19 @@ void TestScreen::handleEvents(SDL_Event * event)
             }
             break;
         case SDL_MOUSEBUTTONDOWN:
-            std::cout << "Left click? " << (event->button.button == SDL_BUTTON_LEFT) << std::endl;
-            std::cout << "Right click? " << (event->button.button == SDL_BUTTON_RIGHT) << std::endl;
-            std::cout << "Click at : (" << event->button.x << ", " << event->button.y << ")" << std::endl;
+            std::cout << "Left click? " << (event.button.button == SDL_BUTTON_LEFT) << std::endl;
+            std::cout << "Right click? " << (event.button.button == SDL_BUTTON_RIGHT) << std::endl;
+            std::cout << "Click at : (" << event.button.x << ", " << event.button.y << ")" << std::endl;
             break;
 
         case SDL_MOUSEBUTTONUP:
-            std::cout << "Left up? " << (event->button.button == SDL_BUTTON_LEFT) << std::endl;
-            std::cout << "Right up? " << (event->button.button == SDL_BUTTON_RIGHT) << std::endl;
-            std::cout << "Click at : (" << event->button.x << ", " << event->button.y << ")" << std::endl;
+            std::cout << "Left up? " << (event.button.button == SDL_BUTTON_LEFT) << std::endl;
+            std::cout << "Right up? " << (event.button.button == SDL_BUTTON_RIGHT) << std::endl;
+            std::cout << "Click at : (" << event.button.x << ", " << event.button.y << ")" << std::endl;
             break;
 
         case SDL_MOUSEMOTION:
-            std::cout << "Moving at : (" << event->motion.x << ", " << event->motion.y << ")" << std::endl;
+            std::cout << "Moving at : (" << event.motion.x << ", " << event.motion.y << ")" << std::endl;
             break;
         default:
             break;

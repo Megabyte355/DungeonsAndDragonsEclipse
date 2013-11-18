@@ -14,6 +14,11 @@ Observable::Observable()
     observableID = observableIDtracker++;
 }
 
+Observable::~Observable()
+{
+    observers.clear();
+}
+
 void Observable::attach(Observer * obs)
 {
     observers.push_back(obs);

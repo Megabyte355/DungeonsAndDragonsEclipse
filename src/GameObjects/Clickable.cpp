@@ -9,31 +9,28 @@
 
 Clickable::Clickable()
 {
-    this->x = 0;
-    this->y = 0;
-    width = 0;
-    height = 0;
-    click = false;
+    boundary.x = 0;
+    boundary.y = 0;
+    boundary.w = 0;
+    boundary.h = 0;
+}
+
+Clickable::Clickable(int x, int y)
+{
+    boundary.x = x;
+    boundary.y = y;
+    boundary.w = 0;
+    boundary.h = 0;
 }
 
 Clickable::Clickable(int x, int y, int w, int h)
 {
-    this->x = x;
-    this->y = y;
-    width = w;
-    height = h;
-    click = false;
+    boundary.x = x;
+    boundary.y = y;
+    boundary.w = w;
+    boundary.h = h;
 }
 
 Clickable::~Clickable()
 {
-    // This class is not the main owner of the renderer. It won't be destroyed here.
-    observers.clear();
-}
-
-bool Clickable::isClicked()
-{
-    bool copy = click;
-    click = false;
-    return copy;
 }

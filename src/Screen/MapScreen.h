@@ -12,11 +12,12 @@
 #include "ScreenManager.h"
 #include "TextureRenderer.h"
 #include "TextRenderer.h"
-#include "OptionLabel.h"
+#include "Button.h"
 #include "FileIO.h"
 #include "Map.h"
 #include "MapTile.h"
 #include "TileOption.h"
+#include <functional>
 
 class MapScreen : public virtual Screen
 {
@@ -26,16 +27,16 @@ class MapScreen : public virtual Screen
         void initialize() override;
         void update(float) override;
         void draw() override;
-        void handleEvents(SDL_Event * event) override;
+        void handleEvents(SDL_Event &event) override;
         void reset() override;
 
         static void queryMapSize();
         void initData(int,int);
 
-        static Cell::CellType selectedCellType();
-        static void selectTileOption(Cell::CellType);
+        Cell::CellType selectedCellType();
+        void selectTileOption(Cell::CellType);
         static void returnToMenu();
-        static Cell::CellType selectedTile;
+
 
         static void validatePath();
         static bool pathCheckRequest;
@@ -54,10 +55,12 @@ class MapScreen : public virtual Screen
         bool displayRed;
         bool displayGreen;
         std::vector<TileOption*> tileOptions;
-        std::vector<OptionLabel*> optionLabels;
+        std::vector<Button*> optionLabels;
         std::vector<MapTile*> mapTiles;
 
         std::vector<CellLocation> validPath;
+
+        Cell::CellType selectedTile;
 
 };
 

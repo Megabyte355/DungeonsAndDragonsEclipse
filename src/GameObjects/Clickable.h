@@ -16,26 +16,16 @@
 class Clickable : public virtual Observable
 {
     public:
-        // Location on screen
-        int x;
-        int y;
-
-        // Space occupied on screen
-        int width;
-        int height;
-
-        Clickable(int, int, int, int);
         virtual ~Clickable() override;
 
-        bool isClicked();
         virtual void handleEvents(SDL_Event &) = 0;
         virtual void draw() = 0;
 
     protected:
         Clickable();
-
-        // variables used for updating
-        bool click;
+        Clickable(int, int);
+        Clickable(int x, int y, int w, int h);
+        SDL_Rect boundary;
 };
 
 #endif /* CLICKABLE_H_ */
