@@ -44,6 +44,10 @@ Button::~Button()
     onClick = nullptr;
 }
 
+void Button::update()
+{
+}
+
 void Button::draw()
 {
     TextRenderer * texts = TextRenderer::getInstance();
@@ -67,17 +71,9 @@ void Button::handleEvents(SDL_Event &event)
 {
     if (visible)
     {
-        int buttonX = event.button.x;
-        int buttonY = event.button.y;
-
-        int left = boundary.x;
-        int right = boundary.x + boundary.w;
-        int up = boundary.y;
-        int down = boundary.y + boundary.h;
-
         if (event.type == SDL_MOUSEBUTTONDOWN)
         {
-            if (buttonX > left && buttonX < right && buttonY > up && buttonY < down)
+            if (intersect(event.button.x, event.button.y))
             {
                 if (onClick != nullptr)
                 {
@@ -88,14 +84,7 @@ void Button::handleEvents(SDL_Event &event)
         }
         else if (event.type == SDL_MOUSEMOTION)
         {
-            if (buttonX > left && buttonX < right && buttonY > up && buttonY < down)
-            {
-                hover = true;
-            }
-            else
-            {
-                hover = false;
-            }
+            hover = intersect(event.button.x, event.button.y);
         }
     }
 }

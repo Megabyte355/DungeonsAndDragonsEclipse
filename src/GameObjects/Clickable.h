@@ -18,14 +18,15 @@ class Clickable : public virtual Observable
     public:
         virtual ~Clickable() override;
 
+        virtual void update() = 0;
         virtual void handleEvents(SDL_Event &) = 0;
         virtual void draw() = 0;
 
     protected:
-        Clickable();
         Clickable(int, int);
         Clickable(int x, int y, int w, int h);
         SDL_Rect boundary;
+        bool intersect(int x, int y);
 };
 
 #endif /* CLICKABLE_H_ */

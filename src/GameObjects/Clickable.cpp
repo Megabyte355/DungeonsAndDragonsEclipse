@@ -7,14 +7,6 @@
 
 #include "Clickable.h"
 
-Clickable::Clickable()
-{
-    boundary.x = 0;
-    boundary.y = 0;
-    boundary.w = 0;
-    boundary.h = 0;
-}
-
 Clickable::Clickable(int x, int y)
 {
     boundary.x = x;
@@ -33,4 +25,9 @@ Clickable::Clickable(int x, int y, int w, int h)
 
 Clickable::~Clickable()
 {
+}
+
+bool Clickable::intersect(int x, int y)
+{
+    return (x > boundary.x) && (x < (boundary.x + boundary.w)) && (y > boundary.y) && (y < (boundary.y + boundary.h));
 }
