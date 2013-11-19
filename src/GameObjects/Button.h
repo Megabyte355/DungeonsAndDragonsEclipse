@@ -21,8 +21,9 @@ class Button: public virtual Clickable
         Button(int x, int y, int w, int h, std::string label);
         ~Button();
 
-        void draw();
-        void handleEvents(SDL_Event &);
+        void update() override;
+        void draw() override;
+        void handleEvents(SDL_Event &) override;
         void setOnClick(std::function<void()>);
         void toggleVisibility();
         bool isVisible();

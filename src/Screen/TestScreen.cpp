@@ -18,6 +18,16 @@ TestScreen::~TestScreen(void)
     {
         delete kiwi;
     }
+
+    for (auto b : buttons)
+    {
+        delete b;
+    }
+
+    for (auto t : textFields)
+    {
+        delete t;
+    }
 }
 
 void TestScreen::initialize()
@@ -27,6 +37,18 @@ void TestScreen::initialize()
     {
         k.push_back(new Kiwi(rand() % 800, rand() % 600, (rand() % 500 + 1) / (float) 1000));
     }
+
+    buttons.push_back(new Button(200, 400, 10, "Ok1"));
+    buttons.push_back(new Button(200, 500, 10, "Ok2"));
+
+    for(auto b : buttons)
+    {
+        b->toggleVisibility();
+    }
+
+    textFields.push_back(new TextField(100, 400, 90, 30));
+    textFields.push_back(new TextField(100, 500, 90, 30));
+
 }
 
 void TestScreen::update(float gameTime)
@@ -57,10 +79,30 @@ void TestScreen::draw()
     TextRenderer::getInstance()->renderText(20, 260, "Blue", "arial_black", TextRenderer::blue, 25);
     TextRenderer::getInstance()->renderText(20, 290, "Green", "arial_black", TextRenderer::green, 25);
     TextRenderer::getInstance()->renderText(20, 320, "Black", "arial_black", TextRenderer::black, 25);
+
+    for (auto b : buttons)
+    {
+        b->draw();
+    }
+
+    for (auto t : textFields)
+    {
+        t->draw();
+    }
 }
 
 void TestScreen::handleEvents(SDL_Event &event)
 {
+    for (auto t : textFields)
+    {
+        t->handleEvents(event);
+    }
+
+    for (auto b : buttons)
+    {
+        b->handleEvents(event);
+    }
+
     switch (event.type)
     {
         case SDL_QUIT:

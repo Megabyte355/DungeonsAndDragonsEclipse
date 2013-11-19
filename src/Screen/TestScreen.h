@@ -13,6 +13,8 @@
 #include "Orange.h"
 #include "Kiwi.h"
 #include "Game.h"
+#include "Button.h"
+#include "TextField.h"
 #include <vector>
 
 class TestScreen : public virtual Screen
@@ -20,6 +22,9 @@ class TestScreen : public virtual Screen
 private:
     Orange o;
     std::vector<Kiwi*> k;
+
+    std::vector<Button*> buttons;
+    std::vector<TextField*> textFields;
 
 public:
     TestScreen(void);

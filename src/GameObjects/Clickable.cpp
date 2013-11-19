@@ -26,3 +26,8 @@ Clickable::Clickable(int x, int y, int w, int h)
 Clickable::~Clickable()
 {
 }
+
+bool Clickable::intersect(int x, int y)
+{
+    return (x > boundary.x) && (x < (boundary.x + boundary.w)) && (y > boundary.y) && (y < (boundary.y + boundary.h));
+}
