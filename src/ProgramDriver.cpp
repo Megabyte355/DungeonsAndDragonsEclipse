@@ -5,8 +5,8 @@
 // Description : Implementation of the Observer Pattern over the Map classes
 //============================================================================
 
-#include "GameEngine/Game.h"
-#include "GameEngine/GameConfig.h"
+#include "Game.h"
+#include "GameConfig.h"
 #include <iostream>
 #include <memory>
 
@@ -20,8 +20,6 @@ int main(int argc, char** argv)
         return 1;
     }
 
-
-    //GameConfig::getInstance()->gameIsRunning = true;
     GameConfig * config = GameConfig::getInstance();
     config->gameIsRunning = true;
 
@@ -51,7 +49,7 @@ int main(int argc, char** argv)
             // Handle user input
             while (SDL_PollEvent(&event))
             {
-                game->handleEvents(&event);
+                game->handleEvents(event);
             }
         }
 

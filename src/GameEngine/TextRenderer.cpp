@@ -7,21 +7,64 @@
 
 #include "TextRenderer.h"
 
-SDL_Renderer * TextRenderer::renderer;
-std::map<std::string, std::string> TextRenderer::fontMap;
-
-SDL_Color TextRenderer::black = {0, 0, 0};
-SDL_Color TextRenderer::white = {255, 255, 255};
-SDL_Color TextRenderer::red = {255, 0, 0};
-SDL_Color TextRenderer::green = {0, 255, 0};
-SDL_Color TextRenderer::blue = {0, 0, 255};
+TextRenderer * TextRenderer::instance;
+SDL_Color TextRenderer::black;
+SDL_Color TextRenderer::white;
+SDL_Color TextRenderer::red;
+SDL_Color TextRenderer::green;
+SDL_Color TextRenderer::blue;
 
 TextRenderer::TextRenderer()
 {
+    // Initialize preset colors
+    black.r = 0;
+    white.r = 255;
+    red.r = 255;
+    green.r = 0;
+    blue.r = 0;
+
+    black.g = 0;
+    white.g = 255;
+    red.g = 0;
+    green.g = 255;
+    blue.g = 0;
+
+    black.b = 0;
+    white.b = 255;
+    red.b = 0;
+    green.b = 0;
+    blue.b = 255;
+
+    renderer = nullptr;
+    currentColor = this->white;
+    currentFont = "arial";
+    currentFontSize = DEFAULT_FONT_SIZE;
 }
 
 TextRenderer::~TextRenderer()
 {
+    renderer = nullptr;
+    fontPathMap.clear();
+    for (std::pair<std::string, std::map<int, TTF_Font*>> currentFont : fontMap)
+    {
+        for (std::pair<int, TTF_Font*> pair : currentFont.second)
+        {
+            TTF_CloseFont(pair.second);
+            pair.second = nullptr;
+        }
+        currentFont.second.clear();
+        std::cout << "Font " << currentFont.first << " destroyed" << std::endl;
+    }
+    fontMap.clear();
+}
+
+TextRenderer * TextRenderer::getInstance()
+{
+    if (instance == nullptr)
+    {
+        instance = new TextRenderer();
+    }
+    return instance;
 }
 
 void TextRenderer::setRenderer(SDL_Renderer * ren)
@@ -29,72 +72,179 @@ void TextRenderer::setRenderer(SDL_Renderer * ren)
     renderer = ren;
 }
 
+void TextRenderer::setColor(SDL_Color c)
+{
+    currentColor = c;
+}
+
+void TextRenderer::setFont(std::string fontName)
+{
+    std::map<std::string, std::string>::iterator it = fontPathMap.find(fontName);
+    if (it != fontPathMap.end())
+    {
+        currentFont = fontName;
+    }
+}
+
+void TextRenderer::setFontSize(int size)
+{
+    currentFontSize = size;
+}
+
+void TextRenderer::setSettings(std::string font, int size, SDL_Color color)
+{
+    setFont(font);
+    setFontSize(size);
+    setColor(color);
+}
+
 void TextRenderer::loadFontPaths()
 {
-    fontMap["starcraft_font"] = "assets/starcraft_font.ttf";
+    // Font from one of my favorite games
+    fontPathMap["starcraft_font"] = "assets/starcraft_font.ttf";
 
-    fontMap["arial"] = "assets/arial.ttf";
-    fontMap["arial_bold"] = "assets/arialbd.ttf";
-    fontMap["arial_bold_italic"] = "assets/arialbi.ttf";
-    fontMap["arial_italic"] = "assets/ariali.ttf";
-    fontMap["arial_narrow"] = "assets/ARIALN.TTF";
-    fontMap["arial_narrow_bold"] = "assets/ARIALNB.TTF";
-    fontMap["arial_narrow_bold_italic"] = "assets/ARIALNBI.TTF";
-    fontMap["arial_narrow_italic"] = "assets/ARIALNI.TTF";
-    fontMap["arial_black"] = "assets/ariblk.ttf";
+    // Arial fonts
+    fontPathMap["arial"] = "assets/arial.ttf";
+    fontPathMap["arial_bold"] = "assets/arialbd.ttf";
+    fontPathMap["arial_bold_italic"] = "assets/arialbi.ttf";
+    fontPathMap["arial_italic"] = "assets/ariali.ttf";
+    fontPathMap["arial_narrow"] = "assets/ARIALN.TTF";
+    fontPathMap["arial_narrow_bold"] = "assets/ARIALNB.TTF";
+    fontPathMap["arial_narrow_bold_italic"] = "assets/ARIALNBI.TTF";
+    fontPathMap["arial_narrow_italic"] = "assets/ARIALNI.TTF";
+    fontPathMap["arial_black"] = "assets/ariblk.ttf";
 
-    fontMap["calibri"] = "assets/calibri.ttf";
-    fontMap["calibri_bold"] = "assets/calibrib.ttf";
-    fontMap["calibri_italic"] = "assets/calibrii.ttf";
-    fontMap["calibri_light"] = "assets/calibril.ttf";
-    fontMap["calibri_light_italic"] = "assets/calibrili.ttf";
-    fontMap["calibri_bold_italic"] = "assets/calibriz.ttf";
+    // Calibri fonts
+    fontPathMap["calibri"] = "assets/calibri.ttf";
+    fontPathMap["calibri_bold"] = "assets/calibrib.ttf";
+    fontPathMap["calibri_italic"] = "assets/calibrii.ttf";
+    fontPathMap["calibri_light"] = "assets/calibril.ttf";
+    fontPathMap["calibri_light_italic"] = "assets/calibrili.ttf";
+    fontPathMap["calibri_bold_italic"] = "assets/calibriz.ttf";
 
 }
 
 void TextRenderer::renderText(int x, int y, std::string message, std::string fontName, SDL_Color color, int fontSize)
 {
-    /*
-     * This function is currently very inefficient since it keeps re-reading the font files.
-     * A solution will be implemented in the near future.
-     */
-
-    if (renderer != nullptr)
+    if (renderer != nullptr && fontPathMap.find(fontName) != fontPathMap.end())
     {
-        //Open the font with custom fontSize
-        TTF_Font *font = nullptr;
-        font = TTF_OpenFont(fontMap[fontName].c_str(), fontSize);
+//        if (fontMap.find(fontName) == fontMap.end())
+//        {
+//            std::map<int, TTF_Font*> fontSizeMap;
+//            fontMap[fontName] = fontSizeMap;
+//            fontMap[fontName][fontSize] = loadPath(fontPathMap[fontName].c_str(), fontSize);
+//        }
+//        else if (fontMap[fontName].find(fontSize) == fontMap[fontName].end())
+//        {
+//            fontMap[fontName][fontSize] = loadPath(fontPathMap[fontName].c_str(), fontSize);
+//        }
 
+        // Open the font with custom font size
+//        TTF_Font *font = nullptr;
+//        font = fontMap[fontName][fontSize];
+        TTF_Font * font = getFont(fontName, fontSize);
         if (font == nullptr)
         {
-            throw std::runtime_error("Failed to load font: " + fontName + TTF_GetError());
+            std::cout << "Failed to load font: " << fontName.c_str() << TTF_GetError() << std::endl;
         }
-        //Render the message to an SDL_Surface, as that's what TTF_RenderText_X returns
+
+        // Render the message to an SDL_Surface
         SDL_Surface *surf = TTF_RenderText_Blended(font, message.c_str(), color);
         SDL_Texture *texture = SDL_CreateTextureFromSurface(renderer, surf);
 
-        //Clean up unneeded stuff
-        SDL_FreeSurface(surf);
-        TTF_CloseFont(font);
-
+        // Position and size setup
         SDL_Rect pos;
         pos.x = x;
         pos.y = y;
         SDL_QueryTexture(texture, NULL, NULL, &pos.w, &pos.h);
         SDL_RenderCopy(renderer, texture, NULL, &pos);
+
+        // Clean up
+        SDL_FreeSurface(surf);
+        SDL_DestroyTexture(texture);
+        font = nullptr;
+        surf = nullptr;
+        texture = nullptr;
+    }
+    else
+    {
+        std::cout << "TextRenderer::renderText - renderer or fontMap error" << std::endl;
     }
 }
 
-TTF_Font * TextRenderer::loadPath(const std::string &fontFile)
+void TextRenderer::renderText(int x, int y, std::string message)
 {
-    /*
-     * This function will be used as part of the optimized font-loading algorithm later.
-     */
+    renderText(x, y, message, currentFont, currentColor, currentFontSize);
+}
+
+SDL_Rect TextRenderer::queryTextSize(int x, int y, std::string message)
+{
+    SDL_Rect pos;
+    if (renderer != nullptr && fontPathMap.find(currentFont) != fontPathMap.end())
+    {
+//        if (fontMap.find(currentFont) == fontMap.end())
+//        {
+//            std::map<int, TTF_Font*> fontSizeMap;
+//            fontMap[currentFont] = fontSizeMap;
+//            fontMap[currentFont][currentFontSize] = loadPath(fontPathMap[currentFont].c_str(), currentFontSize);
+//        }
+//        else if (fontMap[currentFont].find(currentFontSize) == fontMap[currentFont].end())
+//        {
+//            fontMap[currentFont][currentFontSize] = loadPath(fontPathMap[currentFont].c_str(), currentFontSize);
+//        }
+
+        // Open the font with custom font size
+//        TTF_Font *font = nullptr;
+//        font = fontMap[currentFont][currentFontSize];
+        TTF_Font * font = getFont(currentFont, currentFontSize);
+        if (font == nullptr)
+        {
+            std::cout << "Failed to load font: " << currentFont.c_str() << TTF_GetError() << std::endl;
+        }
+
+        // Render the message to an SDL_Surface
+        SDL_Surface *surf = TTF_RenderText_Blended(font, message.c_str(), currentColor);
+        SDL_Texture *texture = SDL_CreateTextureFromSurface(renderer, surf);
+
+        // Position and size setup
+        pos.x = x;
+        pos.y = y;
+        SDL_QueryTexture(texture, NULL, NULL, &pos.w, &pos.h);
+
+        // Clean up
+        SDL_FreeSurface(surf);
+        SDL_DestroyTexture(texture);
+    }
+    else
+    {
+        std::cout << "TextRenderer::queryTextTexture - renderer or fontMap error" << std::endl;
+    }
+    return pos;
+
+}
+
+TTF_Font * TextRenderer::loadPath(const std::string &fontFile, int fontSize)
+{
     TTF_Font *font = nullptr;
-    font = TTF_OpenFont(fontFile.c_str(), GameConfig::DEFAULT_FONT_SIZE);
+    font = TTF_OpenFont(fontFile.c_str(), fontSize);
     if (font == nullptr)
     {
-        throw std::runtime_error("Failed to load font: " + fontFile + TTF_GetError());
+        std::cout << "Failed to load font: " << fontFile.c_str() << TTF_GetError() << std::endl;
     }
     return font;
+}
+
+TTF_Font * TextRenderer::getFont(std::string font, int size)
+{
+    if (fontMap.find(font) == fontMap.end())
+    {
+        std::map<int, TTF_Font*> * fontSizeMap = new std::map<int, TTF_Font*>();
+        fontMap[font] = *fontSizeMap;
+        fontMap[font][size] = loadPath(fontPathMap[font].c_str(), size);
+    }
+    else if (fontMap[font].find(size) == fontMap[font].end())
+    {
+        fontMap[font][size] = loadPath(fontPathMap[font].c_str(), size);
+    }
+    return fontMap[font][size];
 }

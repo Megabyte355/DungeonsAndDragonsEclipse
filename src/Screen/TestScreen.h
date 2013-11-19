@@ -13,13 +13,18 @@
 #include "Orange.h"
 #include "Kiwi.h"
 #include "Game.h"
+#include "Button.h"
+#include "TextField.h"
 #include <vector>
 
-class TestScreen : public Screen
+class TestScreen : public virtual Screen
 {
 private:
     Orange o;
     std::vector<Kiwi*> k;
+
+    std::vector<Button*> buttons;
+    std::vector<TextField*> textFields;
 
 public:
     TestScreen(void);
@@ -28,7 +33,8 @@ public:
     void initialize() override;
     void update(float) override;
     void draw() override;
-    void handleEvents(SDL_Event * event) override;
+    void handleEvents(SDL_Event &event) override;
+    void reset() override;
 };
 
 #endif /* TESTSCREEN_H_ */

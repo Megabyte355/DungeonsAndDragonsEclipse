@@ -11,7 +11,7 @@
 #include "GameConfig.h"
 #include "Util.h"
 #include "ScreenManager.h"
-#include "Textures.h"
+#include "TextureRenderer.h"
 #include "TextRenderer.h"
 #include <iostream>
 #include <string>
@@ -27,13 +27,16 @@ public:
     SDL_Renderer * renderer;
     SDL_Window * window;
 
+    TextureRenderer * textures;
+    TextRenderer * texts;
+
     Game(void);
     ~Game(void);
 
     void initialize();
     void update(float);
     void draw();
-    void handleEvents(SDL_Event * event);
+    void handleEvents(SDL_Event &event);
 };
 
 #endif /* GAME_H_ */
