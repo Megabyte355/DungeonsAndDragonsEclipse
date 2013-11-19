@@ -7,14 +7,6 @@
 
 #include "Clickable.h"
 
-Clickable::Clickable()
-{
-    boundary.x = 0;
-    boundary.y = 0;
-    boundary.w = 0;
-    boundary.h = 0;
-}
-
 Clickable::Clickable(int x, int y)
 {
     boundary.x = x;

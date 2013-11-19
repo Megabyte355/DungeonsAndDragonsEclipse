@@ -22,7 +22,6 @@ class Clickable : public virtual Observable
         virtual void draw() = 0;
 
     protected:
-        Clickable();
         Clickable(int, int);
         Clickable(int x, int y, int w, int h);
         SDL_Rect boundary;
