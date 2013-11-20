@@ -13,12 +13,18 @@ Screen::Screen(std::string name)
 {
     uniqueName = name;
     active = false;
+    paused = false;
     instanceId = instanceIdCounter++;
 }
 
 
 Screen::~Screen(void)
 {
+}
+
+int Screen::getInstanceId()
+{
+    return instanceId;
 }
 
 std::string Screen::getName()

@@ -8,7 +8,7 @@
 #ifndef ORANGE_H_
 #define ORANGE_H_
 
-#include "Textures.h"
+#include "TextureRenderer.h"
 
 class Orange
 {
