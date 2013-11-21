@@ -31,6 +31,15 @@ void MapScreen::initialize()
     displayGreen = false;
     displayRed = false;
     selectedTile = Cell::CellType::Empty;
+
+    // Weird code - TO BE REMOVED
+    if (firstLoop)
+    {
+        firstLoop = false;
+        queryMapSize();
+        // Weird stuff going on
+        initData(mapWidth, mapHeight);
+    }
 }
 
 void MapScreen::update(float deltaTime)
@@ -93,19 +102,18 @@ void MapScreen::draw()
     {
         texts->renderText(25, GameConfig::SCREEN_HEIGHT - 50, "Map is INVALID", "calibri_bold", TextRenderer::red, 40);
     }
-
 }
 
 void MapScreen::handleEvents(SDL_Event &event)
 {
-    // Hack - only this time
-    if (firstLoop)
-    {
-        firstLoop = false;
-        queryMapSize();
-        // Weird stuff going on
-        initData(mapWidth, mapHeight);
-    }
+    //// Hack - only this time
+    //if (firstLoop)
+    //{
+    //    firstLoop = false;
+    //    queryMapSize();
+    //    // Weird stuff going on
+    //    initData(mapWidth, mapHeight);
+    //}
 
     switch (event.type)
     {
@@ -158,18 +166,35 @@ void MapScreen::reset()
 {
     textures = nullptr;
     texts = nullptr;
-    //for (auto t : tileOptions)
-    //{
-    //    delete t;
-    //}
+    for (auto t : tileOptions)
+    {
+        delete t;
+    }
+    for (auto b : optionLabels)
+    {
+        delete b;
+    }
+    for (auto mt : mapTiles)
+    {
+        delete mt;
+    }
+    tileOptions.clear();
+    optionLabels.clear();
+    mapTiles.clear();
+
+    delete mapModel;
+    mapModel = nullptr;
+
 }
 
 void MapScreen::queryMapSize()
 {
-    std::cout << "How many columns?" << std::endl;
-    std::cin >> mapWidth;
-    std::cout << "How many rows?" << std::endl;
-    std::cin >> mapHeight;
+    //std::cout << "How many columns?" << std::endl;
+    //std::cin >> mapWidth;
+    //std::cout << "How many rows?" << std::endl;
+    //std::cin >> mapHeight;
+    mapWidth = 10;
+    mapHeight = 10;
 }
 
 void MapScreen::initData(int width, int height)
