@@ -9,13 +9,10 @@
 
 Map::Map()
 {
-    fileHandler = nullptr;
-    initialize(10, 10);
 }
 
 Map::Map(int width, int height)
 {
-    fileHandler = nullptr;
     initialize(width, height);
 }
 
@@ -51,6 +48,16 @@ int Map::getWidth()
 int Map::getHeight()
 {
     return mapHeight;
+}
+
+int Map::getLevel()
+{
+    return level;
+}
+
+void Map::setLevel(int level)
+{
+    this->level = level;
 }
 
 std::shared_ptr<Cell> Map::getCell(int x, int y)

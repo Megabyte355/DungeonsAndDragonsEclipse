@@ -14,12 +14,14 @@
 class Recordable
 {
     public:
+
         virtual ~Recordable();
 
         void save(int);
         void load(int);
 
     protected:
+        Recordable();
         virtual std::string toFileString() = 0;
         virtual void fromFileString(std::string) = 0;
 

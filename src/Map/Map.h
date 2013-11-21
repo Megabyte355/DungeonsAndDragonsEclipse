@@ -29,6 +29,8 @@ class Map: public virtual Observable, public virtual Recordable
         // Map properties
         int getWidth();
         int getHeight();
+        int getLevel();
+        void setLevel(int);
 
         // Cell operations
         std::shared_ptr<Cell> getCell(int, int);
@@ -61,6 +63,7 @@ class Map: public virtual Observable, public virtual Recordable
         std::vector<std::vector<std::shared_ptr<Cell>>>matrix;
         int mapWidth;
         int mapHeight;
+        int level;
     };
 
 #endif /* MAP_H_ */

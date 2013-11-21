@@ -33,6 +33,8 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DungeonsAndDragonsEclipse/src/GameObjects}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DungeonsAndDragonsEclipse/src/Character}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DungeonsAndDragonsEclipse/src/Map}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/src/Item}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/src/Monster}&quot;"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.439431601" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 							</tool>
