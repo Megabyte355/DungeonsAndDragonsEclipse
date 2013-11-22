@@ -193,8 +193,8 @@ void MapScreen::queryMapSize()
     //std::cin >> mapWidth;
     //std::cout << "How many rows?" << std::endl;
     //std::cin >> mapHeight;
-    mapWidth = 10;
-    mapHeight = 10;
+    mapWidth = 9;
+    mapHeight = 9;
 }
 
 void MapScreen::initData(int width, int height)

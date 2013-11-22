@@ -64,6 +64,16 @@ void TextureRenderer::loadAllTextures()
     textureMap["black_button_clicked"] = loadTexture("assets/black_button_clicked.png");
     textureMap["black_button_on"] = loadTexture("assets/black_button_on.png");
     textureMap["black_button_off"] = loadTexture("assets/black_button_off.png");
+
+    // Monsters
+    textureMap["monster"] = loadTexture("assets/monster.png");
+
+    // Heroes
+    //textureMap["paladin"] = loadTexture("assets/paladin.png");
+    textureMap["link"] = loadTexture("assets/link.png");
+
+    // Items
+    textureMap["treasure"] = loadTexture("assets/treasure.png");
 }
 
 SDL_Texture* TextureRenderer::getTexture(std::string textureName)
