@@ -69,7 +69,7 @@ void TextureRenderer::loadAllTextures()
     textureMap["monster"] = loadTexture("assets/monster.png");
 
     // Heroes
-    //textureMap["paladin"] = loadTexture("assets/paladin.png");
+    textureMap["paladin"] = loadTexture("assets/paladin.png");
     textureMap["link"] = loadTexture("assets/link.png");
 
     // Items

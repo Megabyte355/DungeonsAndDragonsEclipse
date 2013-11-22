@@ -32,14 +32,15 @@ class Cell
         void setY(int);
         CellType getType();
         void setType(CellType);
-        CellOccupant * getOccupant();
-        void setOccupant(CellOccupant *);
         CellLocation getLocation();
         std::vector<CellLocation> getNeighbors();
 
-        // Other functions
+        // Occupation operations
+        CellOccupant * getOccupant();
+        void setOccupant(CellOccupant *);
         void clearOccupant();
         bool isOccupiable();
+        bool isOccupied();
 
     private:
         CellLocation location;

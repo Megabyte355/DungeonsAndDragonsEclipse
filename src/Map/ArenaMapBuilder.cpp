@@ -53,6 +53,7 @@ void ArenaMapBuilder::setEndPoint()
 
 void ArenaMapBuilder::placeItems()
 {
+
 }
 
 void ArenaMapBuilder::placeMonsters()
