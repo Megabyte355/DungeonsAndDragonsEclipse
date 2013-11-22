@@ -21,6 +21,7 @@ void MapDirector::constructMap()
 {
     if (mb != nullptr)
     {
+        mb->setLevel(1);
         mb->setSize();
         mb->setTiles();
         mb->setStartPoint();
@@ -28,6 +29,25 @@ void MapDirector::constructMap()
         mb->placeItems();
         mb->placeMonsters();
     }
+}
+
+void MapDirector::constructMapWithLevel(int level)
+{
+    if (mb != nullptr)
+    {
+        mb->setLevel(level);
+        mb->setSize();
+        mb->setTiles();
+        mb->setStartPoint();
+        mb->setEndPoint();
+        mb->placeItems();
+        mb->placeMonsters();
+    }
+}
+
+void MapDirector::setMapBuilder(MapBuilder* builder)
+{
+    mb = builder;
 }
 
 Map * MapDirector::getMap()

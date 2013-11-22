@@ -19,6 +19,7 @@ class MapDirector
 
         void setMapBuilder(MapBuilder *);
         void constructMap();
+        void constructMapWithLevel(int);
         Map * getMap();
 
     private:

@@ -21,3 +21,8 @@ Map * MapBuilder::getMap()
     mapReturned = true;
     return map;
 }
+
+void MapBuilder::setLevel(int l)
+{
+    level = l;
+}

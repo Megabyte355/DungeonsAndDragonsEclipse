@@ -47,7 +47,7 @@ void MapTile::draw()
 {
     if (cell->getType() == Cell::CellType::Wall)
     {
-        TextureRenderer::getInstance()->drawTexture("bricks", x, y, w, h);
+        TextureRenderer::getInstance()->drawTexture("wall", x, y, w, h);
     }
     else if (cell->getType() == Cell::CellType::Floor)
     {

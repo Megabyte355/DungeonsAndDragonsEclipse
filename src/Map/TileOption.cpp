@@ -48,7 +48,7 @@ void TileOption::draw()
 
     if (myType == Cell::CellType::Wall)
     {
-        textureName = "bricks";
+        textureName = "wall";
         label = "Wall tile";
     }
     else if (myType == Cell::CellType::Floor)

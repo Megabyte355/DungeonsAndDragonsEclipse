@@ -15,6 +15,7 @@ class MapBuilder
     public:
         virtual ~MapBuilder();
 
+        void setLevel(int);
         virtual void setSize() = 0;
         virtual void setTiles() = 0;
         virtual void setStartPoint() = 0;
@@ -25,6 +26,7 @@ class MapBuilder
         Map * getMap();
 
     protected:
+        int level;
         bool mapReturned;
         Map * map;
 };

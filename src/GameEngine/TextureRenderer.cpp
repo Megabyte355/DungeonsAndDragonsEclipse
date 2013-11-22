@@ -55,6 +55,7 @@ void TextureRenderer::loadAllTextures()
     textureMap["empty"] = loadTexture("assets/empty.png");
     textureMap["dot"] = loadTexture("assets/dot.png");
     textureMap["outer_space"] = loadTexture("assets/outer_space.png");
+    textureMap["wall"] = loadTexture("assets/wall.png");
 
     // Test
     textureMap["kiwi"] = loadTexture("assets/kiwi.png");
