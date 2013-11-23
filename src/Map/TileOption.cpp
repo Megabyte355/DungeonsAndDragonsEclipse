@@ -27,7 +27,7 @@ Cell::CellType TileOption::getCellType()
 
 void TileOption::handleEvents(SDL_Event& event)
 {
-    if (event.type == SDL_MOUSEBUTTONDOWN)
+    if (event.type == SDL_MOUSEBUTTONDOWN || event.type == SDL_MOUSEBUTTONUP)
     {
         int clickX = event.button.x;
         int clickY = event.button.y;

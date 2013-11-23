@@ -29,7 +29,7 @@ MapTile::~MapTile()
 
 void MapTile::handleEvents(SDL_Event &event)
 {
-    if (event.type == SDL_MOUSEBUTTONDOWN)
+    if (event.type == SDL_MOUSEBUTTONDOWN || event.type == SDL_MOUSEBUTTONUP)
     {
         int clickX = event.button.x;
         int clickY = event.button.y;
@@ -56,12 +56,12 @@ void MapTile::draw()
     else if (cell->getType() == Cell::CellType::Start)
     {
         TextureRenderer::getInstance()->drawTexture("floor", x, y, w, h);
-        TextureRenderer::getInstance()->drawTexture("entrance", x, y, w, h);
+        TextureRenderer::getInstance()->drawTexture("start", x, y, w, h);
     }
     else if (cell->getType() == Cell::CellType::End)
     {
         TextureRenderer::getInstance()->drawTexture("floor", x, y, w, h);
-        TextureRenderer::getInstance()->drawTexture("exit", x, y, w, h);
+        TextureRenderer::getInstance()->drawTexture("end", x, y, w, h);
     }
     else if (cell->getType() == Cell::CellType::Empty)
     {

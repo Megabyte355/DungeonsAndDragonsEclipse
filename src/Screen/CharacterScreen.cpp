@@ -26,12 +26,12 @@ void CharacterScreen::initialize()
     texts = TextRenderer::getInstance();
 
     Button * option = new Button(700, 0, 15, "Back");
-    option->setOnClick(returnToMenu);
+    option->setCallback(returnToMenu);
     options.push_back(option);
     option->toggleVisibility();
 
     option = new Button(300, 250, 15, "Begin Character Creation");
-    option->setOnClick(beginCharacterCreation);
+    option->setCallback(beginCharacterCreation);
     options.push_back(option);
     option->toggleVisibility();
 
@@ -108,12 +108,8 @@ void CharacterScreen::handleEvents(SDL_Event &event)
                 active = false;
             }
             break;
+        case SDL_MOUSEBUTTONUP:
         case SDL_MOUSEBUTTONDOWN:
-            for (auto o : options)
-            {
-                o->handleEvents(event);
-            }
-            break;
         case SDL_MOUSEMOTION:
             for (auto o : options)
             {

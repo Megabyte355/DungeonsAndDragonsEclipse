@@ -128,24 +128,12 @@ void MapScreen::handleEvents(SDL_Event &event)
                 active = false;
             }
             break;
+        case SDL_MOUSEBUTTONUP:
         case SDL_MOUSEBUTTONDOWN:
+        case SDL_MOUSEMOTION:
             displayGreen = false;
             displayRed = false;
             validPath.clear();
-            for (auto o : optionLabels)
-            {
-                o->handleEvents(event);
-            }
-            for (TileOption * t : tileOptions)
-            {
-                t->handleEvents(event);
-            }
-            for (MapTile * mt : mapTiles)
-            {
-                mt->handleEvents(event);
-            }
-            break;
-        case SDL_MOUSEMOTION:
             for (auto o : optionLabels)
             {
                 o->handleEvents(event);
@@ -244,10 +232,10 @@ void MapScreen::initData(int width, int height)
     Button * option = new Button(650, 550, 15, "Validate map");
     option->toggleVisibility();
     optionLabels.push_back(option);
-    option->setOnClick(validatePath);
+    option->setCallback(validatePath);
 
     option = new Button(700, 0, 15, "Back");
-    option->setOnClick(returnToMenu);
+    option->setCallback(returnToMenu);
     optionLabels.push_back(option);
     option->toggleVisibility();
 
@@ -269,10 +257,10 @@ void MapScreen::initDataWithArenaBuilder()
     mapHeight = 9;
 
     // ...
-    int tileTextureWidth = 400 / mapWidth;
-    int tileTextureHeight = 400 / mapHeight;
+    int tileTextureWidth = 500 / mapWidth;
+    int tileTextureHeight = 500 / mapHeight;
     int currentX = 25;
-    int currentY = 125;
+    int currentY = 80;
     MapTile * mt = nullptr;
     for (int i = 0; i < mapWidth; i++)
     {
@@ -285,7 +273,7 @@ void MapScreen::initDataWithArenaBuilder()
             currentY += tileTextureHeight;
         }
         currentX += tileTextureWidth;
-        currentY = 125;
+        currentY = 80;
     }
 
     TileOption * tileOption = new TileOption(Cell::CellType::Wall, 600, 100, 200, 50);
@@ -309,10 +297,10 @@ void MapScreen::initDataWithArenaBuilder()
     Button * option = new Button(650, 550, 15, "Validate map");
     option->toggleVisibility();
     optionLabels.push_back(option);
-    option->setOnClick(validatePath);
+    option->setCallback(validatePath);
 
     option = new Button(700, 0, 15, "Back");
-    option->setOnClick(returnToMenu);
+    option->setCallback(returnToMenu);
     optionLabels.push_back(option);
     option->toggleVisibility();
 

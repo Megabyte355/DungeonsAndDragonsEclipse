@@ -51,6 +51,7 @@ void TextureRenderer::loadAllTextures()
     textureMap["bricks"] = loadTexture("assets/bricks.png");
     textureMap["start"] = loadTexture("assets/start.png");
     textureMap["stop"] = loadTexture("assets/stop.png");
+    textureMap["end"] = loadTexture("assets/end.png");
     textureMap["exit"] = loadTexture("assets/exit.png");
     textureMap["finish"] = loadTexture("assets/finish.png");
     textureMap["empty"] = loadTexture("assets/empty.png");
@@ -67,7 +68,9 @@ void TextureRenderer::loadAllTextures()
     textureMap["black_button_clicked"] = loadTexture("assets/black_button_clicked.png");
     textureMap["black_button_on"] = loadTexture("assets/black_button_on.png");
     textureMap["black_button_off"] = loadTexture("assets/black_button_off.png");
-
+    textureMap["red_button_normal"] = loadTexture("assets/red_button_normal.png");
+    textureMap["red_button_down"] = loadTexture("assets/red_button_down.png");
+    textureMap["red_button_hover"] = loadTexture("assets/red_button_hover.png");
     // Monsters
     textureMap["monster"] = loadTexture("assets/monster.png");
 
