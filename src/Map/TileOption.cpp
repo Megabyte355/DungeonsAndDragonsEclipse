@@ -58,12 +58,12 @@ void TileOption::draw()
     }
     else if (myType == Cell::CellType::Start)
     {
-        textureName = "start";
+        textureName = "entrance";
         label = "Start";
     }
     else if (myType == Cell::CellType::End)
     {
-        textureName = "stop";
+        textureName = "exit";
         label = "End";
     }
     else

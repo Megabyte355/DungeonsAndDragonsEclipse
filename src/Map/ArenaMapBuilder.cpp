@@ -43,12 +43,12 @@ void ArenaMapBuilder::setTiles()
 
 void ArenaMapBuilder::setStartPoint()
 {
-    map->setCell(Cell::CellType::Start, 4, 0);
+    map->setCell(Cell::CellType::Start, 4, 8);
 }
 
 void ArenaMapBuilder::setEndPoint()
 {
-    map->setCell(Cell::CellType::End, 4, 8);
+    map->setCell(Cell::CellType::End, 4, 0);
 }
 
 void ArenaMapBuilder::placeItems()
