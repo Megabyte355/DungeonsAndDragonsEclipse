@@ -7,13 +7,13 @@
 
 #include "MapScreen.h"
 
-bool MapScreen::pathCheckRequest = false;
 int MapScreen::mapWidth = 0;
 int MapScreen::mapHeight = 0;
 
 MapScreen::MapScreen() :
         Screen("MapScreen")
 {
+    mapModel = nullptr;
 }
 
 MapScreen::~MapScreen()
@@ -31,6 +31,16 @@ void MapScreen::initialize()
     displayGreen = false;
     displayRed = false;
     selectedTile = Cell::CellType::Empty;
+
+    // Weird code - TO BE REMOVED
+    if (firstLoop)
+    {
+        firstLoop = false;
+
+        // Weird stuff going on
+        // initData(mapWidth, mapHeight);
+        initDataWithArenaBuilder();
+    }
 }
 
 void MapScreen::update(float deltaTime)
@@ -53,7 +63,7 @@ void MapScreen::update(float deltaTime)
 void MapScreen::draw()
 {
     textures->drawTexture("background", 0, 0, GameConfig::SCREEN_WIDTH, GameConfig::SCREEN_HEIGHT);
-    texts->renderText(25, 25, "Map Editor", "arial", TextRenderer::white, 35);
+    texts->renderText(25, 25, "Map Editor", "triforce", TextRenderer::white, 35);
 
     for (Button * o : optionLabels)
     {
@@ -93,20 +103,10 @@ void MapScreen::draw()
     {
         texts->renderText(25, GameConfig::SCREEN_HEIGHT - 50, "Map is INVALID", "calibri_bold", TextRenderer::red, 40);
     }
-
 }
 
 void MapScreen::handleEvents(SDL_Event &event)
 {
-    // Hack - only this time
-    if (firstLoop)
-    {
-        firstLoop = false;
-        queryMapSize();
-        // Weird stuff going on
-        initData(mapWidth, mapHeight);
-    }
-
     switch (event.type)
     {
         case SDL_QUIT:
@@ -118,24 +118,12 @@ void MapScreen::handleEvents(SDL_Event &event)
                 active = false;
             }
             break;
+        case SDL_MOUSEBUTTONUP:
         case SDL_MOUSEBUTTONDOWN:
+        case SDL_MOUSEMOTION:
             displayGreen = false;
             displayRed = false;
             validPath.clear();
-            for (auto o : optionLabels)
-            {
-                o->handleEvents(event);
-            }
-            for (TileOption * t : tileOptions)
-            {
-                t->handleEvents(event);
-            }
-            for (MapTile * mt : mapTiles)
-            {
-                mt->handleEvents(event);
-            }
-            break;
-        case SDL_MOUSEMOTION:
             for (auto o : optionLabels)
             {
                 o->handleEvents(event);
@@ -158,18 +146,28 @@ void MapScreen::reset()
 {
     textures = nullptr;
     texts = nullptr;
-    //for (auto t : tileOptions)
-    //{
-    //    delete t;
-    //}
-}
+    for (auto t : tileOptions)
+    {
+        delete t;
+    }
+    for (auto b : optionLabels)
+    {
+        delete b;
+    }
+    for (auto mt : mapTiles)
+    {
+        delete mt;
+    }
+    tileOptions.clear();
+    optionLabels.clear();
+    mapTiles.clear();
 
-void MapScreen::queryMapSize()
-{
-    std::cout << "How many columns?" << std::endl;
-    std::cin >> mapWidth;
-    std::cout << "How many rows?" << std::endl;
-    std::cin >> mapHeight;
+    if(mapModel != nullptr)
+    {
+        delete mapModel;
+    }
+    mapModel = nullptr;
+
 }
 
 void MapScreen::initData(int width, int height)
@@ -214,15 +212,78 @@ void MapScreen::initData(int width, int height)
 
     tileOption = nullptr;
 
-//    Button * option = new Button(650, 550, 150, 50, "Validate map");
     Button * option = new Button(650, 550, 15, "Validate map");
     option->toggleVisibility();
     optionLabels.push_back(option);
-    option->setOnClick(validatePath);
+    option->setCallback(std::bind(&MapScreen::validatePath, this));
 
-//    option = new Button(700, 0, 100, 50, "Back");
     option = new Button(700, 0, 15, "Back");
-    option->setOnClick(returnToMenu);
+    option->setCallback(std::bind(&MapScreen::returnToMenu, this));
+    optionLabels.push_back(option);
+    option->toggleVisibility();
+
+    option = nullptr;
+}
+
+void MapScreen::initDataWithArenaBuilder()
+{
+    ArenaMapBuilder arenaBuilder;
+    MapDirector mapDirector;
+
+    mapDirector.setMapBuilder(&arenaBuilder);
+    mapDirector.constructMapWithLevel(5);
+
+    mapModel = mapDirector.getMap();
+
+    // For purpose of Assignment 3
+    mapWidth = 9;
+    mapHeight = 9;
+
+    // ...
+    int tileTextureWidth = 500 / mapWidth;
+    int tileTextureHeight = 500 / mapHeight;
+    int currentX = 25;
+    int currentY = 80;
+    MapTile * mt = nullptr;
+    for (int i = 0; i < mapWidth; i++)
+    {
+        for (int j = 0; j < mapHeight; j++)
+        {
+            mt = new MapTile(mapModel, i, j, currentX, currentY, tileTextureWidth, tileTextureHeight);
+            mapTiles.push_back(mt);
+            mt->getSelectedCellType = std::bind(&MapScreen::selectedCellType, this);
+            mt = nullptr;
+            currentY += tileTextureHeight;
+        }
+        currentX += tileTextureWidth;
+        currentY = 80;
+    }
+
+    TileOption * tileOption = new TileOption(Cell::CellType::Wall, 600, 100, 200, 50);
+    tileOption->functionPointer = std::bind(&MapScreen::selectTileOption, this, std::placeholders::_1);
+    tileOptions.push_back(tileOption);
+    tileOption = new TileOption(Cell::CellType::Floor, 600, 175, 200, 50);
+    tileOption->functionPointer = std::bind(&MapScreen::selectTileOption, this, std::placeholders::_1);
+    tileOptions.push_back(tileOption);
+    tileOption = new TileOption(Cell::CellType::Start, 600, 250, 200, 50);
+    tileOption->functionPointer = std::bind(&MapScreen::selectTileOption, this, std::placeholders::_1);
+    tileOptions.push_back(tileOption);
+    tileOption = new TileOption(Cell::CellType::End, 600, 325, 200, 50);
+    tileOption->functionPointer = std::bind(&MapScreen::selectTileOption, this, std::placeholders::_1);
+    tileOptions.push_back(tileOption);
+    tileOption = new TileOption(Cell::CellType::Empty, 600, 400, 200, 50);
+    tileOption->functionPointer = std::bind(&MapScreen::selectTileOption, this, std::placeholders::_1);
+    tileOptions.push_back(tileOption);
+
+    tileOption = nullptr;
+
+    Button * option = new Button(650, 550, 15, "Validate map");
+    option->toggleVisibility();
+    optionLabels.push_back(option);
+    option->setCallback(std::bind(&MapScreen::validatePath, this));
+
+    option = new Button(700, 0, 15, "Back");
+    option->setCallback(std::bind(&MapScreen::returnToMenu, this));
     optionLabels.push_back(option);
     option->toggleVisibility();
 

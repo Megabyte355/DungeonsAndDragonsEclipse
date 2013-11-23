@@ -29,7 +29,7 @@ MapTile::~MapTile()
 
 void MapTile::handleEvents(SDL_Event &event)
 {
-    if (event.type == SDL_MOUSEBUTTONDOWN)
+    if (event.type == SDL_MOUSEBUTTONDOWN || event.type == SDL_MOUSEBUTTONUP)
     {
         int clickX = event.button.x;
         int clickY = event.button.y;
@@ -47,7 +47,7 @@ void MapTile::draw()
 {
     if (cell->getType() == Cell::CellType::Wall)
     {
-        TextureRenderer::getInstance()->drawTexture("bricks", x, y, w, h);
+        TextureRenderer::getInstance()->drawTexture("wall", x, y, w, h);
     }
     else if (cell->getType() == Cell::CellType::Floor)
     {
@@ -61,10 +61,32 @@ void MapTile::draw()
     else if (cell->getType() == Cell::CellType::End)
     {
         TextureRenderer::getInstance()->drawTexture("floor", x, y, w, h);
-        TextureRenderer::getInstance()->drawTexture("stop", x, y, w, h);
+        TextureRenderer::getInstance()->drawTexture("end", x, y, w, h);
     }
     else if (cell->getType() == Cell::CellType::Empty)
     {
         TextureRenderer::getInstance()->drawTexture("empty", x, y, w, h);
+    }
+
+
+    if (cell->isOccupied())
+    {
+        CellOccupant * occupant = cell->getOccupant();
+
+        //  ===================== TEMPORARY for Assignment 3 =====================
+        if (dynamic_cast<DummyCharacter*>(occupant) != nullptr)
+        {
+            TextureRenderer::getInstance()->drawTexture("link", x, y, w, h);
+        }
+        else if (dynamic_cast<DummyMonster*>(occupant) != nullptr)
+        {
+            TextureRenderer::getInstance()->drawTexture("monster", x, y, w, h);
+        }
+        else if (dynamic_cast<DummyItemChest*>(occupant) != nullptr)
+        {
+            TextureRenderer::getInstance()->drawTexture("treasure", x, y, w, h);
+        }
+        occupant = nullptr;
+        // =======================================================================
     }
 }

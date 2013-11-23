@@ -24,16 +24,10 @@ class Button: public virtual Clickable
         void update() override;
         void draw() override;
         void handleEvents(SDL_Event &) override;
-        void setOnClick(std::function<void()>);
-        void toggleVisibility();
-        bool isVisible();
 
     private:
         std::string label;
-        bool visible;
-        bool hover;
         SDL_Rect labelBoundary;
-        std::function<void()> onClick;
 };
 
 #endif /* BUTTON_H_ */

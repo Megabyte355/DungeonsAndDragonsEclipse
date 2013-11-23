@@ -44,8 +44,9 @@ void ScreenManager::initialize()
     storedScreens.push_back(std::make_shared<MenuScreen>());
     storedScreens.push_back(std::make_shared<CharacterScreen>());
     storedScreens.push_back(std::make_shared<MapScreen>());
-    pushScreen("MenuScreen");
-//    pushScreen("TestScreen");
+    storedScreens.push_back(std::make_shared<TitleScreen>());
+    pushScreen("TitleScreen");
+    //pushScreen("TestScreen");
 }
 
 // Move a screen from storedScreen to activeScreens
@@ -182,6 +183,7 @@ void ScreenManager::cleanCopiedScreens()
 
 void ScreenManager::requestScreenChange(std::string fromScreen, std::string toScreen)
 {
+    // Screen will change on the next game loop
     nextScreenName = toScreen;
     previousScreenName = fromScreen;
     changeScreenRequest = true;

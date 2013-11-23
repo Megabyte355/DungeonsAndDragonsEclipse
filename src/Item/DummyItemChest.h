@@ -10,6 +10,7 @@
 
 #include "DummyItem.h"
 #include "CellOccupant.h"
+#include <vector>
 
 class DummyItemChest : public virtual CellOccupant
 {

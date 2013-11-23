@@ -12,10 +12,7 @@
 Button::Button(int x, int y, int padding, std::string label) :
         Clickable(x, y)
 {
-    visible = false;
-    hover = false;
     this->label = label;
-    onClick = nullptr;
 
     labelBoundary = SDL_Rect(TextRenderer::getInstance()->queryTextSize(x + padding, y + padding, label));
 
@@ -27,10 +24,7 @@ Button::Button(int x, int y, int padding, std::string label) :
 Button::Button(int x, int y, int w, int h, std::string label) :
         Clickable(x, y, w, h)
 {
-    visible = false;
-    hover = false;
     this->label = label;
-    onClick = nullptr;
 
     labelBoundary = SDL_Rect(TextRenderer::getInstance()->queryTextSize(x, y, label));
     labelBoundary.x = x + (w - labelBoundary.w) / 2;
@@ -39,9 +33,6 @@ Button::Button(int x, int y, int w, int h, std::string label) :
 
 Button::~Button()
 {
-    visible = false;
-    hover = false;
-    onClick = nullptr;
 }
 
 void Button::update()
@@ -51,16 +42,24 @@ void Button::update()
 void Button::draw()
 {
     TextRenderer * texts = TextRenderer::getInstance();
-    texts->setSettings("arial", 20, TextRenderer::white);
+    texts->setSettings("retganon", 20, TextRenderer::white);
 
-    if (hover)
+    if (clicked)
     {
-        TextureRenderer::getInstance()->drawTexture("black_button_clicked", boundary.x, boundary.y, boundary.w,
-                boundary.h);
+        TextureRenderer::getInstance()->drawTexture("red_button_down", boundary.x, boundary.y, boundary.w, boundary.h);
     }
     else
     {
-        TextureRenderer::getInstance()->drawTexture("black_button_on", boundary.x, boundary.y, boundary.w, boundary.h);
+        if (hover)
+        {
+            TextureRenderer::getInstance()->drawTexture("red_button_hover", boundary.x, boundary.y, boundary.w,
+                    boundary.h);
+        }
+        else
+        {
+            TextureRenderer::getInstance()->drawTexture("red_button_normal", boundary.x, boundary.y, boundary.w,
+                    boundary.h);
+        }
     }
 
     texts->renderText(labelBoundary.x, labelBoundary.y, label);
@@ -73,33 +72,19 @@ void Button::handleEvents(SDL_Event &event)
     {
         if (event.type == SDL_MOUSEBUTTONDOWN)
         {
-            if (intersect(event.button.x, event.button.y))
-            {
-                if (onClick != nullptr)
-                {
-                    std::cout << "Function Pointer Clicked" << std::endl;
-                    onClick();
-                }
-            }
+            clicked = intersect(event.button.x, event.button.y);
         }
         else if (event.type == SDL_MOUSEMOTION)
         {
             hover = intersect(event.button.x, event.button.y);
         }
+        else if (event.type == SDL_MOUSEBUTTONUP)
+        {
+            if (clicked && intersect(event.button.x, event.button.y))
+            {
+                callback();
+            }
+            clicked = false;
+        }
     }
-}
-
-void Button::toggleVisibility()
-{
-    visible = !visible;
-}
-
-void Button::setOnClick(std::function<void()> funct)
-{
-    onClick = funct;
-}
-
-bool Button::isVisible()
-{
-    return visible;
 }

@@ -29,6 +29,7 @@
 								<option id="gnu.cpp.compiler.option.other.other.1574796705" name="Other flags" superClass="gnu.cpp.compiler.option.other.other" value="-c -fmessage-length=0 -std=c++11" valueType="string"/>
 								<option id="gnu.cpp.compiler.option.include.paths.1722881292" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DungeonsAndDragonsEclipse/SDL2_MinGW_combined_i686/i686-w64-mingw32/include/SDL2}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/src/Monster}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/src/Item}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DungeonsAndDragonsEclipse/src/GameEngine}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DungeonsAndDragonsEclipse/src/Screen}&quot;"/>
