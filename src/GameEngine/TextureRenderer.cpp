@@ -51,10 +51,13 @@ void TextureRenderer::loadAllTextures()
     textureMap["bricks"] = loadTexture("assets/bricks.png");
     textureMap["start"] = loadTexture("assets/start.png");
     textureMap["stop"] = loadTexture("assets/stop.png");
+    textureMap["exit"] = loadTexture("assets/exit.png");
     textureMap["finish"] = loadTexture("assets/finish.png");
     textureMap["empty"] = loadTexture("assets/empty.png");
     textureMap["dot"] = loadTexture("assets/dot.png");
     textureMap["outer_space"] = loadTexture("assets/outer_space.png");
+    textureMap["wall"] = loadTexture("assets/wall.png");
+    textureMap["entrance"] = loadTexture("assets/entrance.png");
 
     // Test
     textureMap["kiwi"] = loadTexture("assets/kiwi.png");
@@ -64,6 +67,15 @@ void TextureRenderer::loadAllTextures()
     textureMap["black_button_clicked"] = loadTexture("assets/black_button_clicked.png");
     textureMap["black_button_on"] = loadTexture("assets/black_button_on.png");
     textureMap["black_button_off"] = loadTexture("assets/black_button_off.png");
+
+    // Monsters
+    textureMap["monster"] = loadTexture("assets/monster.png");
+
+    // Heroes
+    textureMap["link"] = loadTexture("assets/link.png");
+
+    // Items
+    textureMap["treasure"] = loadTexture("assets/treasure.png");
 }
 
 SDL_Texture* TextureRenderer::getTexture(std::string textureName)

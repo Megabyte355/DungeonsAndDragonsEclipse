@@ -14,6 +14,11 @@
 #include <SDL.h>
 #include <functional>
 
+// Temporary for Assignment3
+#include "DummyCharacter.h"
+#include "DummyMonster.h"
+#include "DummyItemChest.h"
+
 class MapTile
 {
     public:

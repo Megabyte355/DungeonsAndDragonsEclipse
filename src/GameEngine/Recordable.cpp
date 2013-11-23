@@ -7,6 +7,11 @@
 
 #include "Recordable.h"
 
+Recordable::Recordable()
+{
+    fileHandler = nullptr;
+}
+
 Recordable::~Recordable()
 {
     delete fileHandler;

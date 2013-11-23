@@ -48,7 +48,7 @@ void TileOption::draw()
 
     if (myType == Cell::CellType::Wall)
     {
-        textureName = "bricks";
+        textureName = "wall";
         label = "Wall tile";
     }
     else if (myType == Cell::CellType::Floor)
@@ -58,12 +58,12 @@ void TileOption::draw()
     }
     else if (myType == Cell::CellType::Start)
     {
-        textureName = "start";
+        textureName = "entrance";
         label = "Start";
     }
     else if (myType == Cell::CellType::End)
     {
-        textureName = "stop";
+        textureName = "exit";
         label = "End";
     }
     else

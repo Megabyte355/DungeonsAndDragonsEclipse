@@ -47,7 +47,7 @@ void MapTile::draw()
 {
     if (cell->getType() == Cell::CellType::Wall)
     {
-        TextureRenderer::getInstance()->drawTexture("bricks", x, y, w, h);
+        TextureRenderer::getInstance()->drawTexture("wall", x, y, w, h);
     }
     else if (cell->getType() == Cell::CellType::Floor)
     {
@@ -56,15 +56,37 @@ void MapTile::draw()
     else if (cell->getType() == Cell::CellType::Start)
     {
         TextureRenderer::getInstance()->drawTexture("floor", x, y, w, h);
-        TextureRenderer::getInstance()->drawTexture("start", x, y, w, h);
+        TextureRenderer::getInstance()->drawTexture("entrance", x, y, w, h);
     }
     else if (cell->getType() == Cell::CellType::End)
     {
         TextureRenderer::getInstance()->drawTexture("floor", x, y, w, h);
-        TextureRenderer::getInstance()->drawTexture("stop", x, y, w, h);
+        TextureRenderer::getInstance()->drawTexture("exit", x, y, w, h);
     }
     else if (cell->getType() == Cell::CellType::Empty)
     {
         TextureRenderer::getInstance()->drawTexture("empty", x, y, w, h);
+    }
+
+
+    if (cell->isOccupied())
+    {
+        CellOccupant * occupant = cell->getOccupant();
+
+        //  ===================== TEMPORARY for Assignment 3 =====================
+        if (dynamic_cast<DummyCharacter*>(occupant) != nullptr)
+        {
+            TextureRenderer::getInstance()->drawTexture("link", x, y, w, h);
+        }
+        else if (dynamic_cast<DummyMonster*>(occupant) != nullptr)
+        {
+            TextureRenderer::getInstance()->drawTexture("monster", x, y, w, h);
+        }
+        else if (dynamic_cast<DummyItemChest*>(occupant) != nullptr)
+        {
+            TextureRenderer::getInstance()->drawTexture("treasure", x, y, w, h);
+        }
+        occupant = nullptr;
+        // =======================================================================
     }
 }
