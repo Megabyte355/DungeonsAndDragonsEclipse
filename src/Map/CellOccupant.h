@@ -8,25 +8,19 @@
 #ifndef CELLOCCUPANT_H_
 #define CELLOCCUPANT_H_
 
+#include "CellLocation.h"
+
 class CellOccupant
 {
     public:
-
-        // May need to refactor: Change to polymorphism
-        enum OccupantType
-        {
-            Item, Player, Monster, None
-        };
-
         CellOccupant();
-        CellOccupant(OccupantType);
-        ~CellOccupant();
+        virtual ~CellOccupant();
 
-        void setType(OccupantType type);
-        OccupantType getType();
+        void setLocation(CellLocation&);
+        CellLocation getLocation();
 
     private:
-        OccupantType type;
+        CellLocation myLocation;
 };
 
 #endif /* CELLOCCUPANT_H_ */

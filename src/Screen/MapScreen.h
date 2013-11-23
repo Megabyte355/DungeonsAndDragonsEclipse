@@ -17,6 +17,8 @@
 #include "Map.h"
 #include "MapTile.h"
 #include "TileOption.h"
+#include "ArenaMapBuilder.h"
+#include "MapDirector.h"
 #include <functional>
 
 class MapScreen : public virtual Screen
@@ -31,6 +33,7 @@ class MapScreen : public virtual Screen
         void reset() override;
 
         void initData(int,int);
+        void initDataWithArenaBuilder();
 
         Cell::CellType selectedCellType();
         void selectTileOption(Cell::CellType);

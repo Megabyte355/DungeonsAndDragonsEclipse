@@ -9,24 +9,18 @@
 
 CellOccupant::CellOccupant()
 {
-    type = OccupantType::Item;
-}
-
-CellOccupant::CellOccupant(OccupantType type)
-{
-    this->type = type;
 }
 
 CellOccupant::~CellOccupant()
 {
 }
 
-void CellOccupant::setType(OccupantType type)
+void CellOccupant::setLocation(CellLocation& l)
 {
-    this->type = type;
+    myLocation = l;
 }
 
-CellOccupant::OccupantType CellOccupant::getType()
+CellLocation CellOccupant::getLocation()
 {
-    return type;
+    return myLocation;
 }

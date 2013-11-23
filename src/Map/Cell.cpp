@@ -88,3 +88,8 @@ bool Cell::isOccupiable()
 {
     return type == Floor || type == Start || type == End;
 }
+
+bool Cell::isOccupied()
+{
+    return occupant != nullptr;
+}
