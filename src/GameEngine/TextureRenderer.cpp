@@ -44,9 +44,8 @@ void TextureRenderer::setRenderer(SDL_Renderer * ren)
 void TextureRenderer::loadAllTextures()
 {
     // Load all files here
-    textureMap["bizzare_landscape"] = loadTexture("assets/bizzare_landscape.png");
+
     textureMap["ddlogo"] = loadTexture("assets/ddlogo.png");
-    textureMap["background"] = loadTexture("assets/background.png");
     textureMap["floor"] = loadTexture("assets/floor.png");
     textureMap["bricks"] = loadTexture("assets/bricks.png");
     textureMap["start"] = loadTexture("assets/start.png");
@@ -60,6 +59,12 @@ void TextureRenderer::loadAllTextures()
     textureMap["wall"] = loadTexture("assets/wall.png");
     textureMap["entrance"] = loadTexture("assets/entrance.png");
 
+    // Backgrounds
+    textureMap["bizzare_landscape"] = loadTexture("assets/bizzare_landscape.png");
+    textureMap["background"] = loadTexture("assets/background.png");
+    textureMap["title_screen"] = loadTexture("assets/title_screen.png");
+    textureMap["menu_screen"] = loadTexture("assets/menu_screen.png");
+
     // Test
     textureMap["kiwi"] = loadTexture("assets/kiwi.png");
     textureMap["orange"] = loadTexture("assets/orange.png");
@@ -71,6 +76,7 @@ void TextureRenderer::loadAllTextures()
     textureMap["red_button_normal"] = loadTexture("assets/red_button_normal.png");
     textureMap["red_button_down"] = loadTexture("assets/red_button_down.png");
     textureMap["red_button_hover"] = loadTexture("assets/red_button_hover.png");
+
     // Monsters
     textureMap["monster"] = loadTexture("assets/monster.png");
 

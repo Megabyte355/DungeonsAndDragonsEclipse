@@ -9,9 +9,11 @@
 #define CLICKABLE_H_
 
 #include <SDL.h>
+#include <functional>
 #include "TextureRenderer.h"
 #include "TextRenderer.h"
 #include "Observable.h"
+
 
 class Clickable: public virtual Observable
 {

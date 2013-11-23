@@ -73,5 +73,5 @@ void TileOption::draw()
     }
 
     TextureRenderer::getInstance()->drawTexture(textureName, x, y, 50, 50);
-    TextRenderer::getInstance()->renderText(x + 75, y + 13, label, "calibri", TextRenderer::white, 25);
+    TextRenderer::getInstance()->renderText(x + 75, y + 13, label, "retganon", TextRenderer::white, 30);
 }

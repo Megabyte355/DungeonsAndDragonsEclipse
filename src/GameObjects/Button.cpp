@@ -42,7 +42,7 @@ void Button::update()
 void Button::draw()
 {
     TextRenderer * texts = TextRenderer::getInstance();
-    texts->setSettings("arial", 20, TextRenderer::white);
+    texts->setSettings("retganon", 20, TextRenderer::white);
 
     if (clicked)
     {

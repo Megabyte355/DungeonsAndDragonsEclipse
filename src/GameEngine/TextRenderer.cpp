@@ -100,8 +100,10 @@ void TextRenderer::setSettings(std::string font, int size, SDL_Color color)
 
 void TextRenderer::loadFontPaths()
 {
-    // Font from one of my favorite games
+    // Font from our favorite games
     fontPathMap["starcraft_font"] = "assets/starcraft_font.ttf";
+    fontPathMap["triforce"] = "assets/Triforce.ttf";
+    fontPathMap["retganon"] = "assets/RetGanon.ttf";
 
     // Arial fonts
     fontPathMap["arial"] = "assets/arial.ttf";
