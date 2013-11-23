@@ -8,20 +8,32 @@
 #ifndef TITLESCREEN_H_
 #define TITLESCREEN_H_
 
-#include <SDL.h>
 #include "Screen.h"
+#include "TextureRenderer.h"
+#include "GameConfig.h"
+#include "ScreenManager.h"
+#include <SDL.h>
 
-class TitleScreen : public virtual Screen
+class TitleScreen: public virtual Screen
 {
     public:
         TitleScreen();
         virtual ~TitleScreen();
 
-        virtual void initialize() = 0;
-        virtual void update(float) = 0;
-        virtual void draw() = 0;
-        virtual void handleEvents(SDL_Event &event) = 0;
-        virtual void reset() = 0;
+        virtual void initialize();
+        virtual void reset();
+        virtual void update(float);
+        virtual void draw();
+        virtual void handleEvents(SDL_Event &event);
+
+        void goToMenuScreen();
+
+    private:
+        float currentFlickerTime;
+        bool flickeringTextState;
+
+        const float flickeringDelay = 500;
+        const std::string flickeringText = "Press any key";
 };
 
 #endif /* TITLESCREEN_H_ */
