@@ -15,6 +15,7 @@
 #include "MenuScreen.h"
 #include "CharacterScreen.h"
 #include "MapScreen.h"
+#include "TitleScreen.h"
 
 // Forward declaration
 class Game;

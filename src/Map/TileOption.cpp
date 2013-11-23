@@ -27,7 +27,7 @@ Cell::CellType TileOption::getCellType()
 
 void TileOption::handleEvents(SDL_Event& event)
 {
-    if (event.type == SDL_MOUSEBUTTONDOWN)
+    if (event.type == SDL_MOUSEBUTTONDOWN || event.type == SDL_MOUSEBUTTONUP)
     {
         int clickX = event.button.x;
         int clickY = event.button.y;
@@ -73,5 +73,5 @@ void TileOption::draw()
     }
 
     TextureRenderer::getInstance()->drawTexture(textureName, x, y, 50, 50);
-    TextRenderer::getInstance()->renderText(x + 75, y + 13, label, "calibri", TextRenderer::white, 25);
+    TextRenderer::getInstance()->renderText(x + 75, y + 13, label, "retganon", TextRenderer::white, 30);
 }

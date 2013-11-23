@@ -32,17 +32,14 @@ class MapScreen : public virtual Screen
         void handleEvents(SDL_Event &event) override;
         void reset() override;
 
-        static void queryMapSize();
         void initData(int,int);
         void initDataWithArenaBuilder();
 
         Cell::CellType selectedCellType();
         void selectTileOption(Cell::CellType);
-        static void returnToMenu();
-
-
-        static void validatePath();
-        static bool pathCheckRequest;
+        void returnToMenu();
+        void validatePath();
+        bool pathCheckRequest;
     private:
         TextureRenderer * textures;
         TextRenderer * texts;
@@ -53,18 +50,14 @@ class MapScreen : public virtual Screen
         Map * mapModel;
 
         bool firstLoop;
-
-
         bool displayRed;
         bool displayGreen;
+
         std::vector<TileOption*> tileOptions;
         std::vector<Button*> optionLabels;
         std::vector<MapTile*> mapTiles;
-
         std::vector<CellLocation> validPath;
-
         Cell::CellType selectedTile;
-
 };
 
 #endif /* MAPSCREEN_H_ */
