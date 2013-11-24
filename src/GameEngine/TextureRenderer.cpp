@@ -65,6 +65,8 @@ void TextureRenderer::loadAllTextures()
     textureMap["title_screen"] = loadTexture("assets/title_screen.png");
     textureMap["menu_screen"] = loadTexture("assets/menu_screen.png");
 
+    textureMap["transparent_grey"] = loadTexture("assets/TransparentGrey.png");
+
     // Test
     textureMap["kiwi"] = loadTexture("assets/kiwi.png");
     textureMap["orange"] = loadTexture("assets/orange.png");

@@ -85,7 +85,6 @@ void MenuScreen::draw()
 
 void MenuScreen::handleEvents(SDL_Event &event)
 {
-
     if (event.type == SDL_QUIT)
     {
         GameConfig::getInstance()->gameIsRunning = false;
