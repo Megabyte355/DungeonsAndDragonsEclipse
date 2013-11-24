@@ -54,7 +54,7 @@ class MapScreen : public virtual Screen
         bool displayGreen;
 
         std::vector<TileOption*> tileOptions;
-        std::vector<Button*> optionLabels;
+        std::vector<Button*> buttons;
         std::vector<MapTile*> mapTiles;
         std::vector<CellLocation> validPath;
         Cell::CellType selectedTile;

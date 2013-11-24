@@ -29,6 +29,7 @@ class Clickable: public virtual Observable
         bool isVisible();
         void toggleVisibility();
 
+        SDL_Rect getBoundary();
 
     protected:
         bool visible;

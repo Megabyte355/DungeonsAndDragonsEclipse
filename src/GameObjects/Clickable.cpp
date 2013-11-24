@@ -65,3 +65,8 @@ bool Clickable::isVisible()
 {
     return visible;
 }
+
+SDL_Rect Clickable::getBoundary()
+{
+    return boundary;
+}
