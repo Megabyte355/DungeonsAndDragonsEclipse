@@ -30,7 +30,7 @@ void MapScreen::initialize()
     texts = TextRenderer::getInstance();
     displayGreen = false;
     displayRed = false;
-    selectedTile = Cell::CellType::Empty;
+    selectedTile = Cell::CellType::Wall;
 
     // Weird code - TO BE REMOVED
     if (firstLoop)

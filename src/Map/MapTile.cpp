@@ -60,10 +60,6 @@ void MapTile::draw()
         TextureRenderer::getInstance()->drawTexture("floor", boundary.x, boundary.y, boundary.w, boundary.h);
         TextureRenderer::getInstance()->drawTexture("end", boundary.x, boundary.y, boundary.w, boundary.h);
     }
-    else if (cell->getType() == Cell::CellType::Empty)
-    {
-        TextureRenderer::getInstance()->drawTexture("empty", boundary.x, boundary.y, boundary.w, boundary.h);
-    }
 
     if (cell->isOccupied())
     {
