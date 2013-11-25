@@ -12,23 +12,28 @@
 
 using namespace std;
 
-class Weapon: public Equipment {
+class Weapon: public Equipment
+{
 
-protected:
+    protected:
 
-	int attackBonus;
-	int damageBonus;
-	string weaponType;
-	int range;
+        int attackBonus;
+        int damageBonus;
+        string weaponType;
+        int range;
 
-public:
+    public:
 
-	Weapon();
-	Weapon(string name, int value, int weight, int attackBonus, int damageBonus, string pweaponType, int range);
-	virtual ~Weapon();
-	string toString() override;
-	string getClassName();
+        Weapon();
+        Weapon(string name, int value, int weight, int attackBonus, int damageBonus, string pweaponType, int range);
+        Weapon(int charLevel, bool isRandom, string pweaponType);
+        virtual ~Weapon();
+        string toString() override;
+        string getClassName();
 
+        int getRange() const {return range;}
+        void setRange(int range) {this->range = range;}
+        const string& getWeaponType() const {return weaponType;}
 };
 
 #endif /* WEAPON_H_ */

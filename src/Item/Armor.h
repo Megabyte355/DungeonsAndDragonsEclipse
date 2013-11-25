@@ -21,6 +21,7 @@ class Armor: public Equipment
     public:
         Armor();
 		Armor(string pname, int pvalue, int pweight, string parmorType, int parmorBonus);
+		Armor(int charLevel, bool isRandom);
         virtual ~Armor();
 		string toString() override;
 		string getClassName();

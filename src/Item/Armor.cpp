@@ -19,10 +19,22 @@ Armor::Armor():Equipment() {
 
 Armor::Armor(string pname, int pvalue, int pweight, string parmorType, int parmorBonus):Equipment(pname, pvalue, pweight){
 	name = pname;
+    armorType = parmorType;
+    armorBonus = parmorBonus;
     possibleEnchants.push_back(characterStats::ARMOR);
     enchantEquipment();
-	armorType = parmorType;
 	insertStatistic(characterStats::ARMOR, parmorBonus);
+
+}
+
+Armor::Armor(int charLevel, bool isRandom):Equipment(charLevel, isRandom){
+    name = "Randomly Generated Armor";
+    armorBonus = rand() % charLevel;
+    armorType = "Light";
+    possibleEnchants.push_back(characterStats::ARMOR);
+    enchantEquipment();
+    insertStatistic(characterStats::ARMOR, armorBonus);
+    generateRandomStats(charLevel);
 }
 
 Armor::~Armor() {

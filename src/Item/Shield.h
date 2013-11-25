@@ -21,6 +21,7 @@ protected:
 public:
 	Shield();
 	Shield(string name, int value, int weight, int armorBonus, int strBonus, string shieldType);
+	Shield(int charLevel, bool isRandom);
 	virtual ~Shield();
 	string toString() override;
 	string getClassName();

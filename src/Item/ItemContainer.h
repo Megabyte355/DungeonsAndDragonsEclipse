@@ -15,27 +15,20 @@
 
 using namespace std;
 
-enum containerType_t {backpack, wornInventory, store, treasurechest};
-
 class ItemContainer : public Observable {
 
 protected:
 
-	containerType_t containerType; //Will be used for storing backpack, wornInventory, store, etc.
 	vector<Item *> itemList;
-	int maxSlots;
 	map<characterStats, int> containerStats;
 
 public:
 	ItemContainer();
-	ItemContainer(containerType_t c);
 	~ItemContainer();
 
-	//Used to hold items in list.
 	vector<Item *> getList();
 	string displayContainerEquips();
 
-	//Used to hold map of stats and their values
 	void calculateContainerStats(); 
 	string displayContainerStats();
 	
@@ -43,7 +36,7 @@ public:
 	void addItem(Item * it);
 	void removeItem(Item * it);
 	bool isItemInContainer(Item * e);
-	string getContainerTypeEnumString(int enumVal);
+//	string getContainerTypeEnumString(int enumVal);
 
 };
 

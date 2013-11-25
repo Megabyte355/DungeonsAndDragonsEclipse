@@ -11,6 +11,7 @@
 #include <iostream>
 #include <string>
 #include <sstream>
+#include <stdlib.h>
 
 using namespace std;
 
@@ -25,6 +26,7 @@ class Item
     public:
         Item();
         Item(int v, int w, string n);
+        Item(int charLevel, bool isRandom);
         virtual ~Item();
 
 		virtual string toString();

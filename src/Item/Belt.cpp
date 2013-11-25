@@ -23,6 +23,16 @@ Belt::Belt(string pname, int pvalue, int pweight, int pconsitutionBonus):Equipme
 	insertStatistic(characterStats::CONSTITUTION, pconsitutionBonus);
 }
 
+Belt::Belt(int charLevel, bool isRandom):Equipment(charLevel, isRandom){
+    name = "Randomly Generated Belt";
+    consitutionBonus = rand() % charLevel;
+    possibleEnchants.push_back(characterStats::CONSTITUTION);
+    possibleEnchants.push_back(characterStats::STRENGTH);
+    enchantEquipment();
+    insertStatistic(characterStats::CONSTITUTION, consitutionBonus);
+    generateRandomStats(charLevel);
+}
+
 Belt::~Belt() {
 }
 

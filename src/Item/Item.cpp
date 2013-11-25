@@ -19,6 +19,11 @@ Item::Item(int v, int w, string pname){
     weight = w;
 }
 
+Item::Item(int charLevel, bool isRandom){
+    value = 100*(rand() % charLevel +1);
+    weight = 10*(rand() % charLevel +1);
+}
+
 Item::~Item() {
 }
 

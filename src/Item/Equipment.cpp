@@ -6,9 +6,7 @@
  */
 
 #include "Equipment.h"
-#include <stdlib.h>
-#include <string>
-#include <iostream>
+
 
 using namespace std;
 
@@ -18,20 +16,16 @@ string getStatsEnumString(int enumVal) {
     return characterStatsMapping[enumVal];
 }
 
-Equipment::Equipment() :
-        Item() {
-    enchantLevel = 0;
-    name = "Generic Equipment";
-    value = 0;
-    weight = 0;
+Equipment::Equipment():Item(){
 }
 
-Equipment::Equipment(string pname, int pvalue, int pweight) {
-    enchantLevel = 0;
-    name = pname;
-    value = pvalue;
-    weight = pweight;
+Equipment::Equipment(string pname, int pvalue, int pweight):Item(pvalue, pweight, pname) {
 }
+
+Equipment::Equipment(int charLevel, bool isRandom):Item(charLevel, isRandom){
+
+}
+
 Equipment::~Equipment() {
 }
 
@@ -48,7 +42,7 @@ characterStats Equipment::getEnchantType() {
     return enchantType;
 }
 
-map<characterStats,int> Equipment::getEquipmentStats() {
+map<characterStats, int> Equipment::getEquipmentStats() {
     return equipmentStats;
 }
 
@@ -104,4 +98,12 @@ string Equipment::toString() {
 
 string Equipment::getClassName() {
     return "Equipment";
+}
+
+//Creates randomStats according to character's level!
+void Equipment::generateRandomStats(int characterLevel) {
+
+    characterStats randomStat = possibleEnchants[rand() % possibleEnchants.size()];
+    int statRandomValue = rand() % characterLevel + 1;
+    this->insertStatistic(randomStat, statRandomValue);
 }

@@ -19,6 +19,7 @@ protected:
 public:
 	Ring();
 	Ring(string name, int value, int weight, int charismanBonus, int wisdomBonus, int intBonus);
+	Ring(int charLevel, bool isRandom);
 	virtual ~Ring();
 	string toString() override;
 	string getClassName();

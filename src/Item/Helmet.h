@@ -20,6 +20,7 @@ class Helmet: public Equipment
 
         Helmet();
 		Helmet(string pname, int pvalue, int pweight, int parmorBonus);
+		Helmet(int charLevel, bool isRandom);
         virtual ~Helmet();
 		string toString() override;
 		string getClassName();

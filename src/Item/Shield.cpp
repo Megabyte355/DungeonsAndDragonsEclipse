@@ -20,12 +20,25 @@ Shield::Shield():Equipment() {
 	insertStatistic(characterStats::STRENGTH, strBonus);
 }
 
-Shield::Shield(string name, int value, int weight, int armorBonus, int strBonus, string pshieldType):Equipment(name, value, weight){
+Shield::Shield(string pname, int pvalue, int pweight, int parmorBonus, int pstrBonus, string pshieldType):Equipment(pname, pvalue, pweight){
+    armorBonus = parmorBonus;
+    strBonus = pstrBonus;
 	shieldType = pshieldType;
 	possibleEnchants.push_back(characterStats::ARMOR);
     enchantEquipment();
 	insertStatistic(characterStats::ARMOR, armorBonus);
 	insertStatistic(characterStats::STRENGTH, strBonus);
+}
+
+Shield::Shield(int charLevel, bool isRandom):Equipment(charLevel, isRandom){
+    name = "Randomly Generated Shield";
+    armorBonus = rand() % charLevel;
+    strBonus = rand() % charLevel;
+    possibleEnchants.push_back(characterStats::ARMOR);
+    enchantEquipment();
+    insertStatistic(characterStats::ARMOR, armorBonus);
+    insertStatistic(characterStats::STRENGTH, strBonus);
+    generateRandomStats(charLevel);
 }
 
 Shield::~Shield() {

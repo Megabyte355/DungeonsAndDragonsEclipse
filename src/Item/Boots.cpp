@@ -26,6 +26,18 @@ Boots::Boots(string pname, int pvalue, int pweight, int parmorBonus, int pdexBon
 	insertStatistic(characterStats::DEXTERITY, pdexBonus);
 }
 
+Boots::Boots(int charLevel, bool isRandom):Equipment(charLevel, isRandom){
+    name = "Randomly Generated Boots";
+    armorBonus = rand() % charLevel;
+    dexBonus = rand() % charLevel;
+    possibleEnchants.push_back(characterStats::ARMOR);
+    possibleEnchants.push_back(characterStats::DEXTERITY);
+    enchantEquipment();
+    insertStatistic(characterStats::ARMOR, armorBonus);
+    insertStatistic(characterStats::DEXTERITY, dexBonus);
+    generateRandomStats(charLevel);
+}
+
 Boots::~Boots() {
 }
 

@@ -8,18 +8,6 @@
 #include "ItemContainer.h"
 
 ItemContainer::ItemContainer() {
-    containerType = wornInventory;
-    maxSlots = 7; //1 helmet, 2 rings, 1 weapon, 1 shield, 1 armor, 1 belt, 1 boots
-}
-
-ItemContainer::ItemContainer(containerType_t c) {
-    containerType = c;
-    if (containerType == containerType_t::wornInventory) {
-        maxSlots = 7;
-    }
-    else {
-        maxSlots = 99;
-    }
 }
 
 ItemContainer::~ItemContainer() {
@@ -34,7 +22,7 @@ vector<Item *> ItemContainer::getList() {
 string ItemContainer::displayContainerEquips() {
     stringstream ss;
 
-    ss << "Displaying all items in " << getContainerTypeEnumString(containerType) << endl << endl;
+    ss << "Displaying all items in container" << endl << endl;
     for(Item * it : itemList) {
         ss << it->toString() << endl << endl;
     }
@@ -74,10 +62,10 @@ bool ItemContainer::isItemInContainer(Item * e){
     return false;
 }
 
-string ItemContainer::getContainerTypeEnumString(int enumVal) {
-    string characterStatsMapping[4] = { "Backpack", "Worn Inventory", "Store", "Treasure Chest" };
-    return characterStatsMapping[enumVal];
-}
+//string ItemContainer::getContainerTypeEnumString(int enumVal) {
+//    string characterStatsMapping[4] = { "Backpack", "Worn Inventory", "Store", "Treasure Chest" };
+//    return characterStatsMapping[enumVal];
+//}
 
 void ItemContainer::calculateContainerStats() {
 
@@ -108,12 +96,7 @@ string ItemContainer::displayContainerStats() {
 
     stringstream ss;
 
-	if(containerType!=wornInventory){
-		ss << "Called getListStatsDisplay() is a non inventory-type Item container! Invalid Operation." << endl;
-		return ss.str();
-	}
-
-	ss << "Displaying statistics added by " << getContainerTypeEnumString(containerType) <<"!" << endl << "==============================" << endl << endl;
+	ss << "Displaying statistics added by container!" << endl << "==============================" << endl << endl;
 
     for (std::map<characterStats, int>::iterator it = containerStats.begin(); it != containerStats.end(); ++it) {
 

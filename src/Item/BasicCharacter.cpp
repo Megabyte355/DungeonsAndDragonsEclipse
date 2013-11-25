@@ -15,8 +15,8 @@ BasicCharacter::BasicCharacter() {
     totalArmor = 0;
     totalAttack = 0;
     totalDamage = 0;
-	backpack = new ItemContainer(containerType_t::backpack);
-	wornInventory = new ItemContainer(containerType_t::wornInventory);
+	backpack = new ItemContainer();
+	wornInventory = new ItemContainer();
 }
 
 //I have assumed that all these parameters will be defined in a proper character class that regards d20 rules.
@@ -27,8 +27,8 @@ BasicCharacter::BasicCharacter(string pname, int pstr, int pcon, int pdex, int p
     totalArmor = ptotalArmor;
     totalAttack = ptotalAttack;
     totalDamage = ptotalDamage;
-	backpack = new ItemContainer(containerType_t::backpack);
-	wornInventory = new ItemContainer(containerType_t::wornInventory);
+	backpack = new ItemContainer();
+	wornInventory = new ItemContainer();
 
 }
 

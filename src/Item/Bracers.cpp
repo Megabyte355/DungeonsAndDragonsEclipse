@@ -21,6 +21,14 @@ Bracers::Bracers(string pname, int pvalue, int pweight):Equipment(pname, pvalue,
     enchantEquipment();
 }
 
+Bracers::Bracers(int charLevel, bool isRandom):Equipment(charLevel, isRandom){
+    name = "Randomly Generated Bracers";
+    possibleEnchants.push_back(characterStats::ARMOR);
+    possibleEnchants.push_back(characterStats::STRENGTH);
+    enchantEquipment();
+    generateRandomStats(charLevel);
+}
+
 Bracers::~Bracers() {
 }
 

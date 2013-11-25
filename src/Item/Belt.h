@@ -19,6 +19,7 @@ protected:
 public:
 	Belt();
 	Belt(string pname, int pvalue, int pweight, int pconsitutionBonus);
+	Belt(int charLevel, bool isRandom);
 	virtual ~Belt();
 	string toString() override;
 	string getClassName();

@@ -18,6 +18,7 @@ protected:
 public:
 	Boots();
 	Boots(string pname, int pvalue, int pweight, int parmorBonus, int pdexBonus);
+	Boots(int charLevel, bool isRandom);
 	virtual ~Boots();
 	string toString() override;
 	string getClassName();
