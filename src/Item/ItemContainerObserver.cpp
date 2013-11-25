@@ -17,6 +17,6 @@ void ItemContainerObserver::update(){
 	cout << "Calling update() from BasicCharacter class Observer using the Observer Pattern!" << endl << endl;
 
 	container->calculateContainerStats();
-	cout << container->displayContainerEquips() << endl;
-	cout << container->displayContainerStats();
+	container->displayContainerEquips();
+	container->displayContainerStats();
 }

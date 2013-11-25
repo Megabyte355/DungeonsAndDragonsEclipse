@@ -27,10 +27,10 @@ public:
 	~ItemContainer();
 
 	vector<Item *> getList();
-	string displayContainerEquips();
+	void displayContainerEquips();
 
 	void calculateContainerStats(); 
-	string displayContainerStats();
+	void displayContainerStats();
 	
 	
 	void addItem(Item * it);

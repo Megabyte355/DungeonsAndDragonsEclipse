@@ -19,23 +19,23 @@ vector<Item *> ItemContainer::getList() {
 }
 
 //Used in update() to show all equips inside the container
-string ItemContainer::displayContainerEquips() {
+void ItemContainer::displayContainerEquips() {
     stringstream ss;
 
     ss << "Displaying all items in container" << endl << endl;
     for(Item * it : itemList) {
         ss << it->toString() << endl << endl;
     }
-    return ss.str();
+    cout << ss.str();
 }
 
 //Adds an item to the container, notifies all observers.
 void ItemContainer::addItem(Item * item) {
 
     itemList.push_back(item);
-    cout << item->getName() << " was added to container.";
+    cout << item->getName() << " was added to container." << endl;
 	//MUST NOTIFY ALL OBSERVERS!
-	notify();
+	//notify();
 }
 
 //Removes an item from the container, notifies all observers.
@@ -92,7 +92,7 @@ void ItemContainer::calculateContainerStats() {
 }
 
 //Function used to map all contents of an inventory to added stats
-string ItemContainer::displayContainerStats() {
+void ItemContainer::displayContainerStats() {
 
     stringstream ss;
 
@@ -141,5 +141,5 @@ string ItemContainer::displayContainerStats() {
                 break;
         }
     }
-    return ss.str();
+    cout << ss.str();
 }

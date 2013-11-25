@@ -34,6 +34,7 @@ Shield::Shield(int charLevel, bool isRandom):Equipment(charLevel, isRandom){
     name = "Randomly Generated Shield";
     armorBonus = rand() % charLevel;
     strBonus = rand() % charLevel;
+	shieldType = "Random Type";
     possibleEnchants.push_back(characterStats::ARMOR);
     enchantEquipment();
     insertStatistic(characterStats::ARMOR, armorBonus);
