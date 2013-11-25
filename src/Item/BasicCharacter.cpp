@@ -42,11 +42,11 @@ void BasicCharacter::displayCharacterStats() {
 }
 
 void BasicCharacter::wieldEquipment(Item * e) {
-	wornInventory->addItem(*e);
+	wornInventory->addItem(e);
 }
 
 void BasicCharacter::unwieldEquipment(Item * e) {
-    wornInventory->removeItem(*e);
+    wornInventory->removeItem(e);
 }
 
 BasicCharacter::~BasicCharacter() {

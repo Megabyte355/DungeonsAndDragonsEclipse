@@ -42,24 +42,36 @@ string ItemContainer::displayContainerEquips() {
 }
 
 //Adds an item to the container, notifies all observers.
-void ItemContainer::addItem(Item &item) {
+void ItemContainer::addItem(Item * item) {
 
-    itemList.push_back(&item);
-
+    itemList.push_back(item);
+    cout << item->getName() << " was added to container.";
 	//MUST NOTIFY ALL OBSERVERS!
 	notify();
 }
 
 //Removes an item from the container, notifies all observers.
-void ItemContainer::removeItem(Item &e) {
+void ItemContainer::removeItem(Item * e) {
     for (vector<Item *>::iterator it = itemList.begin(); it != itemList.end(); it++) {
-        if ((*it)->isEqual(e)) { //polymorphic call to determine if 2 items are equal
+        if ((*it)->isEqual(*e)) {
             itemList.erase(it);
+            cout << e->getName() << " was removed from container.";
 			//MUST NOTIFY ALL OBSERVERS!
 			notify();
 			break;
         }
+        cout << e->getName() << " could not be found in container.";
     }
+}
+
+bool ItemContainer::isItemInContainer(Item * e){
+    for (vector<Item *>::iterator it = itemList.begin(); it != itemList.end(); it++) {
+        if ((*it)->isEqual(*e)) { //polymorphic call to determine if 2 items are equal
+            return true;
+            break;
+        }
+    }
+    return false;
 }
 
 string ItemContainer::getContainerTypeEnumString(int enumVal) {
@@ -88,7 +100,7 @@ void ItemContainer::calculateContainerStats() {
         }
     }
 	p_it = nullptr;
-	constainerStats = localContainer;
+	containerStats = localContainer;
 }
 
 //Function used to map all contents of an inventory to added stats
@@ -103,7 +115,7 @@ string ItemContainer::displayContainerStats() {
 
 	ss << "Displaying statistics added by " << getContainerTypeEnumString(containerType) <<"!" << endl << "==============================" << endl << endl;
 
-    for (std::map<characterStats, int>::iterator it = constainerStats.begin(); it != constainerStats.end(); ++it) {
+    for (std::map<characterStats, int>::iterator it = containerStats.begin(); it != containerStats.end(); ++it) {
 
         switch (it->first) {
 

@@ -23,8 +23,8 @@ protected:
 
 	containerType_t containerType; //Will be used for storing backpack, wornInventory, store, etc.
 	vector<Item *> itemList;
-	int maxSlots; //not sure if necessary
-	map<characterStats, int> constainerStats;
+	int maxSlots;
+	map<characterStats, int> containerStats;
 
 public:
 	ItemContainer();
@@ -40,8 +40,9 @@ public:
 	string displayContainerStats();
 	
 	
-	void addItem(Item &it);
-	void removeItem(Item &e);
+	void addItem(Item * it);
+	void removeItem(Item * it);
+	bool isItemInContainer(Item * e);
 	string getContainerTypeEnumString(int enumVal);
 
 };

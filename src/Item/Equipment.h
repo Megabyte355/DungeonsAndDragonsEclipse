@@ -11,9 +11,6 @@ using namespace std;
 enum characterStats{STRENGTH, CONSTITUTION, DEXTERITY, INTELLIGENCE, WISDOM, CHARISMA, ARMOR, ATTACK, DAMAGE};
 string getStatsEnumString( int enumVal );
 
-
-typedef map<characterStats, int> StatPair;
-
 class Equipment: public Item
 {
     protected:
@@ -36,12 +33,12 @@ class Equipment: public Item
         void insertStatistic(characterStats stat, int value);
 		virtual string toString() override;
         bool virtual isEqual(Equipment * e);
-        bool compareEquipmentStats(const StatPair& l, const StatPair& r);
+        bool compareEquipmentStats(const map<characterStats, int> & l, const map<characterStats, int>& r);
 
         //Getters
         int getEnchantLevel();
         characterStats getEnchantType();
-        StatPair getEquipmentStats();
+        map<characterStats, int> getEquipmentStats();
         string getName();
 		virtual string getClassName() =0;
 

@@ -12,17 +12,18 @@
 
 using namespace std;
 
-string getStatsEnumString( int enumVal )
-{
-	string characterStatsMapping[9] = {"STRENGTH", "CONSTITUTION", "DEXTERITY", "INTELLIGENCE", "WISDOM", "CHARISMA", "ARMOR", "ATTACK", "DAMAGE"};
-	return characterStatsMapping[enumVal];
+string getStatsEnumString(int enumVal) {
+    string characterStatsMapping[9] = { "STRENGTH", "CONSTITUTION", "DEXTERITY", "INTELLIGENCE", "WISDOM", "CHARISMA",
+            "ARMOR", "ATTACK", "DAMAGE" };
+    return characterStatsMapping[enumVal];
 }
 
-Equipment::Equipment():Item() {
+Equipment::Equipment() :
+        Item() {
     enchantLevel = 0;
     name = "Generic Equipment";
-	value = 0;
-	weight = 0;
+    value = 0;
+    weight = 0;
 }
 
 Equipment::Equipment(string pname, int pvalue, int pweight) {
@@ -47,7 +48,7 @@ characterStats Equipment::getEnchantType() {
     return enchantType;
 }
 
-StatPair Equipment::getEquipmentStats() {
+map<characterStats,int> Equipment::getEquipmentStats() {
     return equipmentStats;
 }
 
@@ -56,18 +57,18 @@ string Equipment::getName() {
 }
 
 void Equipment::enchantEquipment() {
-    enchantLevel = rand() % 5 +1; //Generates random from 1-5
+    enchantLevel = rand() % 5 + 1; //Generates random from 1-5
     enchantType = possibleEnchants[rand() % possibleEnchants.size()];
-	this->insertStatistic(enchantType, enchantLevel);
+    this->insertStatistic(enchantType, enchantLevel);
 }
 
-bool Equipment::compareEquipmentStats(const map<characterStats,int>& l, const map<characterStats,int>& r) {
+bool Equipment::compareEquipmentStats(const map<characterStats, int>& l, const map<characterStats, int>& r) {
 // same types, proceed to compare maps here
 
     if (l.size() != r.size())
         return false;  // differing sizes, they are not the same
 
-	map<characterStats,int>::const_iterator i, j;
+    map<characterStats, int>::const_iterator i, j;
     for (i = l.begin(), j = r.begin(); i != l.end(); ++i, ++j) {
         if (*i != *j)
             return false;
@@ -78,32 +79,29 @@ bool Equipment::compareEquipmentStats(const map<characterStats,int>& l, const ma
 void Equipment::insertStatistic(characterStats stat, int value) {
 
     if (equipmentStats.find(stat) == equipmentStats.end()) {
-		equipmentStats[stat] = value;  //not found, generates entry
+        equipmentStats[stat] = value;  //not found, generates entry
     }
     else {
         equipmentStats[stat] += value;  //found, adds
     }
 }
 
-string Equipment::toString(){
+string Equipment::toString() {
 
-	stringstream ss;
+    stringstream ss;
 
-	ss << name << "   (+" << enchantLevel << " " << getStatsEnumString(enchantType) + ")" << endl; // Sword (+5 Attack)
-	ss << "---------------------" << endl;
-	ss << "Equipment type: " << this->getClassName() << endl; // Type: Weapon
-	for(std::map<characterStats, int>::iterator it = equipmentStats.begin(); it != equipmentStats.end(); ++it)
-	{
-		int temp = it->second;
+    ss << name << "   (+" << enchantLevel << " " << getStatsEnumString(enchantType) + ")" << endl; // Sword (+5 Attack)
+    ss << "---------------------" << endl;
+    ss << "Equipment type: " << this->getClassName() << endl; // Type: Weapon
+    for (std::map<characterStats, int>::iterator it = equipmentStats.begin(); it != equipmentStats.end(); ++it) {
+        ss << getStatsEnumString(it->first) << ": " << it->second << endl; // Strength: 5
+    }
+    ss << "Weight: " << weight << endl;
+    ss << "Value: " << value << endl;
 
-		ss << getStatsEnumString(it->first) << ": " << it->second << endl; // Strength: 5
-	}
-	ss << "Weight: " << weight << endl;
-	ss << "Value: " << value << endl;
-
-	return ss.str();
+    return ss.str();
 }
 
-string Equipment::getClassName(){
-	return "Equipment";
+string Equipment::getClassName() {
+    return "Equipment";
 }
