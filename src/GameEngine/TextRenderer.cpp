@@ -72,7 +72,7 @@ void TextRenderer::setRenderer(SDL_Renderer * ren)
     renderer = ren;
 }
 
-void TextRenderer::setColor(SDL_Color c)
+void TextRenderer::setCurrentColor(SDL_Color c)
 {
     currentColor = c;
 }
@@ -82,7 +82,7 @@ void TextRenderer::setShadowColor(SDL_Color c)
     shadowColor = c;
 }
 
-void TextRenderer::setFont(std::string fontName)
+void TextRenderer::setCurrentFont(std::string fontName)
 {
     std::map<std::string, std::string>::iterator it = fontPathMap.find(fontName);
     if (it != fontPathMap.end())
@@ -91,23 +91,23 @@ void TextRenderer::setFont(std::string fontName)
     }
 }
 
-void TextRenderer::setFontSize(int size)
+void TextRenderer::setCurrentFontSize(int size)
 {
     currentFontSize = size;
 }
 
 void TextRenderer::setSettings(std::string font, int size, SDL_Color color)
 {
-    setFont(font);
-    setFontSize(size);
-    setColor(color);
+    setCurrentFont(font);
+    setCurrentFontSize(size);
+    setCurrentColor(color);
 }
 
 void TextRenderer::setSettings(std::string font, int size, SDL_Color color, SDL_Color shadow)
 {
-    setFont(font);
-    setFontSize(size);
-    setColor(color);
+    setCurrentFont(font);
+    setCurrentFontSize(size);
+    setCurrentColor(color);
     setShadowColor(shadow);
 }
 
@@ -137,7 +137,6 @@ void TextRenderer::loadFontPaths()
     fontPathMap["calibri_light"] = "assets/calibril.ttf";
     fontPathMap["calibri_light_italic"] = "assets/calibrili.ttf";
     fontPathMap["calibri_bold_italic"] = "assets/calibriz.ttf";
-
 }
 
 void TextRenderer::renderText(int x, int y, std::string message, std::string fontName, SDL_Color color, int fontSize)
@@ -147,6 +146,7 @@ void TextRenderer::renderText(int x, int y, std::string message, std::string fon
         TTF_Font * font = getFont(fontName, fontSize);
         if (font == nullptr)
         {
+            // TODO throw an exception instead
             std::cout << "Failed to load font: " << fontName.c_str() << TTF_GetError() << std::endl;
         }
 
@@ -228,6 +228,26 @@ TTF_Font * TextRenderer::loadPath(const std::string &fontFile, int fontSize)
         std::cout << "Failed to load font: " << fontFile.c_str() << TTF_GetError() << std::endl;
     }
     return font;
+}
+
+SDL_Color TextRenderer::getCurrentColor() const
+{
+    return currentColor;
+}
+
+const std::string& TextRenderer::getCurrentFont() const
+{
+    return currentFont;
+}
+
+int TextRenderer::getCurrentFontSize() const
+{
+    return currentFontSize;
+}
+
+SDL_Color TextRenderer::getShadowColor() const
+{
+    return shadowColor;
 }
 
 TTF_Font * TextRenderer::getFont(std::string font, int size)

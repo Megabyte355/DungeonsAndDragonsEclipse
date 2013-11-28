@@ -35,12 +35,16 @@ class TextRenderer
         static SDL_Color green;
         static SDL_Color blue;
 
-        void setColor(SDL_Color);
+        void setCurrentColor(SDL_Color);
         void setShadowColor(SDL_Color);
-        void setFont(std::string);
-        void setFontSize(int);
+        void setCurrentFont(std::string);
+        void setCurrentFontSize(int);
         void setSettings(std::string font, int size, SDL_Color color);
         void setSettings(std::string font, int size, SDL_Color color, SDL_Color shadow);
+        SDL_Color getCurrentColor() const;
+        const std::string& getCurrentFont() const;
+        int getCurrentFontSize() const;
+        SDL_Color getShadowColor() const;
 
     private:
         TextRenderer();
@@ -52,7 +56,7 @@ class TextRenderer
         std::string currentFont;
         int currentFontSize;
         std::map<std::string, std::string> fontPathMap;
-        std::map<std::string, std::map<int, TTF_Font*>> fontMap;
+        std::map<std::string, std::map<int, TTF_Font*> > fontMap;
 
         TTF_Font* loadPath(const std::string &file, int fontSize);
         TTF_Font* getFont(std::string font, int size);

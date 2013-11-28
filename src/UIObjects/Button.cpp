@@ -80,7 +80,7 @@ void Button::handleEvents(SDL_Event &event)
         }
         else if (event.type == SDL_MOUSEBUTTONUP)
         {
-            if (clicked && intersect(event.button.x, event.button.y))
+            if (clicked && callback != nullptr && intersect(event.button.x, event.button.y))
             {
                 callback();
             }

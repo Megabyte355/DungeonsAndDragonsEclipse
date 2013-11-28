@@ -10,6 +10,10 @@
 TitleScreen::TitleScreen() :
         Screen("TitleScreen")
 {
+    flickeringDelay = 500;
+    flickeringText = "Press any key";
+    currentFlickerTime = 0;
+    flickeringTextState = false;
 }
 
 TitleScreen::~TitleScreen()
@@ -19,7 +23,6 @@ TitleScreen::~TitleScreen()
 
 void TitleScreen::initialize()
 {
-    flickeringTextState = false;
 }
 
 void TitleScreen::reset()

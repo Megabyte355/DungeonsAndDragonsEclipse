@@ -30,10 +30,9 @@ class TitleScreen: public virtual Screen
 
     private:
         float currentFlickerTime;
+        float flickeringDelay;
         bool flickeringTextState;
-
-        const float flickeringDelay = 500;
-        const std::string flickeringText = "Press any key";
+        std::string flickeringText;
 };
 
 #endif /* TITLESCREEN_H_ */
