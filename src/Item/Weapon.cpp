@@ -54,6 +54,16 @@ Weapon::Weapon(int charLevel, bool isRandom, string pweaponType):Equipment(charL
 Weapon::~Weapon() {
 }
 
+int Weapon::getAttackBonus()
+{
+    return attackBonus;
+}
+
+int Weapon::getDamageBonus()
+{
+    return damageBonus;
+}
+
 string Weapon::toString(){
 	stringstream ss;
 	ss << Equipment::toString();
