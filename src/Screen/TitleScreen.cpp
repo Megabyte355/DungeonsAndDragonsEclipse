@@ -84,5 +84,5 @@ void TitleScreen::handleEvents(SDL_Event& event)
 
 void TitleScreen::goToMenuScreen()
 {
-    ScreenManager::requestScreenChange("TitleScreen", "MenuScreen");
+    ScreenManager::requestScreenChange("TitleScreen", "MainMenuScreen");
 }

@@ -35,6 +35,7 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DungeonsAndDragonsEclipse/src/GameObjects}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DungeonsAndDragonsEclipse/src/Character}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DungeonsAndDragonsEclipse/src/Map}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DungeonsAndDragonsEclipse/src/UIObjects}&quot;"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.439431601" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 							</tool>
@@ -208,10 +209,10 @@
 		<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.mingw.exe.debug.1286164744;cdt.managedbuild.config.gnu.mingw.exe.debug.1286164744.;cdt.managedbuild.tool.gnu.cpp.compiler.mingw.exe.debug.1726040880;cdt.managedbuild.tool.gnu.cpp.compiler.input.439431601">
 			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
 		</scannerConfigBuildInfo>
-		<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.mingw.exe.release.376028989;cdt.managedbuild.config.gnu.mingw.exe.release.376028989.;cdt.managedbuild.tool.gnu.cpp.compiler.mingw.exe.release.769052278;cdt.managedbuild.tool.gnu.cpp.compiler.input.1290104158">
+		<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.mingw.exe.debug.1286164744;cdt.managedbuild.config.gnu.mingw.exe.debug.1286164744.;cdt.managedbuild.tool.gnu.c.compiler.mingw.exe.debug.42197281;cdt.managedbuild.tool.gnu.c.compiler.input.2104106979">
 			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
 		</scannerConfigBuildInfo>
-		<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.mingw.exe.debug.1286164744;cdt.managedbuild.config.gnu.mingw.exe.debug.1286164744.;cdt.managedbuild.tool.gnu.c.compiler.mingw.exe.debug.42197281;cdt.managedbuild.tool.gnu.c.compiler.input.2104106979">
+		<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.mingw.exe.release.376028989;cdt.managedbuild.config.gnu.mingw.exe.release.376028989.;cdt.managedbuild.tool.gnu.cpp.compiler.mingw.exe.release.769052278;cdt.managedbuild.tool.gnu.cpp.compiler.input.1290104158">
 			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
 		</scannerConfigBuildInfo>
 	</storageModule>

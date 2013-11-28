@@ -25,6 +25,7 @@ class TextRenderer
         void loadFontPaths();
         void renderText(int x, int y, std::string message, std::string fontName, SDL_Color color, int fontSize);
         void renderText(int x, int y, std::string message);
+        void renderTextWithShadow(int x, int y, std::string message);
         SDL_Rect queryTextSize(int x, int y, std::string message);
 
         // Preset colors
@@ -35,9 +36,11 @@ class TextRenderer
         static SDL_Color blue;
 
         void setColor(SDL_Color);
+        void setShadowColor(SDL_Color);
         void setFont(std::string);
         void setFontSize(int);
         void setSettings(std::string font, int size, SDL_Color color);
+        void setSettings(std::string font, int size, SDL_Color color, SDL_Color shadow);
 
     private:
         TextRenderer();
@@ -45,6 +48,7 @@ class TextRenderer
         static const int DEFAULT_FONT_SIZE = 22;
         SDL_Renderer* renderer;
         SDL_Color currentColor;
+        SDL_Color shadowColor;
         std::string currentFont;
         int currentFontSize;
         std::map<std::string, std::string> fontPathMap;

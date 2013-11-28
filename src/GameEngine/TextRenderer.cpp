@@ -77,6 +77,11 @@ void TextRenderer::setColor(SDL_Color c)
     currentColor = c;
 }
 
+void TextRenderer::setShadowColor(SDL_Color c)
+{
+    shadowColor = c;
+}
+
 void TextRenderer::setFont(std::string fontName)
 {
     std::map<std::string, std::string>::iterator it = fontPathMap.find(fontName);
@@ -97,6 +102,15 @@ void TextRenderer::setSettings(std::string font, int size, SDL_Color color)
     setFontSize(size);
     setColor(color);
 }
+
+void TextRenderer::setSettings(std::string font, int size, SDL_Color color, SDL_Color shadow)
+{
+    setFont(font);
+    setFontSize(size);
+    setColor(color);
+    setShadowColor(shadow);
+}
+
 
 void TextRenderer::loadFontPaths()
 {
@@ -130,20 +144,6 @@ void TextRenderer::renderText(int x, int y, std::string message, std::string fon
 {
     if (renderer != nullptr && fontPathMap.find(fontName) != fontPathMap.end())
     {
-//        if (fontMap.find(fontName) == fontMap.end())
-//        {
-//            std::map<int, TTF_Font*> fontSizeMap;
-//            fontMap[fontName] = fontSizeMap;
-//            fontMap[fontName][fontSize] = loadPath(fontPathMap[fontName].c_str(), fontSize);
-//        }
-//        else if (fontMap[fontName].find(fontSize) == fontMap[fontName].end())
-//        {
-//            fontMap[fontName][fontSize] = loadPath(fontPathMap[fontName].c_str(), fontSize);
-//        }
-
-        // Open the font with custom font size
-//        TTF_Font *font = nullptr;
-//        font = fontMap[fontName][fontSize];
         TTF_Font * font = getFont(fontName, fontSize);
         if (font == nullptr)
         {
@@ -179,25 +179,19 @@ void TextRenderer::renderText(int x, int y, std::string message)
     renderText(x, y, message, currentFont, currentColor, currentFontSize);
 }
 
+
+void TextRenderer::renderTextWithShadow(int x, int y, std::string message)
+{
+    renderText(x + 2, y + 2, message, currentFont, shadowColor, currentFontSize);
+    renderText(x, y, message, currentFont, currentColor, currentFontSize);
+}
+
+
 SDL_Rect TextRenderer::queryTextSize(int x, int y, std::string message)
 {
     SDL_Rect pos;
     if (renderer != nullptr && fontPathMap.find(currentFont) != fontPathMap.end())
     {
-//        if (fontMap.find(currentFont) == fontMap.end())
-//        {
-//            std::map<int, TTF_Font*> fontSizeMap;
-//            fontMap[currentFont] = fontSizeMap;
-//            fontMap[currentFont][currentFontSize] = loadPath(fontPathMap[currentFont].c_str(), currentFontSize);
-//        }
-//        else if (fontMap[currentFont].find(currentFontSize) == fontMap[currentFont].end())
-//        {
-//            fontMap[currentFont][currentFontSize] = loadPath(fontPathMap[currentFont].c_str(), currentFontSize);
-//        }
-
-        // Open the font with custom font size
-//        TTF_Font *font = nullptr;
-//        font = fontMap[currentFont][currentFontSize];
         TTF_Font * font = getFont(currentFont, currentFontSize);
         if (font == nullptr)
         {
