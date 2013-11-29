@@ -49,7 +49,7 @@ public:
     
     //setters
     void setName(string name);
-    void setStartingLevel(int level);
+    void setLevel(int level);
     void setType(string charType);
     
     virtual void setHP()=0;   

@@ -6,9 +6,8 @@ class Combat
     
     public:
 	void combatRound(Character* player,Character* monster);
-        
-        int calcNumOfAttacks(Character* character);
-        
+    void combatAction(Character* attacker, Character* defender);
+
 	Combat(void);
 	~Combat(void);
 };

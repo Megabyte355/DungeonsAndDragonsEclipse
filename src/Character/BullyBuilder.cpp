@@ -17,7 +17,7 @@ void BullyBuilder::buildType(){
 
 void BullyBuilder::buildStats(){
     character->setName(charName);
-    character->setStartingLevel(charLevel);
+    character->setLevel(charLevel);
     character->generateAbilityScores();
     character->setSpeed();
     

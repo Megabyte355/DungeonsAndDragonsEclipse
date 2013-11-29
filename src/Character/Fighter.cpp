@@ -14,11 +14,26 @@ Fighter::Fighter(void){
 Fighter::Fighter(string name, int level):Character(name, level){
     cout << "Creating new character..." << endl;
     setName(name);
-    setStartingLevel(level);
+    setLevel(level);
     generateAbilityScores();
     setAC(); 
     setHP();
 }
+
+void Fighter::levelUp() {
+    int level = this->getLevel();
+    this->setLevel(++level);
+    this->levelUpHP();
+    this->setAttackBonuses();
+}
+void Fighter::levelUpHP(){
+    int conMod = getConMod();
+    srand(time(NULL));
+
+    hitPoints += ( (rand()% hitDie ) +1 ) + conMod;
+    cout << "Hitpoints have increased due to " << hitPoints << "!" << endl;
+}
+
 
 //overriden setHP
 void Fighter::setHP(){

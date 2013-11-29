@@ -29,6 +29,9 @@ class Fighter : public Character
         virtual void setHP();
         virtual void setSpeed();
         
+        void levelUp();
+        void levelUpHP();
+
         CharacterItemManager inventory;
         
         int rollDamage();

@@ -17,7 +17,7 @@ void NimbleBuilder::buildType(){
 
 void NimbleBuilder::buildStats(){
     character->setName(charName);
-    character->setStartingLevel(charLevel);
+    character->setLevel(charLevel);
     character->setSpeed();
     character->generateAbilityScores();
     

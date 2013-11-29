@@ -17,7 +17,7 @@ void Character::setName(std::string name){
     cout << "Setting name of character to " << name << "." << endl;
     charName = name;
 }
-void Character::setStartingLevel(int startLvl){
+void Character::setLevel(int startLvl){
     cout << "Setting level of character to " << startLvl << "." << endl;
     level = startLvl;
 }
@@ -184,7 +184,7 @@ Character::Character(string name, int level){
 }
 
 Character::Character(int level){
-    setStartingLevel(level);
+    setLevel(level);
     generateAbilityScores();
     chooseAbilityScores();
     setAC(); 
