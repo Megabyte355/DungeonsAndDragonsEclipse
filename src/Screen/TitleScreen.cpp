@@ -23,7 +23,6 @@ TitleScreen::~TitleScreen()
 
 void TitleScreen::initialize()
 {
-    flickeringTextState = false;
 }
 
 void TitleScreen::reset()
@@ -46,24 +45,16 @@ void TitleScreen::draw()
     TextureRenderer::getInstance()->drawTexture("title_screen", 0, 0, config->SCREEN_WIDTH, config->SCREEN_HEIGHT);
     TextRenderer * text = TextRenderer::getInstance();
 
-    // White text
-    text->setSettings("triforce", 30, TextRenderer::black);
-    text->renderText(425, 25, "Gary Chang");
-    text->renderText(625, 25, "Tiffany Ip");
-    text->renderText(425, 75, "Kevin Silva");
-    text->renderText(625, 75, "Tim Smith");
+    text->setSettings("triforce", 30, TextRenderer::white, TextRenderer::black);
+    text->renderTextWithShadow(425, 25, "Gary Chang");
+    text->renderTextWithShadow(625, 25, "Tiffany Ip");
+    text->renderTextWithShadow(425, 75, "Kevin Silva");
+    text->renderTextWithShadow(625, 75, "Tim Smith");
 
-    // Shadow
-    text->setSettings("triforce", 30, TextRenderer::white);
-    text->renderText(423, 23, "Gary Chang");
-    text->renderText(623, 23, "Tiffany Ip");
-    text->renderText(423, 73, "Kevin Silva");
-    text->renderText(623, 73, "Tim Smith");
-
+    text->setSettings("triforce", 45, TextRenderer::white, TextRenderer::black);
     if (flickeringTextState)
     {
-        text->renderText(507, 527, flickeringText, "triforce", TextRenderer::black, 45);
-        text->renderText(505, 525, flickeringText, "triforce", TextRenderer::white, 45);
+        text->renderTextWithShadow(507,527,flickeringText);
     }
 
     config = nullptr;
@@ -88,5 +79,5 @@ void TitleScreen::handleEvents(SDL_Event& event)
 
 void TitleScreen::goToMenuScreen()
 {
-    ScreenManager::requestScreenChange("TitleScreen", "MenuScreen");
+    ScreenManager::requestScreenChange("TitleScreen", "MainMenuScreen");
 }

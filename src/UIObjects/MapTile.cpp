@@ -86,7 +86,7 @@ void MapTile::draw()
 //        {
 //            TextureRenderer::getInstance()->drawTexture("treasure", x, y, w, h);
 //        }
-//        occupant = nullptr;
+        occupant = nullptr;
         // =======================================================================
     }
 }

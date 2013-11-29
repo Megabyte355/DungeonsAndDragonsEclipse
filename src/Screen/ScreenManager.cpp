@@ -45,6 +45,8 @@ void ScreenManager::initialize()
     storedScreens.push_back(std::make_shared<CharacterScreen>());
     storedScreens.push_back(std::make_shared<MapScreen>());
     storedScreens.push_back(std::make_shared<TitleScreen>());
+    storedScreens.push_back(std::make_shared<MainMenuScreen>());
+    storedScreens.push_back(std::make_shared<EditorMenuScreen>());
     pushScreen("TitleScreen");
     //pushScreen("TestScreen");
 }
