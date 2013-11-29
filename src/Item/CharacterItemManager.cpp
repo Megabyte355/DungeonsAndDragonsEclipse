@@ -119,7 +119,7 @@ Equipment ** CharacterItemManager::getEquipmentSlot(Equipment * e) {
         return nullptr;
 }
 
-Equipment ** CharacterItemManager::isItemEquipped(Equipment * e) {
+bool CharacterItemManager::isItemEquipped(Equipment * e) {
     return getEquipmentSlot(e) != nullptr;
 }
 
@@ -199,52 +199,52 @@ void CharacterItemManager::calculateInventoryStats() {
 
 int CharacterItemManager::getInventorySpecificStat(characterStats stat)
 {
-    return inventoryStats[stat] == nullptr? 0 : inventoryStats[stat];
+    return (inventoryStats.find(stat) == inventoryStats.end()) ? 0 : inventoryStats[stat];
 }
 
 int CharacterItemManager::getInventoryStrength()
 {
-    getInventorySpecificStat(characterStats::STRENGTH);
+    return getInventorySpecificStat(characterStats::STRENGTH);
 }
 
 int CharacterItemManager::getInventoryConstitution()
 {
-    getInventorySpecificStat(characterStats::CONSTITUTION);
+    return getInventorySpecificStat(characterStats::CONSTITUTION);
 }
 
 int CharacterItemManager::getInventoryDexterity()
 {
-    getInventorySpecificStat(characterStats::DEXTERITY);
+    return getInventorySpecificStat(characterStats::DEXTERITY);
 }
 
 int CharacterItemManager::getInventoryIntelligence()
 {
-    getInventorySpecificStat(characterStats::INTELLIGENCE);
+    return getInventorySpecificStat(characterStats::INTELLIGENCE);
 }
 
 int CharacterItemManager::getInventoryWisdom()
 {
-    getInventorySpecificStat(characterStats::WISDOM);
+    return getInventorySpecificStat(characterStats::WISDOM);
 }
 
 int CharacterItemManager::getInventoryCharisma()
 {
-    getInventorySpecificStat(characterStats::CHARISMA);
+    return getInventorySpecificStat(characterStats::CHARISMA);
 }
 
 int CharacterItemManager::getInventoryArmor()
 {
-    getInventorySpecificStat(characterStats::ARMOR);
+    return getInventorySpecificStat(characterStats::ARMOR);
 }
 
 int CharacterItemManager::getInventoryAttack()
 {
-    getInventorySpecificStat(characterStats::ATTACK);
+    return getInventorySpecificStat(characterStats::ATTACK);
 }
 
 int CharacterItemManager::getInventoryDamage()
 {
-    getInventorySpecificStat(characterStats::DAMAGE);
+    return getInventorySpecificStat(characterStats::DAMAGE);
 }
 
 string CharacterItemManager::displayInventoryStats() {

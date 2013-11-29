@@ -52,7 +52,7 @@ class CharacterItemManager
         virtual ~CharacterItemManager();
 
         bool isItemInBag(Item * e);
-        Equipment ** isItemEquipped(Equipment * e);
+        bool isItemEquipped(Equipment * e);
         Equipment ** getEquipmentSlot(Equipment * e) ;
 
         void equipItem(Equipment * e);
