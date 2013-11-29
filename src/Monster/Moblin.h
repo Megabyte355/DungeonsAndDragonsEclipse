@@ -28,13 +28,6 @@ public:
     //getters
     int getHitDie();
     int getAC();
-
-    // TODO missing implementation for the following functions
-    int attack1();
-    int attack2();
-    int attack3();
-    int attack4();
-    int rollDamage();
 };
 
 #endif	/* MOBLIN_H */

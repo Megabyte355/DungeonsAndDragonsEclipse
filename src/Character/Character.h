@@ -99,10 +99,10 @@ public:
     int getWisMod();
     int getChaMod();
    
-    virtual int attack1()=0;
-    virtual int attack2()=0;
-    virtual int attack3()=0;
-    virtual int attack4()=0;
+    virtual int attack1();
+    virtual int attack2();
+    virtual int attack3();
+    virtual int attack4();
     
     int getBaseAttackBonus1();
     int getBaseAttackBonus2();
@@ -120,7 +120,7 @@ public:
     bool hasAttack4();
     int rollDie(int type);
     int rollD20();
-    virtual int rollDamage()=0;
+    virtual int rollDamage();
     void takeDamage(int dmg);
 };
 
