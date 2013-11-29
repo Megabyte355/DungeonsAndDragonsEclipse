@@ -26,13 +26,13 @@ class TitleScreen: public virtual Screen
         virtual void draw();
         virtual void handleEvents(SDL_Event &event);
 
-        void goToMenuScreen();
-
     private:
         float currentFlickerTime;
         float flickeringDelay;
         bool flickeringTextState;
         std::string flickeringText;
+
+        void goToMenuScreen();
 };
 
 #endif /* TITLESCREEN_H_ */

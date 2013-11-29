@@ -1,12 +1,12 @@
 /*
- * MainMenuScreen.h
+ * MapEditorScreen.h
  *
  *  Created on: Nov 28, 2013
  *      Author: Gary
  */
 
-#ifndef MAINMENUSCREEN_H_
-#define MAINMENUSCREEN_H_
+#ifndef MAPEDITORSCREEN_H_
+#define MAPEDITORSCREEN_H_
 
 #include "Screen.h"
 #include "TextureRenderer.h"
@@ -16,11 +16,11 @@
 #include "ScreenManager.h"
 #include <vector>
 
-class MainMenuScreen: public virtual Screen
+class MapEditorScreen: public virtual Screen
 {
     public:
-        MainMenuScreen();
-        virtual ~MainMenuScreen();
+        MapEditorScreen();
+        virtual ~MapEditorScreen();
 
         void initialize() override;
         void reset() override;
@@ -28,13 +28,7 @@ class MainMenuScreen: public virtual Screen
         void draw() override;
         void handleEvents(SDL_Event &event) override;
 
-        // Menu options
-        std::vector<MenuOption*> menuOptions;
 
-    private:
-        void goToNewGameScreen();
-        void goToEditorMenuScreen();
-        void goToCreditScreen();
 };
 
-#endif /* MAINMENUSCREEN_H_ */
+#endif /* MAPEDITORSCREEN_H_ */

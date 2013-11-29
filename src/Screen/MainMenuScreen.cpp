@@ -24,19 +24,22 @@ void MainMenuScreen::initialize()
     MenuOption * opt;
     opt = new MenuOption(300, 200, 25, "New Game");
     opt->setVisibility(true);
+    opt->setCallback(std::bind(&MainMenuScreen::goToNewGameScreen, this));
     menuOptions.push_back(opt);
     opt = new MenuOption(300, 300, 25, "Editors");
     opt->setVisibility(true);
+    opt->setCallback(std::bind(&MainMenuScreen::goToEditorMenuScreen, this));
     menuOptions.push_back(opt);
     opt = new MenuOption(300, 400, 25, "Credits");
     opt->setVisibility(true);
+    opt->setCallback(std::bind(&MainMenuScreen::goToCreditScreen, this));
     menuOptions.push_back(opt);
     opt = nullptr;
 }
 
 void MainMenuScreen::reset()
 {
-    for(auto o : menuOptions)
+    for (auto o : menuOptions)
     {
         delete o;
     }
@@ -58,14 +61,13 @@ void MainMenuScreen::draw()
     texts->renderTextWithShadow(229, 39, "MAIN MENU");
 
     texts->setSettings("retganon", 40, TextRenderer::white, TextRenderer::blue);
-    for(auto option : menuOptions)
+    for (auto option : menuOptions)
     {
         option->draw();
     }
 
     textures = nullptr;
     texts = nullptr;
-
 }
 
 void MainMenuScreen::handleEvents(SDL_Event& event)
@@ -81,12 +83,12 @@ void MainMenuScreen::handleEvents(SDL_Event& event)
                 active = false;
             }
             break;
-        //case SDL_MOUSEBUTTONUP:
-        //case SDL_MOUSEBUTTONDOWN:
+        case SDL_MOUSEBUTTONUP:
+        case SDL_MOUSEBUTTONDOWN:
         case SDL_MOUSEMOTION:
             // TODO Testing code to be removed
             //std::cout << "Moving at : (" << event.motion.x << ", " << event.motion.y << ")" << std::endl;
-            for(auto option : menuOptions)
+            for (auto option : menuOptions)
             {
                 option->handleEvents(event);
             }
@@ -96,4 +98,21 @@ void MainMenuScreen::handleEvents(SDL_Event& event)
     }
 }
 
+void MainMenuScreen::goToNewGameScreen()
+{
+    // TODO When new screen is complete, fix this
+//    ScreenManager::requestScreenChange("", "");
+    std::cout << "New Game" << std::endl;
+}
 
+void MainMenuScreen::goToEditorMenuScreen()
+{
+    ScreenManager::requestScreenChange("MainMenuScreen", "EditorMenuScreen");
+}
+
+void MainMenuScreen::goToCreditScreen()
+{
+    // TODO When new screen is complete, fix this
+//    ScreenManager::requestScreenChange("", "");
+    std::cout << "Credits" << std::endl;
+}
