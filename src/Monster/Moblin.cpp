@@ -59,20 +59,30 @@ Moblin::~Moblin()
 
 int Moblin::attack1()
 {
+    // TODO
+    return 0;
 }
 
 int Moblin::attack2()
 {
+    // TODO
+    return 0;
 }
 
 int Moblin::attack3()
 {
+    // TODO
+    return 0;
 }
 
 int Moblin::attack4()
 {
+    // TODO
+    return 0;
 }
 
 int Moblin::rollDamage()
 {
+    // TODO
+    return 0;
 }

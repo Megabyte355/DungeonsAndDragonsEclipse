@@ -10,6 +10,10 @@
 TitleScreen::TitleScreen() :
         Screen("TitleScreen")
 {
+    flickeringDelay = 500;
+    flickeringText = "Press any key";
+    currentFlickerTime = 0;
+    flickeringTextState = false;
 }
 
 TitleScreen::~TitleScreen()
