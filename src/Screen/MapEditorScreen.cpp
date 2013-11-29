@@ -7,7 +7,7 @@
 
 #include "MapEditorScreen.h"
 
-MapEditorScreen::MapEditorScreen()
+MapEditorScreen::MapEditorScreen(): Screen("MapEditorScreen")
 {
 
 }
@@ -15,5 +15,25 @@ MapEditorScreen::MapEditorScreen()
 MapEditorScreen::~MapEditorScreen()
 {
 
+    
 }
 
+void MapEditorScreen::initialize()
+{
+}
+
+void MapEditorScreen::reset()
+{
+}
+
+void MapEditorScreen::update(float deltaTime)
+{
+}
+
+void MapEditorScreen::draw()
+{
+}
+
+void MapEditorScreen::handleEvents(SDL_Event& event)
+{
+}
