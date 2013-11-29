@@ -13,7 +13,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-class Moblin : public Character {
+class Moblin : public virtual Character {
     static const int hitDie = 8;
 
 public:
@@ -28,8 +28,6 @@ public:
     //getters
     int getHitDie();
     int getAC();
-
-
 
     // TODO missing implementation for the following functions
     int attack1();

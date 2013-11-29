@@ -52,3 +52,27 @@ int Moblin::getHitDie(){
 int Moblin::getAC(){
     return 15;
 }
+
+Moblin::~Moblin()
+{
+}
+
+int Moblin::attack1()
+{
+}
+
+int Moblin::attack2()
+{
+}
+
+int Moblin::attack3()
+{
+}
+
+int Moblin::attack4()
+{
+}
+
+int Moblin::rollDamage()
+{
+}
