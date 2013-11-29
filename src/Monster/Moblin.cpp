@@ -6,7 +6,6 @@
  */
 
 #include "Moblin.h"
-#include <iostream>
 
 Moblin::Moblin(void){
     //base stats or nothing

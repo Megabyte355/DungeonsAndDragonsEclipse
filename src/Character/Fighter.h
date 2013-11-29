@@ -8,8 +8,15 @@
 #ifndef FIGHTER_H
 #define	FIGHTER_H
 #include "Character.h"
+#include "BullyBuilder.h"
 #include <string>
+#include <stdlib.h>
+#include <time.h>
+#include <iostream>
 #include "CharacterItemManager.h"
+
+
+
 using namespace std;
 
 class Fighter : public Character 
@@ -32,7 +39,7 @@ class Fighter : public Character
         int attack3();
         int attack4();
         
-	void notifyAll(); //overriding
+//	void notifyAll(); //overriding
 	void printChar();
         
         ~Fighter();

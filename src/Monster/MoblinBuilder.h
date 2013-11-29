@@ -8,6 +8,7 @@
 #ifndef MOBLINBUILDER_H
 #define	MOBLINBUILDER_H
 #include "CharacterBuilder.h"
+#include "Character.h"
 
 class MoblinBuilder : public CharacterBuilder {
     

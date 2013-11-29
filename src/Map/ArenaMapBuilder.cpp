@@ -53,20 +53,20 @@ void ArenaMapBuilder::setEndPoint()
 
 void ArenaMapBuilder::placeItems()
 {
-    DummyItemChest * chest = new DummyItemChest(level);
-    map->setOccupant(chest, 4, 4);
+//    DummyItemChest * chest = new DummyItemChest(level);
+//    map->setOccupant(chest, 4, 4);
 
     // The map is responsible for deleting the chest (for this assignment).
     // TODO Need to find a solution for final build
-    chest = nullptr;
+//    chest = nullptr;
 }
 
 void ArenaMapBuilder::placeMonsters()
 {
-    DummyMonster * monster = new DummyMonster(level);
-    map->setOccupant(monster, 4, 1);
+//    DummyMonster * monster = new DummyMonster(level);
+//    map->setOccupant(monster, 4, 1);
 
     // The map is responsible for deleting the chest (for this assignment).
     // TODO Need to find a solution for final build
-    monster = nullptr;
+//    monster = nullptr;
 }

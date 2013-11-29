@@ -74,19 +74,19 @@ void MapTile::draw()
         CellOccupant * occupant = cell->getOccupant();
 
         //  ===================== TEMPORARY for Assignment 3 =====================
-        if (dynamic_cast<DummyCharacter*>(occupant) != nullptr)
-        {
-            TextureRenderer::getInstance()->drawTexture("link", x, y, w, h);
-        }
-        else if (dynamic_cast<DummyMonster*>(occupant) != nullptr)
-        {
-            TextureRenderer::getInstance()->drawTexture("monster", x, y, w, h);
-        }
-        else if (dynamic_cast<DummyItemChest*>(occupant) != nullptr)
-        {
-            TextureRenderer::getInstance()->drawTexture("treasure", x, y, w, h);
-        }
-        occupant = nullptr;
+//        if (dynamic_cast<DummyCharacter*>(occupant) != nullptr)
+//        {
+//            TextureRenderer::getInstance()->drawTexture("link", x, y, w, h);
+//        }
+//        else if (dynamic_cast<DummyMonster*>(occupant) != nullptr)
+//        {
+//            TextureRenderer::getInstance()->drawTexture("monster", x, y, w, h);
+//        }
+//        else if (dynamic_cast<DummyItemChest*>(occupant) != nullptr)
+//        {
+//            TextureRenderer::getInstance()->drawTexture("treasure", x, y, w, h);
+//        }
+//        occupant = nullptr;
         // =======================================================================
     }
 }

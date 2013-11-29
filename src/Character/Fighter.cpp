@@ -4,10 +4,7 @@
  * Created on October 19, 2013, 6:06PM
  */
 #include "Fighter.h"
-#include "CharacterBuilder/BullyBuilder.h"
-#include <string>
-#include <stdlib.h>
-#include <iostream>
+
 using namespace std;
 
 Fighter::Fighter(void){
@@ -33,7 +30,7 @@ void Fighter::setHP(){
         hitPoints += ((rand()% hitDie )+1) + conMod;
         cout << "Hitpoints at level " << (i+1) << " is " << hitPoints << endl;
     }
-    notifyAll();   
+    notify();
 }
 
 void Fighter::setSpeed(){
@@ -67,15 +64,15 @@ int Fighter::attack4() {
 /* This is overriding the Observable class' notifyAll function
 	It allows the fighter class to pass itself as an instance to
 	notify observers with the proper data */
-void Fighter::notifyAll()
-{
-	vector<Observer> observers = getObservers(); //get the list of observers
-	vector<Observer>::iterator itr; //create an iterator to go through the vector
-	for ( itr = observers.begin(); itr != observers.end(); itr++ )
-	{
-		itr->notify(*this); //notify by passing the instance itself
-	}
-}
+//void Fighter::notifyAll()
+//{
+//	vector<Observer> observers = getObservers(); //get the list of observers
+//	vector<Observer>::iterator itr; //create an iterator to go through the vector
+//	for ( itr = observers.begin(); itr != observers.end(); itr++ )
+//	{
+//		itr->notify(*this); //notify by passing the instance itself
+//	}
+//}
 
 void Fighter::printChar(){
 	cout << endl<< "This is your new character: " << endl;

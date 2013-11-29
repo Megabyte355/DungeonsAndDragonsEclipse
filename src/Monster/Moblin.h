@@ -7,8 +7,11 @@
 
 #ifndef MOBLIN_H
 #define	MOBLIN_H
-#include "../Character.h"
+#include "Character.h"
 #include <string>
+#include <iostream>
+#include <stdlib.h>
+#include <time.h>
 
 class Moblin : public Character {
     static const int hitDie = 8;
@@ -19,7 +22,6 @@ public:
     ~Moblin();
 
     //setters
-    void setType(string charType);
     void setHP();
     void setSpeed();
 
@@ -27,6 +29,14 @@ public:
     int getHitDie();
     int getAC();
 
+
+
+    // TODO missing implementation for the following functions
+    int attack1();
+    int attack2();
+    int attack3();
+    int attack4();
+    int rollDamage();
 };
 
 #endif	/* MOBLIN_H */
