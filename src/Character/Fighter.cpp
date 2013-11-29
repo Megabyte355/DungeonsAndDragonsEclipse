@@ -1,104 +1,100 @@
-/*
+/* 
  * File:   Fighter.cpp
  * Author: Tiffany Ip 9341943
  * Created on October 19, 2013, 6:06PM
  */
 #include "Fighter.h"
+#include "CharacterBuilder/BullyBuilder.h"
 #include <string>
 #include <stdlib.h>
 #include <iostream>
 using namespace std;
 
-Fighter::Fighter(std::string name, int level) :
-        Character(name, level)
-{
-    Fighter::setHP();
-    setBaseAttack();
-    setDamageBonus();
+Fighter::Fighter(void){
+    //empty constructor
 }
 
-//overriden sets
-void Fighter::setHP()
-{
+Fighter::Fighter(string name, int level):Character(name, level){
+    cout << "Creating new character..." << endl;
+    setName(name);
+    setStartingLevel(level);
+    generateAbilityScores();
+    setAC(); 
+    setHP();
+}
+
+//overriden setHP
+void Fighter::setHP(){
     int conMod = getAbilityModifier(getCon());
-    int random = (rand() % getHitDie()) + 1; //plus 1 in case the mod gives a value of 0 so we at least have 1 HP
-    hitPoints = random + conMod * getLevel();
-    notify();
-}
-void Fighter::setAC()
-{
-    armorClass = 10 + getAbilityModifier(getDex());
-    notify();
-}
-void Fighter::setStr(int strScore, int strMod)
-{
-    str = strScore + strMod;
-    Fighter::setBaseAttack(); //sets the new base attack
-    Fighter::setDamageBonus(); //sets the new damage bonus
-    notify();
-}
-void Fighter::setDex(int dexScore, int dexMod)
-{
-    dex = dexScore + dexMod;
-    notify();
-}
-void Fighter::setCon(int conScore, int conMod)
-{
-    con = conScore + conMod;
-    notify();
-}
-void Fighter::setInt(int intScore, int intMod)
-{
-    intel = intScore + intMod;
-    notify();
-}
-void Fighter::setWis(int wisScore, int wisMod)
-{
-    wis = wisScore + wisMod;
-    notify();
-}
-void Fighter::setCha(int chaScore, int chaMod)
-{
-    cha = chaScore + chaMod;
-    notify();
-}
-void Fighter::setBaseAttack()
-{
-    baseAttack = getBaseAttackBonus() + getAbilityModifier(getStr());
-    notify();
-}
-void Fighter::setDamageBonus()
-{
-    damageBonus = getAbilityModifier(getStr());
-    notify();
+    srand(time(NULL));
+    //cout << "Constitution Mod is = " << conMod << endl;
+    
+    for (int i = 0; i < getLevel() ;i++) {
+        hitPoints += ((rand()% hitDie )+1) + conMod;
+        cout << "Hitpoints at level " << (i+1) << " is " << hitPoints << endl;
+    }
+    notifyAll();   
 }
 
-int Fighter::getHitDie()
-{
+void Fighter::setSpeed(){
+    speed = 6;
+}
+
+//GET FUNCTIONS
+int Fighter::rollDamage(){
+    return getStrMod() + 1; //TODO equip.getDamage()
+}
+int Fighter::getAC() {
+    return armorClass;
+}
+int Fighter::getHitDie(){
     return hitDie;
 }
-
-int Fighter::getBaseAttackBonus()
-{
-    return Fighter::getLevel();
+int Fighter::attack1() {
+    return rollD20() + getBaseAttackBonus1() + getStrMod(); //TODO add weapon bonus later!!
+}
+int Fighter::attack2() {
+    return rollD20() + getBaseAttackBonus2() + getStrMod();
+}
+int Fighter::attack3() {
+    return rollD20() + getBaseAttackBonus3() + getStrMod();
+}
+int Fighter::attack4() {
+    return rollD20() + getBaseAttackBonus4() + getStrMod();
 }
 
-void Fighter::printChar()
+
+/* This is overriding the Observable class' notifyAll function
+	It allows the fighter class to pass itself as an instance to
+	notify observers with the proper data */
+void Fighter::notifyAll()
 {
-    cout << endl << "This is your new character: " << endl;
+	vector<Observer> observers = getObservers(); //get the list of observers
+	vector<Observer>::iterator itr; //create an iterator to go through the vector
+	for ( itr = observers.begin(); itr != observers.end(); itr++ )
+	{
+		itr->notify(*this); //notify by passing the instance itself
+	}
+}
+
+void Fighter::printChar(){
+	cout << endl<< "This is your new character: " << endl;
     cout << "Name: " << getName() << endl;
     cout << "Level: " << getLevel() << endl;
     cout << "HP: " << getHP() << endl;
     cout << "AC: " << getAC() << endl << endl;
+    cout << "Speed: " << getSpeed() << endl;
     cout << "Your ability scores: " << endl;
-    cout << "Strength " << getStr() << endl;
-    cout << "Dexterity " << getDex() << endl;
-    cout << "Constitution " << getCon() << endl;
-    cout << "Intelligence " << getInt() << endl;
-    cout << "Wisdom " << getWis() << endl;
-    cout << "Charisma " << getCha() << endl << endl;
-    cout << "Your attack stats: " << endl;
-    cout << "Base Attack " << getBaseAttack() << endl;
-    cout << "Damage Bonus " << getDamageBonus() << endl;
-    cout << endl;
+    cout << "Strength " << getStr() << "     & Mod " << getStrMod() << endl;
+    cout << "Dexterity " << getDex() << "    & Mod " << getDexMod() << endl;
+    cout << "Constitution " << getCon() << " & Mod " << getConMod() << endl;
+    cout << "Intelligence " << getInt() << " & Mod " << getIntMod() << endl;
+    cout << "Wisdom " << getWis() << "       & Mod " << getWisMod() << endl;
+    cout << "Charisma " << getCha() << "     & Mod " << getChaMod() << endl << endl;
+
+	cout << endl;
+}
+
+Fighter::~Fighter(){
+    //empty
 }
