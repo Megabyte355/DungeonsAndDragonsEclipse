@@ -63,6 +63,16 @@ class CharacterItemManager
 
         map<characterStats, int> getInventoryStats();
 
+        int getInventorySpecificStat(characterStats);
+        int getInventoryStrength();
+        int getInventoryConstitution();
+        int getInventoryDexterity();
+        int getInventoryIntelligence();
+        int getInventoryWisdom();
+        int getInventoryCharisma();
+        int getInventoryArmor();
+        int getInventoryAttack();
+        int getInventoryDamage();
 
         void calculateInventoryStats();
         void appendStatsInMap(map<characterStats, int> localMap, map<characterStats, int> &localContainer);

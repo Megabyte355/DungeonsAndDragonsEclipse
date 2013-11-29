@@ -119,27 +119,9 @@ Equipment ** CharacterItemManager::getEquipmentSlot(Equipment * e) {
         return nullptr;
 }
 
-//Equipment ** CharacterItemManager::isItemEquipped(Equipment * e) {
-//
-//    if(helmet == e)
-//        return &helmet;
-//    else if(armor == e)
-//        return &armor;
-//    else if(shield == e)
-//        return &shield;
-//    else if(bracers == e)
-//        return &bracers;
-//    else if(ring == e)
-//        return &ring;
-//    else if(belt == e)
-//        return &belt;
-//    else if(boots == e)
-//        return &boots;
-//    else if(weapon == e)
-//        return &weapon;
-//    else
-//        return nullptr;
-//}
+Equipment ** CharacterItemManager::isItemEquipped(Equipment * e) {
+    return getEquipmentSlot(e) != nullptr;
+}
 
 //Method assumes user can click on equipped item and pass that as argument
 void CharacterItemManager::unequipItem(Equipment * e) {
@@ -213,6 +195,56 @@ void CharacterItemManager::calculateInventoryStats() {
         appendStatsInMap(localMap, localContainer);
     }
     inventoryStats = localContainer;
+}
+
+int CharacterItemManager::getInventorySpecificStat(characterStats stat)
+{
+    return inventoryStats[stat] == nullptr? 0 : inventoryStats[stat];
+}
+
+int CharacterItemManager::getInventoryStrength()
+{
+    getInventorySpecificStat(characterStats::STRENGTH);
+}
+
+int CharacterItemManager::getInventoryConstitution()
+{
+    getInventorySpecificStat(characterStats::CONSTITUTION);
+}
+
+int CharacterItemManager::getInventoryDexterity()
+{
+    getInventorySpecificStat(characterStats::DEXTERITY);
+}
+
+int CharacterItemManager::getInventoryIntelligence()
+{
+    getInventorySpecificStat(characterStats::INTELLIGENCE);
+}
+
+int CharacterItemManager::getInventoryWisdom()
+{
+    getInventorySpecificStat(characterStats::WISDOM);
+}
+
+int CharacterItemManager::getInventoryCharisma()
+{
+    getInventorySpecificStat(characterStats::CHARISMA);
+}
+
+int CharacterItemManager::getInventoryArmor()
+{
+    getInventorySpecificStat(characterStats::ARMOR);
+}
+
+int CharacterItemManager::getInventoryAttack()
+{
+    getInventorySpecificStat(characterStats::ATTACK);
+}
+
+int CharacterItemManager::getInventoryDamage()
+{
+    getInventorySpecificStat(characterStats::DAMAGE);
 }
 
 string CharacterItemManager::displayInventoryStats() {
