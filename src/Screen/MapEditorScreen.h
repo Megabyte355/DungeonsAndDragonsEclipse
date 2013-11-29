@@ -27,6 +27,9 @@ class MapEditorScreen: public virtual Screen
         void update(float) override;
         void draw() override;
         void handleEvents(SDL_Event &event) override;
+
+
+
 };
 
 #endif /* MAPEDITORSCREEN_H_ */

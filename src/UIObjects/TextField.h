@@ -18,14 +18,14 @@ class TextField: public virtual Clickable
         TextField(int, int, int, int);
         virtual ~TextField();
 
-        void update() override;
-        void handleEvents(SDL_Event &) override;
-        void draw() override;
+        virtual void update() override;
+        virtual void handleEvents(SDL_Event &) override;
+        virtual void draw() override;
 
         bool isFocused();
         std::string getText();
 
-    private:
+    protected:
         static TextField * focusedTextField;
         static bool currentInputState;
         static bool previousInputState;

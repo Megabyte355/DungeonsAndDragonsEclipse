@@ -27,32 +27,36 @@ TextField::~TextField()
 
 void TextField::update()
 {
-    // Manually set nullptr if there are no focused textfields
-    if (!focusedTextField->isFocused())
+    if(focusedTextField != nullptr)
     {
-        focusedTextField = nullptr;
-    }
-
-    // Input state management to prevent starting/stopping text input continuously
-    if (focus)
-    {
-        focusedTextField = this;
-    }
-
-    currentInputState = (focusedTextField == nullptr) ? false : true;
-
-    if (currentInputState != previousInputState)
-    {
-        if (currentInputState)
+        // Manually set nullptr if there are no focused textfields
+        if (!focusedTextField->isFocused())
         {
-            SDL_StartTextInput();
+            focusedTextField = nullptr;
         }
-        else
+
+        // Input state management to prevent starting/stopping text input continuously
+        if (focus)
         {
-            SDL_StopTextInput();
+            focusedTextField = this;
         }
-        previousInputState = currentInputState;
+
+        currentInputState = (focusedTextField == nullptr) ? false : true;
+
+        if (currentInputState != previousInputState)
+        {
+            if (currentInputState)
+            {
+                SDL_StartTextInput();
+            }
+            else
+            {
+                SDL_StopTextInput();
+            }
+            previousInputState = currentInputState;
+        }
     }
+    
 }
 
 void TextField::handleEvents(SDL_Event &event)
@@ -93,7 +97,7 @@ void TextField::handleEvents(SDL_Event &event)
 void TextField::draw()
 {
     TextureRenderer * ren = TextureRenderer::getInstance();
-    ren->drawTexture("empty", boundary.x, boundary.y, boundary.w, boundary.h);
+    //ren->drawTexture("empty", boundary.x, boundary.y, boundary.w, boundary.h);
     ren->drawLine(boundary.x, boundary.y, boundary.x + boundary.w, boundary.y);
     ren->drawLine(boundary.x + boundary.w, boundary.y, boundary.x + boundary.w, boundary.y + boundary.h);
     ren->drawLine(boundary.x, boundary.y + boundary.h, boundary.x + boundary.w, boundary.y + boundary.h);
