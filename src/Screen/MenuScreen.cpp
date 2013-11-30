@@ -10,6 +10,7 @@
 MenuScreen::MenuScreen() :
         Screen("MenuScreen")
 {
+
 }
 
 MenuScreen::~MenuScreen()
@@ -38,6 +39,7 @@ void MenuScreen::initialize()
 
     pressAnyKeyDisplay = true;
     showMenu = false;
+
 }
 
 void MenuScreen::update(float deltaTime)

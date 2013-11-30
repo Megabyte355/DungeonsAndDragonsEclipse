@@ -21,6 +21,8 @@ void MainMenuScreen::initialize()
 {
     active = true;
 
+
+    audio->playMusic(2);
     MenuOption * opt;
     opt = new MenuOption(300, 200, 25, "New Game");
     opt->setVisibility(true);

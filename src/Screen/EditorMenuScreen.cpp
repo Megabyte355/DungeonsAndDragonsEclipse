@@ -23,6 +23,7 @@ EditorMenuScreen::~EditorMenuScreen()
 
 void EditorMenuScreen::initialize()
 {
+	audio->playMusic(2);
     active = true;
     currentChoices = nullptr;
 

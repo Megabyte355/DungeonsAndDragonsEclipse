@@ -10,6 +10,7 @@
 
 #include "Clickable.h"
 #include "TextRenderer.h"
+#include "AudioManager.h"
 #include <SDL.h>
 #include <string>
 #include <functional>
@@ -20,6 +21,8 @@ class Button: public virtual Clickable
         Button(int x, int y, int padding, std::string label);
         Button(int x, int y, int w, int h, std::string label);
         virtual ~Button();
+        AudioManager * audio;
+        int isHover;
 
         virtual void update() override;
         virtual void draw() override;

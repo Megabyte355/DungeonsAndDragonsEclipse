@@ -6,6 +6,8 @@
  */
 
 #include "Button.h"
+#include "AudioManager.h"
+
 
 // Constructor takes location of button, padding and a string to display.
 // The size of the button is automatically calculated.
@@ -18,6 +20,8 @@ Button::Button(int x, int y, int padding, std::string label) :
 
     boundary.w = 2 * padding + labelBoundary.w;
     boundary.h = 2 * padding + labelBoundary.h;
+
+
 }
 
 // Padding is not used. The label is centered in the button.
@@ -69,6 +73,8 @@ void Button::draw()
 
 void Button::handleEvents(SDL_Event &event)
 {
+
+    audio = AudioManager::getInstance();
     if (visible)
     {
         if (event.type == SDL_MOUSEBUTTONDOWN)
@@ -78,11 +84,19 @@ void Button::handleEvents(SDL_Event &event)
         else if (event.type == SDL_MOUSEMOTION)
         {
             hover = intersect(event.button.x, event.button.y);
+            if(hover)
+            	isHover++;
+            else
+            	isHover=0;
+
+            if(isHover==1)
+            	audio->playSound(1);
         }
         else if (event.type == SDL_MOUSEBUTTONUP)
         {
             if (clicked && callback != nullptr && intersect(event.button.x, event.button.y))
             {
+            	audio->playSound(2);
                 callback();
             }
             clicked = false;

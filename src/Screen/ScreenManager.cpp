@@ -40,6 +40,7 @@ std::shared_ptr<ScreenManager> ScreenManager::getInstance()
 
 void ScreenManager::initialize()
 {
+
     storedScreens.push_back(std::make_shared<TestScreen>());
     storedScreens.push_back(std::make_shared<MenuScreen>());
     storedScreens.push_back(std::make_shared<CharacterScreen>());
