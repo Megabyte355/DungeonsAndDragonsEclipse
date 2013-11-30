@@ -93,12 +93,16 @@ void CharacterEditorScreen::initialize()
 
 void CharacterEditorScreen::reset()
 {
+    for (auto c : characterEditorChoices)
+    {
+        delete c;
+    }
+    characterEditorChoices.clear();
     for (auto l : levelIncrementButtons )
     {
         delete l;
     }
     levelIncrementButtons.clear();
-
     for (auto t : typeButtons )
     {
         delete t;
@@ -156,8 +160,6 @@ void CharacterEditorScreen::draw()
     texts->renderTextWithShadow(450, 175, "Level:");
     texts->renderTextWithShadow(550, 175, ss.str());
     ss.str("");
-
-
 
     ss << newFighter->getStr();
     texts->renderTextWithShadow(100, 255, "Strength:");
@@ -227,10 +229,13 @@ void CharacterEditorScreen::handleEvents(SDL_Event &event)
             {
                 type->handleEvents(event);
             }
+            for (auto c : characterEditorChoices)
+            {
+                c->handleEvents(event);
+            }
 
             nameTextField->handleEvents(event);
 
-            std::cout << "Moving at : (" << event.motion.x << ", " << event.motion.y << ")" << std::endl;
             break;
         default:
             break;
@@ -241,13 +246,18 @@ void CharacterEditorScreen::handleEvents(SDL_Event &event)
 
 void CharacterEditorScreen::returnToMenu()
 {
-    ScreenManager::requestScreenChange("CharacterEditorScreen", "EditorMenuScreen");
+    ScreenManager::requestScreenChange(getScreenName(), "EditorMenuScreen");
 }
 
 
 void CharacterEditorScreen::gotoSaveCharacterScreen()
 {
     //ScreenManager::requestScreenChange();
+    // Simply save
+    PersistentData * temp = PersistentData::getInstance();
+    temp->setCharLoadSlot(0);
+    temp->saveCharToCurrentSlot(newFighter);
+    cout << "Character has been saved!" << endl;
 }
 
 void CharacterEditorScreen::levelUp()

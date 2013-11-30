@@ -30,7 +30,7 @@ void MapScreen::initialize()
     texts = TextRenderer::getInstance();
     displayGreen = false;
     displayRed = false;
-    selectedTile = Cell::CellType::Empty;
+    selectedTile = Cell::CellType::Wall;
 
     // Weird code - TO BE REMOVED
     if (firstLoop)
@@ -47,7 +47,7 @@ void MapScreen::initialize()
         {
             temp->loadMapFromCurrentSlot();
             mapModel = temp->getCurrentMap();
-            if(mapModel == nullptr)
+            if (mapModel == nullptr)
             {
                 returnToMenu();
             }
@@ -142,10 +142,10 @@ void MapScreen::handleEvents(SDL_Event &event)
             break;
         case SDL_MOUSEBUTTONUP:
         case SDL_MOUSEBUTTONDOWN:
-        case SDL_MOUSEMOTION:
             displayGreen = false;
             displayRed = false;
             validPath.clear();
+        case SDL_MOUSEMOTION:
             for (auto o : optionLabels)
             {
                 o->handleEvents(event);
@@ -303,6 +303,14 @@ void MapScreen::setupOptions()
     tileOption->setVisibility(true);
     tileOptions.push_back(tileOption);
     tileOption = new TileOption(Cell::CellType::End, 600, 325, 200, 50);
+    tileOption->functionPointer = std::bind(&MapScreen::selectTileOption, this, std::placeholders::_1);
+    tileOption->setVisibility(true);
+    tileOptions.push_back(tileOption);
+    tileOption = new TileOption(Cell::CellType::Monster, 600, 400, 200, 50);
+    tileOption->functionPointer = std::bind(&MapScreen::selectTileOption, this, std::placeholders::_1);
+    tileOption->setVisibility(true);
+    tileOptions.push_back(tileOption);
+    tileOption = new TileOption(Cell::CellType::Treasure, 600, 475, 200, 50);
     tileOption->functionPointer = std::bind(&MapScreen::selectTileOption, this, std::placeholders::_1);
     tileOption->setVisibility(true);
     tileOptions.push_back(tileOption);

@@ -24,16 +24,16 @@ void ArenaMapBuilder::setSize()
 void ArenaMapBuilder::setTiles()
 {
     // Left and Right walls
-    for(int i = 0; i < 9; i++)
+    for (int i = 0; i < 9; i++)
     {
         map->setCell(Cell::CellType::Wall, 0, i);
         map->setCell(Cell::CellType::Wall, 8, i);
     }
 
     // Top and Bottom walls
-    for(int i = 1; i < 8; i++)
+    for (int i = 1; i < 8; i++)
     {
-        if(i != 4)
+        if (i != 4)
         {
             map->setCell(Cell::CellType::Wall, i, 0);
             map->setCell(Cell::CellType::Wall, i, 8);
@@ -53,16 +53,18 @@ void ArenaMapBuilder::setEndPoint()
 
 void ArenaMapBuilder::placeItems()
 {
+    map->getCell(4, 4)->setType(Cell::CellType::Treasure);
 //    DummyItemChest * chest = new DummyItemChest(level);
 //    map->setOccupant(chest, 4, 4);
 
-    // The map is responsible for deleting the chest (for this assignment).
-    // TODO Need to find a solution for final build
+// The map is responsible for deleting the chest (for this assignment).
+// TODO Need to find a solution for final build
 //    chest = nullptr;
 }
 
 void ArenaMapBuilder::placeMonsters()
 {
+    map->getCell(4, 1)->setType(Cell::CellType::Monster);
 //    DummyMonster * monster = new DummyMonster(level);
 //    map->setOccupant(monster, 4, 1);
 

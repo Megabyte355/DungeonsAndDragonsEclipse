@@ -288,10 +288,6 @@ std::string Map::toFileString()
             {
                 ss << "E";
             }
-            else if (currentType == Cell::CellType::Empty)
-            {
-                ss << "_";
-            }
             else
             {
                 ss << "?";
@@ -358,10 +354,6 @@ void Map::fromFileString(std::string input)
                     else if (c == 'E')
                     {
                         matrix[col][row]->setType(Cell::CellType::End);
-                    }
-                    else
-                    {
-                        matrix[col][row]->setType(Cell::CellType::Empty);
                     }
                 }
             }

@@ -78,6 +78,16 @@ void TileOption::draw()
             textureName = "end";
             label = "End";
         }
+        else if (myType == Cell::CellType::Monster)
+        {
+            textureName = "monster";
+            label = "Monster";
+        }
+        else if (myType == Cell::CellType::Treasure)
+        {
+            textureName = "treasure";
+            label = "Treasure";
+        }
         else
         {
             textureName = "empty";

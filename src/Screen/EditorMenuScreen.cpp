@@ -132,8 +132,11 @@ void EditorMenuScreen::reset()
 
 void EditorMenuScreen::update(float deltaTime)
 {
-    widthText->update();
-    heightText->update();
+    if(widthText != nullptr && heightText != nullptr)
+    {
+        widthText->update();
+        heightText->update();
+    }
 }
 
 void EditorMenuScreen::draw()
@@ -221,7 +224,7 @@ void EditorMenuScreen::handleEvents(SDL_Event& event)
                 widthText->handleEvents(event);
                 heightText->handleEvents(event);
             }
-            std::cout << "Moving at : (" << event.motion.x << ", " << event.motion.y << ")" << std::endl;
+//            std::cout << "Moving at : (" << event.motion.x << ", " << event.motion.y << ")" << std::endl;
             break;
         default:
             break;
