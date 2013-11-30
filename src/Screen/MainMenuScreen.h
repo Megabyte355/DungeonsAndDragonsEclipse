@@ -14,6 +14,8 @@
 #include "GameConfig.h"
 #include "MenuOption.h"
 #include "ScreenManager.h"
+#include "Moblin.h"
+#include "Combat.h"
 #include <vector>
 
 class MainMenuScreen: public virtual Screen

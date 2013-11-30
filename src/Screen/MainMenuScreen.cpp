@@ -21,7 +21,6 @@ void MainMenuScreen::initialize()
 {
     active = true;
 
-
     audio->playMusic(2);
     MenuOption * opt;
     opt = new MenuOption(300, 150, 25, "New Game");
@@ -108,7 +107,20 @@ void MainMenuScreen::goToNewGameScreen()
 {
     // TODO When new screen is complete, fix this
 //    ScreenManager::requestScreenChange("", "");
-    std::cout << "New Game" << std::endl;
+
+    // TEST CODE
+    Fighter* f = new Fighter();
+    f->levelUp();
+    f->levelUp();
+
+    map<characterStats, int> testMap = f->inventory.getInventoryStats();
+    for (auto it = testMap.begin(); it != testMap.end(); it++)
+    {
+        std::cout << it->first << ": " << it->second << std::endl;
+    }
+    Moblin * m = new Moblin(5);
+    Combat c;
+    c.combatRound(f, m);
 }
 
 void MainMenuScreen::goToLoadGameScreen()
@@ -127,6 +139,6 @@ void MainMenuScreen::goToCreditScreen()
 {
     // TODO When new screen is complete, fix this
 //    ScreenManager::requestScreenChange("", "");
-	ScreenManager::requestScreenChange("MainMenuScreen", "CreditScreen");
+    ScreenManager::requestScreenChange("MainMenuScreen", "CreditScreen");
     std::cout << "Credits" << std::endl;
 }
