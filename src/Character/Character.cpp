@@ -1,4 +1,4 @@
-/* 
+/*
  * File:   Character.cpp
  * Author: Tiffany Ip 9341943
  * Created on October 17, 2013, 3:03 PM
@@ -37,8 +37,8 @@ void Character::setType(std::string ct){
     charType = ct;
 }
 
-void Character::setAC(){ 
-    armorClass = 10 + getAbilityModifier(getDex()); 
+void Character::setAC(){
+    armorClass = 10 + getAbilityModifier(getDex());
 }
 
 void Character::setStr(int strScore){
@@ -115,6 +115,7 @@ int Character::getHP() {
     return hitPoints;
 }
 int Character::getAC() {
+        cout<<"AC is: "<< armorClass<<endl;
     return armorClass;
 }
 int Character::getSpeed(){
@@ -159,16 +160,24 @@ int Character::getChaMod(){
 }
 
 int Character::attack1() {
-    return rollD20() + getBaseAttackBonus1() + getStrMod(); //TODO add weapon bonus later!!
+    int x = rollD20() + getBaseAttackBonus1() + getStrMod(); //TODO add weapon bonus later!!
+    cout<<"attack roll of: "<<x<<endl;
+    return x;
 }
 int Character::attack2() {
-    return rollD20() + getBaseAttackBonus2() + getStrMod();
+    int x =  rollD20() + getBaseAttackBonus2() + getStrMod();
+    cout<<"attack roll of: "<<x<<endl;
+    return x;
 }
 int Character::attack3() {
-    return rollD20() + getBaseAttackBonus3() + getStrMod();
+    int x =  rollD20() + getBaseAttackBonus3() + getStrMod();
+    cout<<"attack roll of: "<<x<<endl;
+    return x;
 }
 int Character::attack4() {
-    return rollD20() + getBaseAttackBonus4() + getStrMod();
+    int x = rollD20() + getBaseAttackBonus4() + getStrMod();
+    cout<<"attack roll of: "<<x<<endl;
+    return x;
 }
 
 int Character::getBaseAttackBonus1() {
@@ -199,7 +208,7 @@ Character::Character(int level){
     setLevel(level);
     generateAbilityScores();
     chooseAbilityScores();
-    setAC(); 
+    setAC();
 }
 
 /*OTHER FUNCTIONS*/
@@ -207,15 +216,15 @@ void Character::generateAbilityScores(){
     int rollNum = 0; //to count how many total rolls were made (max of 6 stat rolls)
     srand(time(NULL)); //makes sure the random is really random according to time, otherwise it generates the same random numbers
     cout << "Generating 6 random ability scores for you..." << endl;
-    
+
     while (rollNum < 6){ //while number of ability score rolls is less than 6, keep rolling
         int sum = 0, min = 7;
         for (int i = 0; i < 4; i++) { //four rolls of D6s for one ability score
-            int num = rand() % 6 + 1; 
+            int num = rand() % 6 + 1;
             if (num < min) min = num; //find the minimum
-            sum += num; 
+            sum += num;
         }
-        sum -= min; //removes the smallest die value from the total 
+        sum -= min; //removes the smallest die value from the total
         rolls.push_back(sum); //insert into vector of rolls
         rollNum++;
     }
@@ -234,7 +243,7 @@ int Character::getAbilityModifier(double score){
 int Character::getHighestAbilityScore(){
     int max = 0;
     std::vector<int>::iterator it, maxScore;
-    
+
     maxScore = std::max_element(rolls.begin(),rolls.end());
     max = *maxScore;
     rolls.erase(maxScore);
@@ -257,7 +266,7 @@ bool Character::hasAttack2() {
 }
 
 vector<int> Character::getRolls(){
-	return rolls;
+        return rolls;
 }
 
 bool Character::hasAttack3() {
@@ -285,11 +294,15 @@ int Character::rollDie(int type){
 }
 
 int Character::rollDamage(){
-    return getStrMod() + 1; //TODO equip.getDamage()
+    int x =  getStrMod() + 1; //TODO equip.getDamage()
+    cout<<"rolling damage "<<x<<endl;
+    return x;
 }
 
 void Character::takeDamage(int dmg){
     hitPoints -= dmg;
+    cout<<"recieved "<< dmg<<" damage!"<<endl;
+    cout<<"HP is now "<<hitPoints<<endl;
 }
 
 /**UNUSED FUNCTIONS*/
@@ -395,5 +408,3 @@ void Character::chooseAbilityScores() {
     cout << "Charisma=" << getCha() << endl << endl;
     rolls.erase(rolls.begin() + rollNum - 1);
 }
-
-

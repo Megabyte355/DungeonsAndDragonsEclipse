@@ -1,4 +1,4 @@
-/* 
+/*
  * File:   Fighter.cpp
  * Author: Tiffany Ip 9341943
  * Created on October 19, 2013, 6:06PM
@@ -50,7 +50,7 @@ void Fighter::setHP(){
     int conMod = getAbilityModifier(getCon());
     srand(time(NULL));
     //cout << "Constitution Mod is = " << conMod << endl;
-    
+
     for (int i = 0; i < getLevel() ;i++) {
         hitPoints += ((rand()% hitDie )+1) + conMod;
         cout << "Hitpoints at level " << (i+1) << " is " << hitPoints << endl;
@@ -67,40 +67,49 @@ int Fighter::rollDamage(){
     return getStrMod() + 1; //TODO equip.getDamage()
 }
 int Fighter::getAC() {
+        cout<<"Characters armor is: "<<armorClass<<endl;
     return armorClass;
 }
 int Fighter::getHitDie(){
     return hitDie;
 }
 int Fighter::attack1() {
-    return rollD20() + getBaseAttackBonus1() + getStrMod(); //TODO add weapon bonus later!!
+    int x = rollD20() + getBaseAttackBonus1() + getStrMod(); //TODO add weapon bonus later!!
+    cout<< "attack roll is "<<x<<endl;
+    return x;
 }
 int Fighter::attack2() {
-    return rollD20() + getBaseAttackBonus2() + getStrMod();
+        int x = rollD20() + getBaseAttackBonus2() + getStrMod();
+    cout<< "attack roll is "<<x<<endl;
+    return x;
 }
 int Fighter::attack3() {
-    return rollD20() + getBaseAttackBonus3() + getStrMod();
+        int x = rollD20() + getBaseAttackBonus3() + getStrMod();
+    cout<< "attack roll is "<<x<<endl;
+    return x;
 }
 int Fighter::attack4() {
-    return rollD20() + getBaseAttackBonus4() + getStrMod();
+        int x = rollD20() + getBaseAttackBonus4() + getStrMod();
+    cout<< "attack roll is "<<x<<endl;
+    return x;
 }
 
 
 /* This is overriding the Observable class' notifyAll function
-	It allows the fighter class to pass itself as an instance to
-	notify observers with the proper data */
+        It allows the fighter class to pass itself as an instance to
+        notify observers with the proper data */
 //void Fighter::notifyAll()
 //{
-//	vector<Observer> observers = getObservers(); //get the list of observers
-//	vector<Observer>::iterator itr; //create an iterator to go through the vector
-//	for ( itr = observers.begin(); itr != observers.end(); itr++ )
-//	{
-//		itr->notify(*this); //notify by passing the instance itself
-//	}
+//      vector<Observer> observers = getObservers(); //get the list of observers
+//      vector<Observer>::iterator itr; //create an iterator to go through the vector
+//      for ( itr = observers.begin(); itr != observers.end(); itr++ )
+//      {
+//              itr->notify(*this); //notify by passing the instance itself
+//      }
 //}
 
 void Fighter::printChar(){
-	cout << endl<< "This is your new character: " << endl;
+        cout << endl<< "This is your new character: " << endl;
     cout << "Name: " << getName() << endl;
     cout << "Level: " << getLevel() << endl;
     cout << "HP: " << getHP() << endl;
@@ -114,29 +123,9 @@ void Fighter::printChar(){
     cout << "Wisdom " << getWis() << "       & Mod " << getWisMod() << endl;
     cout << "Charisma " << getCha() << "     & Mod " << getChaMod() << endl << endl;
 
-	cout << endl;
+        cout << endl;
 }
 
 Fighter::~Fighter(){
     //empty
-}
-
-void Fighter::equipItem(Equipment* e) {
-    inventory.equipItem(e);
-}
-
-void Fighter::unequipItem(Equipment* e) {
-    inventory.unequipItem(e);
-}
-
-void Fighter::addSingleItemToBag(Item* e) {
-    inventory.addToBag(e);
-}
-
-void Fighter::removeSingleItemFromBag(Item* e) {
-    inventory.removeFromBag(e);
-}
-
-void Fighter::pickupChestContents(ItemContainer* cont) {
-    inventory.acceptContainerContent(cont);
 }
