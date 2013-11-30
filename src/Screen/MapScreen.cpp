@@ -47,7 +47,15 @@ void MapScreen::initialize()
         {
             temp->loadMapFromCurrentSlot();
             mapModel = temp->getCurrentMap();
-            initDataWithLoadedMap();
+            if(mapModel == nullptr)
+            {
+                returnToMenu();
+            }
+            else
+            {
+                initDataWithLoadedMap();
+            }
+            
         }
         else if (mode == PersistentData::MapLoadMode::Premade)
         {
