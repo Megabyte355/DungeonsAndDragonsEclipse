@@ -5,12 +5,12 @@
 */
 
 #include "CharacterEditorScreen.h"
+#include <vector>
 
 CharacterEditorScreen::CharacterEditorScreen() :
-                Screen("CharacterEditorScreen")
+        Screen("CharacterEditorScreen")
 {
     levelSlot = 1;
-    hpSlot = 1;
     strSlot = 0;
     dexSlot = 0;
     conSlot = 0;
@@ -30,7 +30,15 @@ void CharacterEditorScreen::initialize()
 {
     active = true;
     //Menu Options
+    newFighter = new Fighter("Demo", 1);
 
+    levelSlot = newFighter->getLevel();
+    strSlot = newFighter->getStr();
+    dexSlot = newFighter->getDex();
+    conSlot = newFighter->getCon();
+    intSlot = newFighter->getInt();
+    wisSlot = newFighter->getWis();
+    chaSlot = newFighter->getCha();
     TextRenderer::getInstance()->setSettings("triforce", 25, TextRenderer::white, TextRenderer::blue);
     MenuOption * opt;
     opt = new MenuOption(250, 500, 10, "Back");
@@ -63,15 +71,15 @@ void CharacterEditorScreen::initialize()
     //Fighter Type Buttons
     b = new Button(475, 350, 130, 25, "Bully");
     b->setVisibility(true);
-    b->setCallback(std::bind(&CharacterEditorScreen::rollScores1, this)); //1 = Bully
+    b->setCallback(std::bind(&CharacterEditorScreen::sortForBully, this)); //1 = Bully
     typeButtons.push_back(b);
     b = new Button(475, 400, 130, 25, "Nimble");
     b->setVisibility(true);
-    b->setCallback(std::bind(&CharacterEditorScreen::rollScores2, this)); //2 = Nimble
+    b->setCallback(std::bind(&CharacterEditorScreen::sortForNimble, this)); //2 = Nimble
     typeButtons.push_back(b);
     b = new Button(475, 450, 130, 25, "Tank");
     b->setVisibility(true);
-    b->setCallback(std::bind(&CharacterEditorScreen::rollScores3, this)); //3 = Tank
+    b->setCallback(std::bind(&CharacterEditorScreen::sortForTank, this)); //3 = Tank
     typeButtons.push_back(b);
 
     b = new Button(475, 250, 130, 75, "ROLL");
@@ -110,7 +118,7 @@ void CharacterEditorScreen::update(float deltaTime)
 void CharacterEditorScreen::draw()
 {
 
-	nameTextField->setVisibility(true);
+        nameTextField->setVisibility(true);
     TextureRenderer * textures = TextureRenderer::getInstance();
     TextRenderer * texts = TextRenderer::getInstance();
 
@@ -125,7 +133,7 @@ void CharacterEditorScreen::draw()
     TextRenderer::getInstance()->setSettings("triforce", 25, TextRenderer::white, TextRenderer::blue);
     for (auto opt : characterEditorChoices)
     {
-    	opt->draw();
+            opt->draw();
     }
     texts->setSettings("arial", 25, TextRenderer::white, TextRenderer::blue);
     for (auto button : levelIncrementButtons)
@@ -149,37 +157,34 @@ void CharacterEditorScreen::draw()
     texts->renderTextWithShadow(550, 175, ss.str());
     ss.str("");
 
-    ss << hpSlot;
-    texts->renderTextWithShadow(100, 215, "HP:");
-    texts->renderTextWithShadow(270, 215, ss.str());
-    ss.str("");
 
-    ss << strSlot;
+
+    ss << newFighter->getStr();
     texts->renderTextWithShadow(100, 255, "Strength:");
     texts->renderTextWithShadow(270, 255, ss.str());
     ss.str("");
 
-    ss << dexSlot;
+    ss << newFighter->getDex();
     texts->renderTextWithShadow(100, 295, "Dexterity:");
     texts->renderTextWithShadow(270, 295, ss.str());
     ss.str("");
 
-    ss << conSlot;
+    ss << newFighter->getCon();
     texts->renderTextWithShadow(100, 335, "Constitution:");
     texts->renderTextWithShadow(270, 335, ss.str());
     ss.str("");
 
-    ss << intSlot;
+    ss << newFighter->getInt();
     texts->renderTextWithShadow(100, 375, "Intelligence:");
     texts->renderTextWithShadow(270, 375, ss.str());
     ss.str("");
 
-    ss << wisSlot;
+    ss << newFighter->getWis();
     texts->renderTextWithShadow(100, 415, "Wisdom:");
     texts->renderTextWithShadow(270, 415, ss.str());
     ss.str("");
 
-    ss << chaSlot;
+    ss << newFighter->getCha();
     texts->renderTextWithShadow(100, 455, "Charisma:");
     texts->renderTextWithShadow(270, 455, ss.str());
     ss.str("");
@@ -202,8 +207,8 @@ void CharacterEditorScreen::handleEvents(SDL_Event &event)
             break;
         case SDL_TEXTINPUT:
             // Add new text to the end of text?
-//            strcat(text, event.text.text);
-            //break;
+            //strcat(text, event.text.text);
+            break;
         case SDL_KEYDOWN:
             if (event.key.keysym.sym == SDLK_ESCAPE)
             {
@@ -214,10 +219,6 @@ void CharacterEditorScreen::handleEvents(SDL_Event &event)
         case SDL_MOUSEBUTTONUP:
         case SDL_MOUSEBUTTONDOWN:
         case SDL_MOUSEMOTION:
-            for (auto option : characterEditorChoices)
-            {
-                option->handleEvents(event);
-            }
             for (auto button : levelIncrementButtons)
             {
                 button->handleEvents(event);
@@ -267,73 +268,53 @@ void CharacterEditorScreen::levelDown()
 }
 
 
-void CharacterEditorScreen::rollScores1()
+void CharacterEditorScreen::sortForBully()
 {
-    //roll random scores and assing according to type
+    //sorted from lowest ===> highest ability score
+   std::sort(newFighter->rolls.begin(), newFighter->getRolls().end());
+   newFighter->setWis(newFighter->getRolls().at(0));
+   newFighter->setCha(newFighter->getRolls().at(1));
+   newFighter->setInt(newFighter->getRolls().at(2));
+   newFighter->setDex(newFighter->getRolls().at(3));
+   newFighter->setCon(newFighter->getRolls().at(4));
+   newFighter->setStr(newFighter->getRolls().at(5));
 
 }
-void CharacterEditorScreen::rollScores2()
-{
-    //roll random scores and assing according to type
 
+void CharacterEditorScreen::sortForNimble()
+{
+   //sorted from lowest ===> highest ability score
+	std::sort(newFighter->rolls.begin(), newFighter->getRolls().end());
+   newFighter->setWis(newFighter->getRolls().at(0));
+   newFighter->setCha(newFighter->getRolls().at(1));
+   newFighter->setInt(newFighter->getRolls().at(2));
+   newFighter->setStr(newFighter->getRolls().at(3));
+   newFighter->setCon(newFighter->getRolls().at(4));
+   newFighter->setDex(newFighter->getRolls().at(5));
 }
-void CharacterEditorScreen::rollScores3()
-{
-    //roll random scores and assing according to type
 
+void CharacterEditorScreen::sortForTank()
+{
+   //sorted from lowest ===> highest ability score
+//   std::sort(newFighter->rolls.begin(), newFighter->getRolls().end());
+//   newFighter->setWis(newFighter->getRolls().at(0));
+//   newFighter->setCha(newFighter->getRolls().at(1));
+//   newFighter->setInt(newFighter->getRolls().at(2));
+//   newFighter->setStr(newFighter->getRolls().at(3));
+//   newFighter->setDex(newFighter->getRolls().at(4));
+//   newFighter->setCon(newFighter->getRolls().at(5));
+
+   newFighter->setCon(newFighter->getHighestAbilityScore());
+   newFighter->setDex(newFighter->getHighestAbilityScore());
+   newFighter->setStr(newFighter->getHighestAbilityScore());
+   newFighter->setInt(newFighter->getHighestAbilityScore());
+   newFighter->setCha(newFighter->getHighestAbilityScore());
+   newFighter->setWis(newFighter->getHighestAbilityScore());
 }
 
 void CharacterEditorScreen::reroll()
 {
-
-}
-
-void CharacterEditorScreen::updateHP(int newHP)
-{
-    if (hpSlot != newHP)
-    {
-        hpSlot = newHP;
-    }
-}
-void CharacterEditorScreen::updateStr(int newStr)
-{
-    if (strSlot != newStr)
-    {
-        strSlot = newStr;
-    }
-}
-void CharacterEditorScreen::updateDex(int newDex)
-{
-    if (dexSlot != newDex)
-    {
-        dexSlot = newDex;
-    }
-}
-void CharacterEditorScreen::updateCon(int newCon)
-{
-    if (conSlot != newCon)
-    {
-        conSlot = newCon;
-    }
-}
-void CharacterEditorScreen::updateWis(int newWis)
-{
-    if (wisSlot != newWis)
-    {
-        wisSlot = newWis;
-    }
-}
-void CharacterEditorScreen::updateInt(int newInt)
-{
-    if (intSlot != newInt)
-    {
-        intSlot = newInt;
-    }
-}
-void CharacterEditorScreen::updateCha(int newCha)
-{
-    if (chaSlot != newCha)
-    {
-        chaSlot = newCha;
-    }
+    newFighter->rolls.clear();
+    newFighter->generateAbilityScores();
+    newFighter->assignRandomScores();
 }

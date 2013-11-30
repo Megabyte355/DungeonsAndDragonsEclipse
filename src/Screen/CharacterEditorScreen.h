@@ -13,6 +13,7 @@
 #include "GameConfig.h"
 #include "MenuOption.h"
 #include "ScreenManager.h"
+#include "Fighter.h"
 #include <sstream>
 #include "SDL.h"
 #include <iostream>
@@ -45,9 +46,8 @@ class CharacterEditorScreen : public virtual Screen
     private:
         //Textfields
         TextField * nameTextField;
-
+        Fighter * newFighter;
         int levelSlot;
-        int hpSlot;
         int strSlot;
         int dexSlot;
         int conSlot;
@@ -64,19 +64,10 @@ class CharacterEditorScreen : public virtual Screen
         void levelDown();
 
         //Ability Score Creation
-        void rollScores1();
-        void rollScores2();
-        void rollScores3();
+        void sortForBully();
+        void sortForNimble();
+        void sortForTank();
         void reroll();
-
-        //Ability Score update
-        void updateHP(int);
-        void updateStr(int);
-        void updateDex(int);
-        void updateCon(int);
-        void updateWis(int);
-        void updateInt(int);
-        void updateCha(int);
 
 };
 

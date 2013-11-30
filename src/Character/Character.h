@@ -21,7 +21,6 @@ protected:
     int hitPoints;
     int armorClass;
     int speed;
-    vector<int> rolls; // for the dice rolls for ability scores
     
     //ability scores
     int str;
@@ -46,7 +45,11 @@ public:
     Character();
     Character(string name, int level);
     Character(int level);
-    
+
+    vector<int> rolls;// (6,10); // for the dice rolls for ability scores
+    void makeRolls();
+    vector<int> getRolls();
+    void assignRandomScores();
     //setters
     void setName(string name);
     void setLevel(int level);

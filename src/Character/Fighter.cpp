@@ -16,8 +16,18 @@ Fighter::Fighter(string name, int level):Character(name, level){
     setName(name);
     setLevel(level);
     generateAbilityScores();
-    setAC(); 
+    assignRandomScores();
+
+    setStrMod(getStr());
+    setDexMod(getDex());
+    setConMod(getCon());
+    setIntMod(getInt());
+    setWisMod(getWis());
+    setChaMod(getCha());
+
+    setAC();
     setHP();
+    setAttackBonuses();
 }
 
 void Fighter::levelUp() {
