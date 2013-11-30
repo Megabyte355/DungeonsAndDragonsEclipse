@@ -14,7 +14,7 @@
 #include "GameConfig.h"
 #include "MenuOption.h"
 #include "ScreenManager.h"
-#include <vector>
+#include "MapTileOptionList.h"
 
 class MapEditorScreen: public virtual Screen
 {
@@ -28,7 +28,25 @@ class MapEditorScreen: public virtual Screen
         void draw() override;
         void handleEvents(SDL_Event &event) override;
 
+    private:
 
+        // Number of cells in the current map
+        int mapWidth;
+        int mapHeight;
+
+        // Which cell to display on top left
+        int displayX;
+        int displayY;
+
+        // Cells to display on the screen at once
+        int displayWidth;
+        int displayHeight;
+
+        // Size of tiles
+        int mapTileWidth;
+        int mapTileHeight;
+
+        MapTileOptionList * tileOptionList;
 
 };
 

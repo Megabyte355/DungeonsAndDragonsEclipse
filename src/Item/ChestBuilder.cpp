@@ -58,39 +58,39 @@ void ChestBuilder::createRandomItem() {
 
     switch (randomItemIndex){
         case 1:{            
-            generatedItem = new Helmet(characterLevel, true);
+            generatedItem = new Helmet(characterLevel, true, "");
             break;
         }
         case 2:{            
-            generatedItem = new Armor(characterLevel, true);
+            generatedItem = new Armor(characterLevel, true, "");
             break;
         }
         case 3:{
-            generatedItem = new Shield(characterLevel, true);
+            generatedItem = new Shield(characterLevel, true, "");
             break;
         }
 		case 4:{
-			generatedItem = new Bracers(characterLevel, true);
+			generatedItem = new Bracers(characterLevel, true, "");
             break;
         }
         case 5:{            
-            generatedItem = new Ring(characterLevel, true);
+            generatedItem = new Ring(characterLevel, true, "");
             break;
         }
         case 6:{            
-            generatedItem = new Belt(characterLevel, true);
+            generatedItem = new Belt(characterLevel, true, "");
             break;
         }
         case 7:{            
-            generatedItem = new Boots(characterLevel, true);
+            generatedItem = new Boots(characterLevel, true, "");
             break;
         }
         case 8:{            
-            generatedItem = new Weapon(characterLevel, true, "Sword");
+            generatedItem = new Weapon(characterLevel, true, "Sword", "");
             break;
         }
         case 9:{            
-            generatedItem = new Weapon(characterLevel, true, "Bow");
+            generatedItem = new Weapon(characterLevel, true, "Bow", "");
             break;
         }
     }

@@ -8,26 +8,26 @@
 #ifndef TILEOPTION_H_
 #define TILEOPTION_H_
 
-#include "Cell.h"
-#include "TextureRenderer.h"
-#include "TextRenderer.h"
 #include <string>
 #include <SDL.h>
 #include <functional>
+#include "Cell.h"
+#include "TextureRenderer.h"
+#include "TextRenderer.h"
+#include "ListOption.h"
 
-class TileOption
+class TileOption: public virtual ListOption
 {
     public:
         TileOption(Cell::CellType, int, int, int, int);
         ~TileOption();
 
         Cell::CellType getCellType();
-        void handleEvents(SDL_Event &);
+        void update();
         void draw();
-
+        void handleEvents(SDL_Event &);
         std::function<void(Cell::CellType)> functionPointer;
     private:
-        int x, y, w, h;
         Cell::CellType myType;
 };
 

@@ -42,6 +42,13 @@ class Fighter : public Character
         int attack3();
         int attack4();
         
+        //INVENTORY RELATED STUFF
+        void equipItem(Equipment * e);
+        void unequipItem(Equipment * e);
+        void addSingleItemToBag(Item * e);
+        void removeSingleItemFromBag(Item * e);
+        void pickupChestContents(ItemContainer * cont);
+
 //	void notifyAll(); //overriding
 	void printChar();
         

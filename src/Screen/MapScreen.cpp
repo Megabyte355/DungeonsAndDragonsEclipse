@@ -93,7 +93,8 @@ void MapScreen::draw()
                     if (mt != nullptr && (mt->i == validPath[i].x) && (mt->j == validPath[i].y))
                     {
                         // Draw the path
-                        textures->drawTexture("dot", mt->x, mt->y, mt->w, mt->h);
+                        SDL_Rect b(mt->getBoundary());
+                        textures->drawTexture("transparent_white", b.x, b.y, b.w, b.h);
                     }
                 }
             }
@@ -162,7 +163,7 @@ void MapScreen::reset()
     optionLabels.clear();
     mapTiles.clear();
 
-    if(mapModel != nullptr)
+    if (mapModel != nullptr)
     {
         delete mapModel;
     }

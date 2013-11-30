@@ -28,7 +28,7 @@ int Screen::getInstanceId()
     return instanceId;
 }
 
-std::string Screen::getName()
+std::string Screen::getScreenName()
 {
     return uniqueName;
 }

@@ -58,6 +58,7 @@ void TextureRenderer::loadAllTextures()
     textureMap["outer_space"] = loadTexture("assets/outer_space.png");
     textureMap["wall"] = loadTexture("assets/wall.png");
     textureMap["entrance"] = loadTexture("assets/entrance.png");
+    textureMap["transparent_white"] = loadTexture("assets/transparent_white.png");
 
     // Backgrounds
     textureMap["bizzare_landscape"] = loadTexture("assets/bizzare_landscape.png");
@@ -76,6 +77,12 @@ void TextureRenderer::loadAllTextures()
     textureMap["red_button_normal"] = loadTexture("assets/red_button_normal.png");
     textureMap["red_button_down"] = loadTexture("assets/red_button_down.png");
     textureMap["red_button_hover"] = loadTexture("assets/red_button_hover.png");
+
+    // Arrows
+    textureMap["yellow_triangle_up"] = loadTexture("assets/yellow_triangle_up.png");
+    textureMap["yellow_triangle_down"] = loadTexture("assets/yellow_triangle_down.png");
+    textureMap["yellow_triangle_left"] = loadTexture("assets/yellow_triangle_left.png");
+    textureMap["yellow_triangle_right"] = loadTexture("assets/yellow_triangle_right.png");
 
     // Monsters
     textureMap["monster"] = loadTexture("assets/monster.png");

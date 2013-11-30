@@ -16,8 +16,8 @@ class Bracers: public Equipment
 {
     public:
         Bracers();
-        Bracers(string pname, int pvalue, int pweight);
-        Bracers(int charLevel, bool isRandom);
+        Bracers(string pname, int pvalue, int pweight, string ptextureName);
+        Bracers(int charLevel, bool isRandom, string ptextureName);
         virtual ~Bracers();
 
         string toString() override;
