@@ -25,7 +25,7 @@ class Screen
         bool active;
         bool paused;
         int getInstanceId();
-        std::string getName();
+        std::string getScreenName();
         virtual void initialize() = 0;
         virtual void update(float) = 0;
         virtual void draw() = 0;

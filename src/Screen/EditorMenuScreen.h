@@ -8,16 +8,17 @@
 #ifndef EDITORMENUSCREEN_H_
 #define EDITORMENUSCREEN_H_
 
+#include <iostream>
+#include <SDL.h>
+#include <vector>
+#include <sstream>
 #include "GameConfig.h"
 #include "ScreenManager.h"
 #include "TextureRenderer.h"
 #include "TextRenderer.h"
 #include "ScreenManager.h"
 #include "NumericTextField.h"
-#include <iostream>
-#include <SDL.h>
-#include <vector>
-#include <sstream>
+#include "PersistentData.h"
 
 class EditorMenuScreen: public virtual Screen
 {

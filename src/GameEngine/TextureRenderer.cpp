@@ -58,6 +58,7 @@ void TextureRenderer::loadAllTextures()
     textureMap["outer_space"] = loadTexture("assets/outer_space.png");
     textureMap["wall"] = loadTexture("assets/wall.png");
     textureMap["entrance"] = loadTexture("assets/entrance.png");
+    textureMap["transparent_white"] = loadTexture("assets/transparent_white.png");
 
     // Backgrounds
     textureMap["bizzare_landscape"] = loadTexture("assets/bizzare_landscape.png");

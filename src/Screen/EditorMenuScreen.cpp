@@ -285,24 +285,56 @@ void EditorMenuScreen::generalEditorMenu()
 
 void EditorMenuScreen::goToMainMenuScreen()
 {
-    ScreenManager::requestScreenChange("EditorMenuScreen", "MainMenuScreen");
+    ScreenManager::requestScreenChange(getScreenName(), "MainMenuScreen");
 }
 
 void EditorMenuScreen::goToMapEditorScreen()
 {
+    PersistentData::getInstance()->setMapLoadMode(PersistentData::MapLoadMode::NewMap);
+    PersistentData::getInstance()->setMapLoadSize(newMapWidth, newMapHeight);
+    ScreenManager::requestScreenChange(getScreenName(), "MapScreen");
 }
 
 void EditorMenuScreen::goToMapEditorScreenWithPremade()
 {
+    PersistentData::getInstance()->setMapLoadMode(PersistentData::MapLoadMode::Premade);
+    PersistentData::getInstance()->setMapLoadPremade(premadeSlot);
+    ScreenManager::requestScreenChange(getScreenName(), "MapScreen");
 }
 
 void EditorMenuScreen::goToMapEditorScreenWithSaved()
 {
+    PersistentData::getInstance()->setMapLoadMode(PersistentData::MapLoadMode::SavedSlot);
+    PersistentData::getInstance()->setMapLoadSlot(fileSlot);
+    ScreenManager::requestScreenChange(getScreenName(), "MapScreen");
+}
+
+void EditorMenuScreen::goToCharacterEditorScreen()
+{
+    // TODO
+}
+
+void EditorMenuScreen::goToCharacterEditorScreenWithPremade()
+{
+    // TODO
+}
+
+void EditorMenuScreen::goToCharacterEditorScreenWithSaved()
+{
+    // TODO
+}
+
+void EditorMenuScreen::premadeSlotDown()
+{
+    if (premadeSlot > 0)
+    {
+        premadeSlot--;
+    }
 }
 
 void EditorMenuScreen::fileSlotUp()
 {
-    if (fileSlot < 10)
+    if (fileSlot < 9)
     {
         fileSlot++;
     }
@@ -318,28 +350,8 @@ void EditorMenuScreen::fileSlotDown()
 
 void EditorMenuScreen::premadeSlotUp()
 {
-    if (premadeSlot < 10)
+    if (premadeSlot < 9)
     {
         premadeSlot++;
-    }
-}
-
-void EditorMenuScreen::goToCharacterEditorScreen()
-{
-}
-
-void EditorMenuScreen::goToCharacterEditorScreenWithPremade()
-{
-}
-
-void EditorMenuScreen::goToCharacterEditorScreenWithSaved()
-{
-}
-
-void EditorMenuScreen::premadeSlotDown()
-{
-    if (premadeSlot > 0)
-    {
-        premadeSlot--;
     }
 }

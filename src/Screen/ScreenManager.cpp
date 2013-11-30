@@ -64,7 +64,7 @@ void ScreenManager::pushScreen(std::string s)
 {
     for (std::vector<std::shared_ptr<Screen>>::iterator it = storedScreens.begin(); it != storedScreens.end(); it++)
     {
-        if ((*it)->getName() == s)
+        if ((*it)->getScreenName() == s)
         {
             (*it)->active = true;
             (*it)->initialize();
@@ -77,14 +77,14 @@ void ScreenManager::pushScreen(std::string s)
 // Remove a screen from activeScreens and screensToUpdate
 void ScreenManager::popScreen(std::shared_ptr<Screen> s)
 {
-    popScreen(s->getName());
+    popScreen(s->getScreenName());
 }
 
 void ScreenManager::popScreen(std::string s)
 {
     for (std::vector<std::shared_ptr<Screen>>::iterator it = activeScreens.begin(); it != activeScreens.end(); it++)
     {
-        if ((*it)->getName() == s)
+        if ((*it)->getScreenName() == s)
         {
             (*it)->reset();
             activeScreens.erase(it);
@@ -114,11 +114,11 @@ void ScreenManager::update(float gameTime)
         changeScreenRequest = false;
         for(auto s : storedScreens)
         {
-            if(s->getName() == nextScreenName)
+            if(s->getScreenName() == nextScreenName)
             {
                 pushScreen(s);
             }
-            if(s->getName() == previousScreenName)
+            if(s->getScreenName() == previousScreenName)
             {
                 s->active = false;
             }
