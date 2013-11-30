@@ -8,6 +8,7 @@
 #ifndef MAPSCREEN_H_
 #define MAPSCREEN_H_
 
+#include <functional>
 #include "GameConfig.h"
 #include "ScreenManager.h"
 #include "TextureRenderer.h"
@@ -19,7 +20,7 @@
 #include "TileOption.h"
 #include "ArenaMapBuilder.h"
 #include "MapDirector.h"
-#include <functional>
+#include "PersistentData.h"
 
 class MapScreen : public virtual Screen
 {
@@ -33,19 +34,23 @@ class MapScreen : public virtual Screen
         void reset() override;
 
         void initData(int,int);
+        void initDataWithLoadedMap();
         void initDataWithArenaBuilder();
 
         Cell::CellType selectedCellType();
         void selectTileOption(Cell::CellType);
         void returnToMenu();
+        void saveMap();
         void validatePath();
         bool pathCheckRequest;
+        void setupOptions();
+        
+        static int mapWidth;
+        static int mapHeight;
+
     private:
         TextureRenderer * textures;
         TextRenderer * texts;
-
-        static int mapWidth;
-        static int mapHeight;
 
         Map * mapModel;
 

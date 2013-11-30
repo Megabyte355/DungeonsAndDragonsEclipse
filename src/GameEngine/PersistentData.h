@@ -28,9 +28,12 @@ class PersistentData
         Map* getCurrentMap() const;
         int getMapLoadHeight() const;
         void setMapLoadMode(MapLoadMode mapLoadMode);
+        MapLoadMode getMapLoadMode();
         int getMapLoadPremade() const;
         int getMapLoadSlot() const;
         int getMapLoadWidth() const;
+        void saveMapToCurrentSlot(Map *);
+        void loadMapFromCurrentSlot();
 
     private:
         PersistentData();

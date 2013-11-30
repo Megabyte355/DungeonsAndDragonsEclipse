@@ -37,9 +37,22 @@ void MapScreen::initialize()
     {
         firstLoop = false;
 
-        // Weird stuff going on
-        // initData(mapWidth, mapHeight);
-        initDataWithArenaBuilder();
+        PersistentData * temp = PersistentData::getInstance();
+        PersistentData::MapLoadMode mode = temp->getMapLoadMode();
+        if (mode == PersistentData::MapLoadMode::NewMap)
+        {
+            initData(temp->getMapLoadWidth(), temp->getMapLoadHeight());
+        }
+        else if (mode == PersistentData::MapLoadMode::SavedSlot)
+        {
+            temp->loadMapFromCurrentSlot();
+            mapModel = temp->getCurrentMap();
+            initDataWithLoadedMap();
+        }
+        else if (mode == PersistentData::MapLoadMode::Premade)
+        {
+            initDataWithArenaBuilder();
+        }
     }
 }
 
@@ -163,21 +176,27 @@ void MapScreen::reset()
     optionLabels.clear();
     mapTiles.clear();
 
-    if (mapModel != nullptr)
-    {
-        delete mapModel;
-    }
+    // We assume we save the map
+    //if (mapModel != nullptr)
+    //{
+    //    delete mapModel;
+    //}
     mapModel = nullptr;
 
 }
 
-void MapScreen::initData(int width, int height)
+void MapScreen::initData(int mapWidth, int mapHeight)
 {
-    mapModel = new Map(width, height);
-    
-    // ...
-    int tileTextureWidth = 400 / mapWidth;
-    int tileTextureHeight = 400 / mapHeight;
+    mapModel = new Map(mapWidth, mapHeight);
+    initDataWithLoadedMap();
+}
+
+void MapScreen::initDataWithLoadedMap()
+{
+    mapWidth = mapModel->getWidth();
+    mapHeight = mapModel->getHeight();
+    int tileTextureWidth = 450 / mapWidth;
+    int tileTextureHeight = 450 / mapHeight;
     int currentX = 25;
     int currentY = 125;
     MapTile * mt = nullptr;
@@ -195,35 +214,7 @@ void MapScreen::initData(int width, int height)
         currentY = 125;
     }
 
-    TileOption * tileOption = new TileOption(Cell::CellType::Wall, 600, 100, 200, 50);
-    tileOption->functionPointer = std::bind(&MapScreen::selectTileOption, this, std::placeholders::_1);
-    tileOptions.push_back(tileOption);
-    tileOption = new TileOption(Cell::CellType::Floor, 600, 175, 200, 50);
-    tileOption->functionPointer = std::bind(&MapScreen::selectTileOption, this, std::placeholders::_1);
-    tileOptions.push_back(tileOption);
-    tileOption = new TileOption(Cell::CellType::Start, 600, 250, 200, 50);
-    tileOption->functionPointer = std::bind(&MapScreen::selectTileOption, this, std::placeholders::_1);
-    tileOptions.push_back(tileOption);
-    tileOption = new TileOption(Cell::CellType::End, 600, 325, 200, 50);
-    tileOption->functionPointer = std::bind(&MapScreen::selectTileOption, this, std::placeholders::_1);
-    tileOptions.push_back(tileOption);
-    tileOption = new TileOption(Cell::CellType::Empty, 600, 400, 200, 50);
-    tileOption->functionPointer = std::bind(&MapScreen::selectTileOption, this, std::placeholders::_1);
-    tileOptions.push_back(tileOption);
-
-    tileOption = nullptr;
-
-    Button * option = new Button(650, 550, 15, "Validate map");
-    option->toggleVisibility();
-    optionLabels.push_back(option);
-    option->setCallback(std::bind(&MapScreen::validatePath, this));
-
-    option = new Button(700, 0, 15, "Back");
-    option->setCallback(std::bind(&MapScreen::returnToMenu, this));
-    optionLabels.push_back(option);
-    option->toggleVisibility();
-
-    option = nullptr;
+    setupOptions();
 }
 
 void MapScreen::initDataWithArenaBuilder()
@@ -260,35 +251,7 @@ void MapScreen::initDataWithArenaBuilder()
         currentY = 80;
     }
 
-    TileOption * tileOption = new TileOption(Cell::CellType::Wall, 600, 100, 200, 50);
-    tileOption->functionPointer = std::bind(&MapScreen::selectTileOption, this, std::placeholders::_1);
-    tileOptions.push_back(tileOption);
-    tileOption = new TileOption(Cell::CellType::Floor, 600, 175, 200, 50);
-    tileOption->functionPointer = std::bind(&MapScreen::selectTileOption, this, std::placeholders::_1);
-    tileOptions.push_back(tileOption);
-    tileOption = new TileOption(Cell::CellType::Start, 600, 250, 200, 50);
-    tileOption->functionPointer = std::bind(&MapScreen::selectTileOption, this, std::placeholders::_1);
-    tileOptions.push_back(tileOption);
-    tileOption = new TileOption(Cell::CellType::End, 600, 325, 200, 50);
-    tileOption->functionPointer = std::bind(&MapScreen::selectTileOption, this, std::placeholders::_1);
-    tileOptions.push_back(tileOption);
-    tileOption = new TileOption(Cell::CellType::Empty, 600, 400, 200, 50);
-    tileOption->functionPointer = std::bind(&MapScreen::selectTileOption, this, std::placeholders::_1);
-    tileOptions.push_back(tileOption);
-
-    tileOption = nullptr;
-
-    Button * option = new Button(650, 550, 15, "Validate map");
-    option->toggleVisibility();
-    optionLabels.push_back(option);
-    option->setCallback(std::bind(&MapScreen::validatePath, this));
-
-    option = new Button(700, 0, 15, "Back");
-    option->setCallback(std::bind(&MapScreen::returnToMenu, this));
-    optionLabels.push_back(option);
-    option->toggleVisibility();
-
-    option = nullptr;
+    setupOptions();
 }
 
 Cell::CellType MapScreen::selectedCellType()
@@ -302,10 +265,55 @@ void MapScreen::selectTileOption(Cell::CellType type)
 
 void MapScreen::returnToMenu()
 {
-    ScreenManager::requestScreenChange("MapScreen", "MenuScreen");
+    ScreenManager::requestScreenChange(getScreenName(), "EditorMenuScreen");
 }
 
 void MapScreen::validatePath()
 {
     pathCheckRequest = true;
+}
+
+void MapScreen::saveMap()
+{
+    PersistentData * temp = PersistentData::getInstance();
+    temp->setMapLoadSlot(0);
+    temp->saveMapToCurrentSlot(mapModel);
+}
+
+void MapScreen::setupOptions()
+{
+    TileOption * tileOption = new TileOption(Cell::CellType::Wall, 600, 100, 200, 50);
+    tileOption->functionPointer = std::bind(&MapScreen::selectTileOption, this, std::placeholders::_1);
+    tileOption->setVisibility(true);
+    tileOptions.push_back(tileOption);
+    tileOption = new TileOption(Cell::CellType::Floor, 600, 175, 200, 50);
+    tileOption->functionPointer = std::bind(&MapScreen::selectTileOption, this, std::placeholders::_1);
+    tileOption->setVisibility(true);
+    tileOptions.push_back(tileOption);
+    tileOption = new TileOption(Cell::CellType::Start, 600, 250, 200, 50);
+    tileOption->functionPointer = std::bind(&MapScreen::selectTileOption, this, std::placeholders::_1);
+    tileOption->setVisibility(true);
+    tileOptions.push_back(tileOption);
+    tileOption = new TileOption(Cell::CellType::End, 600, 325, 200, 50);
+    tileOption->functionPointer = std::bind(&MapScreen::selectTileOption, this, std::placeholders::_1);
+    tileOption->setVisibility(true);
+    tileOptions.push_back(tileOption);
+    tileOption = nullptr;
+
+    Button * option = new Button(450, 0, 15, "Validate map");
+    option->toggleVisibility();
+    optionLabels.push_back(option);
+    option->setCallback(std::bind(&MapScreen::validatePath, this));
+    
+    option = new Button(613, 0, 15, "Save");
+    option->setCallback(std::bind(&MapScreen::saveMap, this));
+    optionLabels.push_back(option);
+    option->toggleVisibility();
+
+    option = new Button(700, 0, 15, "Back");
+    option->setCallback(std::bind(&MapScreen::returnToMenu, this));
+    optionLabels.push_back(option);
+    option->toggleVisibility();
+
+    option = nullptr;
 }

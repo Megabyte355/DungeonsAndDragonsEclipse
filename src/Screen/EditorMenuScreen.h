@@ -9,6 +9,7 @@
 #define EDITORMENUSCREEN_H_
 
 #include <iostream>
+#include <sstream>
 #include <SDL.h>
 #include <vector>
 #include <sstream>

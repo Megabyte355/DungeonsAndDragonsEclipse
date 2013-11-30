@@ -25,11 +25,6 @@ void MapEditorScreen::initialize()
 
 void MapEditorScreen::reset()
 {
-//    for (auto o : menuOptions)
-//    {
-//        delete o;
-//    }
-//    menuOptions.clear();
     delete tileOptionList;
     tileOptionList = nullptr;
 }

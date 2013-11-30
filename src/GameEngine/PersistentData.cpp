@@ -12,6 +12,8 @@ PersistentData * PersistentData::instance = nullptr;
 PersistentData::PersistentData()
 {
     currentMap = nullptr;
+    savedMaps.resize(10);
+    premadeMaps.resize(10);
     mapLoadWidth = 0;
     mapLoadHeight = 0;
     mapLoadPremade = 0;
@@ -73,6 +75,11 @@ void PersistentData::setMapLoadMode(MapLoadMode mapLoadMode)
     this->mapLoadMode = mapLoadMode;
 }
 
+PersistentData::MapLoadMode PersistentData::getMapLoadMode()
+{
+    return mapLoadMode;
+}
+
 int PersistentData::getMapLoadPremade() const
 {
     return mapLoadPremade;
@@ -86,4 +93,14 @@ int PersistentData::getMapLoadSlot() const
 int PersistentData::getMapLoadWidth() const
 {
     return mapLoadWidth;
+}
+
+void PersistentData::saveMapToCurrentSlot(Map * m)
+{
+    savedMaps[mapLoadSlot] = m;
+}
+
+void PersistentData::loadMapFromCurrentSlot()
+{
+    currentMap = savedMaps[mapLoadSlot];
 }
