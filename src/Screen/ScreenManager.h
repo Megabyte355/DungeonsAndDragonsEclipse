@@ -21,6 +21,7 @@
 #include "CharacterEditorScreen.h"
 #include "CreditScreen.h"
 #include "InventoryScreen.h"
+#include "MapEditorScreen.h"
 
 // Forward declaration
 class Game;
