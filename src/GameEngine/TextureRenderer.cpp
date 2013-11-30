@@ -84,6 +84,13 @@ void TextureRenderer::loadAllTextures()
     textureMap["link"] = loadTexture("assets/link.png");
     textureMap["fairy"] = loadTexture("assets/fairy.png");
 
+    // Credits
+    textureMap["gary"] = loadTexture("assets/gary.png");
+    textureMap["tiff"] = loadTexture("assets/tiff.png");
+    textureMap["kev"] = loadTexture("assets/kev.png");
+    textureMap["tim"] = loadTexture("assets/tim.png");
+
+
     // Items
     textureMap["treasure"] = loadTexture("assets/treasure.png");
 }

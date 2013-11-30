@@ -1,12 +1,12 @@
 /*
- * MainMenuScreen.h
+ * CreditScreen.h
  *
- *  Created on: Nov 28, 2013
- *      Author: Gary
+ *  Created on: Nov 29, 2013
+ *      Author: Tim
  */
 
-#ifndef MAINMENUSCREEN_H_
-#define MAINMENUSCREEN_H_
+#ifndef CREDITSCREEN_H_
+#define CREDITSCREEN_H_
 
 #include "Screen.h"
 #include "TextureRenderer.h"
@@ -16,11 +16,11 @@
 #include "ScreenManager.h"
 #include <vector>
 
-class MainMenuScreen: public virtual Screen
+class CreditScreen: public virtual Screen
 {
     public:
-        MainMenuScreen();
-        virtual ~MainMenuScreen();
+		CreditScreen();
+        virtual ~CreditScreen();
 
         void initialize() override;
         void reset() override;
@@ -32,10 +32,8 @@ class MainMenuScreen: public virtual Screen
         std::vector<MenuOption*> menuOptions;
 
     private:
-        void goToNewGameScreen();
-        void goToLoadGameScreen();
-        void goToEditorMenuScreen();
-        void goToCreditScreen();
+        void goBack();
+
 };
 
-#endif /* MAINMENUSCREEN_H_ */
+#endif /* CREDITSCREEN_H_ */

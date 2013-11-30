@@ -1,12 +1,12 @@
 /*
- * MainMenuScreen.h
+ * InventoryScreen.h
  *
- *  Created on: Nov 28, 2013
- *      Author: Gary
+ *  Created on: Nov 30, 2013
+ *      Author: Tim
  */
 
-#ifndef MAINMENUSCREEN_H_
-#define MAINMENUSCREEN_H_
+#ifndef INVENTORYSCREEN_H_
+#define INVENTORYSCREEN_H_
 
 #include "Screen.h"
 #include "TextureRenderer.h"
@@ -16,11 +16,11 @@
 #include "ScreenManager.h"
 #include <vector>
 
-class MainMenuScreen: public virtual Screen
+class InventoryScreen: public virtual Screen
 {
     public:
-        MainMenuScreen();
-        virtual ~MainMenuScreen();
+	InventoryScreen();
+        virtual ~InventoryScreen();
 
         void initialize() override;
         void reset() override;
@@ -32,10 +32,9 @@ class MainMenuScreen: public virtual Screen
         std::vector<MenuOption*> menuOptions;
 
     private:
-        void goToNewGameScreen();
-        void goToLoadGameScreen();
-        void goToEditorMenuScreen();
-        void goToCreditScreen();
+        void goBack();
 };
 
-#endif /* MAINMENUSCREEN_H_ */
+
+
+#endif /* INVENTORYSCREEN_H_ */
