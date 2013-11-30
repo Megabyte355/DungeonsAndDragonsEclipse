@@ -14,6 +14,8 @@ PersistentData::PersistentData()
     currentMap = nullptr;
     savedMaps.resize(10);
     premadeMaps.resize(10);
+    savedCharacters.resize(10);
+    premadeCharacters.resize(10);
     mapLoadWidth = 0;
     mapLoadHeight = 0;
     mapLoadPremade = 0;
@@ -103,4 +105,43 @@ void PersistentData::saveMapToCurrentSlot(Map * m)
 void PersistentData::loadMapFromCurrentSlot()
 {
     currentMap = savedMaps[mapLoadSlot];
+}
+
+//Character
+void PersistentData::setCharLoadPremade(int premade)
+{
+    charLoadPremade = premade;
+}
+
+void PersistentData::setCharLoadSlot(int slot)
+{
+    charLoadSlot = slot;
+}
+
+Character* PersistentData::getCurrentChar() const
+{
+    return currentChar;
+}
+
+int PersistentData::getCharLoadPremade() const
+{
+    return charLoadPremade;
+}
+
+int PersistentData::getCharLoadSlot() const
+{
+    return charLoadSlot;
+}
+void PersistentData::setCharLoadMode(CharLoadMode charLoadMode)
+{
+    this->charLoadMode = charLoadMode;
+}
+
+void PersistentData::saveCharToCurrentSlot(Character * c)
+{
+    savedCharacters[charLoadSlot] = c;
+}
+void PersistentData::loadCharFromCurrentSlot()
+{
+    currentChar = savedCharacters[charLoadSlot];
 }

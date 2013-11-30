@@ -10,6 +10,7 @@
 
 #include <vector>
 #include "Map.h"
+#include "Character.h"
 
 class PersistentData
 {
@@ -35,6 +36,21 @@ class PersistentData
         void saveMapToCurrentSlot(Map *);
         void loadMapFromCurrentSlot();
 
+        //character
+        enum CharLoadMode
+        {
+            NewChar, PremadeChar, SavedChar
+        };
+
+        void setCharLoadPremade(int);
+        void setCharLoadSlot(int);
+        Character* getCurrentChar() const;
+        int getCharLoadPremade() const;
+        int getCharLoadSlot() const;
+        void setCharLoadMode(CharLoadMode charLoadMode);
+        void saveCharToCurrentSlot(Character *);
+        void loadCharFromCurrentSlot();
+
     private:
         PersistentData();
         static PersistentData * instance;
@@ -50,6 +66,12 @@ class PersistentData
         std::vector<Map*> premadeMaps;
 
         // Character variables
+        Character * currentChar;
+        CharLoadMode charLoadMode;
+        int charLoadPremade;
+        int charLoadSlot;
+        std::vector<Character*> savedCharacters;
+        std::vector<Character*> premadeCharacters;
 
 };
 
