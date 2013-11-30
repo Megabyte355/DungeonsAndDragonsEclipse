@@ -33,6 +33,7 @@ class MainMenuScreen: public virtual Screen
 
     private:
         void goToNewGameScreen();
+        void goToLoadGameScreen();
         void goToEditorMenuScreen();
         void goToCreditScreen();
 };

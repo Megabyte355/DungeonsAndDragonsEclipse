@@ -23,6 +23,7 @@ EditorMenuScreen::~EditorMenuScreen()
 
 void EditorMenuScreen::initialize()
 {
+	audio->playMusic(2);
     active = true;
     currentChoices = nullptr;
 
@@ -325,7 +326,7 @@ void EditorMenuScreen::goToMapEditorScreenWithSaved()
 
 void EditorMenuScreen::goToCharacterEditorScreen()
 {
-    // TODO
+    ScreenManager::requestScreenChange(getScreenName(), "CharacterEditorScreen");
 }
 
 void EditorMenuScreen::goToCharacterEditorScreenWithPremade()

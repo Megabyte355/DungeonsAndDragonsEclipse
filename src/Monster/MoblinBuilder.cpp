@@ -15,7 +15,7 @@ void MoblinBuilder::buildType(){
     character->setType(charType);
 }
 void MoblinBuilder::buildStats(){
-    character->setStartingLevel(charLevel);
+    character->setLevel(charLevel);
     character->setSpeed();
     character->generateAbilityScores();
     

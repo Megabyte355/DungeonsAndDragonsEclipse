@@ -21,16 +21,22 @@ void MainMenuScreen::initialize()
 {
     active = true;
 
+
+    audio->playMusic(2);
     MenuOption * opt;
-    opt = new MenuOption(300, 200, 25, "New Game");
+    opt = new MenuOption(300, 150, 25, "New Game");
     opt->setVisibility(true);
     opt->setCallback(std::bind(&MainMenuScreen::goToNewGameScreen, this));
     menuOptions.push_back(opt);
-    opt = new MenuOption(300, 300, 25, "Editors");
+    opt = new MenuOption(300, 250, 25, "Load Game");
+    opt->setVisibility(true);
+    opt->setCallback(std::bind(&MainMenuScreen::goToLoadGameScreen, this));
+    menuOptions.push_back(opt);
+    opt = new MenuOption(300, 350, 25, "Editors");
     opt->setVisibility(true);
     opt->setCallback(std::bind(&MainMenuScreen::goToEditorMenuScreen, this));
     menuOptions.push_back(opt);
-    opt = new MenuOption(300, 400, 25, "Credits");
+    opt = new MenuOption(300, 450, 25, "Credits");
     opt->setVisibility(true);
     opt->setCallback(std::bind(&MainMenuScreen::goToCreditScreen, this));
     menuOptions.push_back(opt);
@@ -105,6 +111,13 @@ void MainMenuScreen::goToNewGameScreen()
     std::cout << "New Game" << std::endl;
 }
 
+void MainMenuScreen::goToLoadGameScreen()
+{
+    // TODO When new screen is complete, fix this
+//    ScreenManager::requestScreenChange("", "");
+    std::cout << "Load Game" << std::endl;
+}
+
 void MainMenuScreen::goToEditorMenuScreen()
 {
     ScreenManager::requestScreenChange("MainMenuScreen", "EditorMenuScreen");
@@ -114,5 +127,6 @@ void MainMenuScreen::goToCreditScreen()
 {
     // TODO When new screen is complete, fix this
 //    ScreenManager::requestScreenChange("", "");
+	ScreenManager::requestScreenChange("MainMenuScreen", "CreditScreen");
     std::cout << "Credits" << std::endl;
 }

@@ -23,6 +23,7 @@ TitleScreen::~TitleScreen()
 
 void TitleScreen::initialize()
 {
+	audio->playMusic(1);
 }
 
 void TitleScreen::reset()

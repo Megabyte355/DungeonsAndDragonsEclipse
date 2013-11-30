@@ -16,7 +16,7 @@ void TankBuilder::buildType(){
 
 void TankBuilder::buildStats(){
     character->setName(charName);
-    character->setStartingLevel(charLevel);
+    character->setLevel(charLevel);
     character->setSpeed();
     character->generateAbilityScores();
     

@@ -14,11 +14,36 @@ Fighter::Fighter(void){
 Fighter::Fighter(string name, int level):Character(name, level){
     cout << "Creating new character..." << endl;
     setName(name);
-    setStartingLevel(level);
+    setLevel(level);
     generateAbilityScores();
-    setAC(); 
+    assignRandomScores();
+
+    setStrMod(getStr());
+    setDexMod(getDex());
+    setConMod(getCon());
+    setIntMod(getInt());
+    setWisMod(getWis());
+    setChaMod(getCha());
+
+    setAC();
     setHP();
+    setAttackBonuses();
 }
+
+void Fighter::levelUp() {
+    int level = this->getLevel();
+    this->setLevel(++level);
+    this->levelUpHP();
+    this->setAttackBonuses();
+}
+void Fighter::levelUpHP(){
+    int conMod = getConMod();
+    srand(time(NULL));
+
+    hitPoints += ( (rand()% hitDie ) +1 ) + conMod;
+    cout << "Hitpoints have increased due to " << hitPoints << "!" << endl;
+}
+
 
 //overriden setHP
 void Fighter::setHP(){
@@ -94,4 +119,24 @@ void Fighter::printChar(){
 
 Fighter::~Fighter(){
     //empty
+}
+
+void Fighter::equipItem(Equipment* e) {
+    inventory.equipItem(e);
+}
+
+void Fighter::unequipItem(Equipment* e) {
+    inventory.unequipItem(e);
+}
+
+void Fighter::addSingleItemToBag(Item* e) {
+    inventory.addToBag(e);
+}
+
+void Fighter::removeSingleItemFromBag(Item* e) {
+    inventory.removeFromBag(e);
+}
+
+void Fighter::pickupChestContents(ItemContainer* cont) {
+    inventory.acceptContainerContent(cont);
 }

@@ -17,7 +17,19 @@ void Character::setName(std::string name){
     cout << "Setting name of character to " << name << "." << endl;
     charName = name;
 }
-void Character::setStartingLevel(int startLvl){
+
+void Character::assignRandomScores(){
+    if (rolls.size() > 0 && rolls.size()==6)
+    {
+        setStr(rolls.at(0));
+        setDex(rolls.at(1));
+        setCon(rolls.at(2));
+        setInt(rolls.at(3));
+        setWis(rolls.at(4));
+        setCha(rolls.at(5));
+    }
+}
+void Character::setLevel(int startLvl){
     cout << "Setting level of character to " << startLvl << "." << endl;
     level = startLvl;
 }
@@ -184,7 +196,7 @@ Character::Character(string name, int level){
 }
 
 Character::Character(int level){
-    setStartingLevel(level);
+    setLevel(level);
     generateAbilityScores();
     chooseAbilityScores();
     setAC(); 
@@ -242,6 +254,10 @@ bool Character::hasAttack2() {
         return true;
     }
     return false;
+}
+
+vector<int> Character::getRolls(){
+	return rolls;
 }
 
 bool Character::hasAttack3() {

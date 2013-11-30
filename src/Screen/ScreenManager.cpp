@@ -40,6 +40,7 @@ std::shared_ptr<ScreenManager> ScreenManager::getInstance()
 
 void ScreenManager::initialize()
 {
+
     storedScreens.push_back(std::make_shared<TestScreen>());
     storedScreens.push_back(std::make_shared<MenuScreen>());
     storedScreens.push_back(std::make_shared<CharacterScreen>());
@@ -48,8 +49,11 @@ void ScreenManager::initialize()
     storedScreens.push_back(std::make_shared<TitleScreen>());
     storedScreens.push_back(std::make_shared<MainMenuScreen>());
     storedScreens.push_back(std::make_shared<EditorMenuScreen>());
+    storedScreens.push_back(std::make_shared<CharacterEditorScreen>());
+    storedScreens.push_back(std::make_shared<CreditScreen>());
+    storedScreens.push_back(std::make_shared<InventoryScreen>());
     pushScreen("TitleScreen");
-    //pushScreen("TestScreen");
+    //pushScreen("InventoryScreen");
 }
 
 // Move a screen from storedScreen to activeScreens

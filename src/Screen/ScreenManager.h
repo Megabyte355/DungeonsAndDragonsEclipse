@@ -18,6 +18,9 @@
 #include "TitleScreen.h"
 #include "MainMenuScreen.h"
 #include "EditorMenuScreen.h"
+#include "CharacterEditorScreen.h"
+#include "CreditScreen.h"
+#include "InventoryScreen.h"
 #include "MapEditorScreen.h"
 
 // Forward declaration

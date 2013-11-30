@@ -30,23 +30,23 @@
 //
 //    cout << "Welcome to the Item Generator created by Kevin Silva!" << endl << endl;
 //	cout << "Let's try creating a few items." << endl << "=======================" << endl << endl;
-////
-////	//CREATING A BUILDER
-////	cout << "CREATING A BUILDER!" << endl << "=======================" << endl << endl;
-////	ChestBuilder * chestBuilder = new ChestBuilder(10, 15);
-////
-////	//CREATING A DIRECTOR
-////	cout << "CREATING A DIRECTOR!" << endl << "=======================" << endl << endl;
-////	ItemContainerDirector director(chestBuilder);
-////	director.construct();
-////
-////	//GETTING FINAL RESULT (ITEM LIST)
-////	cout << "GETTING FINAL RESULT (ITEM LIST)!" << endl << "=======================" << endl << endl;
-////	ItemContainer * finalResult = director.getResult();
-////
-//	//DISPLAY TO SHOW IT WORKS
-////	finalResult->displayContainerEquips();
-////	finalResult->displayContainerStats();
+//
+//	//CREATING A BUILDER
+//	cout << "CREATING A BUILDER!" << endl << "=======================" << endl << endl;
+//	ChestBuilder * chestBuilder = new ChestBuilder(10, 15);
+//
+//	//CREATING A DIRECTOR
+//	cout << "CREATING A DIRECTOR!" << endl << "=======================" << endl << endl;
+//	ItemContainerDirector director(chestBuilder);
+//	director.construct();
+//
+//	//GETTING FINAL RESULT (ITEM LIST)
+//	cout << "GETTING FINAL RESULT (ITEM LIST)!" << endl << "=======================" << endl << endl;
+//	ItemContainer * finalResult = director.getResult();
+//
+////	DISPLAY TO SHOW IT WORKS
+//	finalResult->displayContainerEquips();
+//	finalResult->displayContainerStats();
 //
 //
 //	CharacterItemManager test;

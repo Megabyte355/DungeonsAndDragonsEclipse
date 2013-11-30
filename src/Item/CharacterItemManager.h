@@ -65,6 +65,8 @@ class CharacterItemManager
 
         map<characterStats, int> getInventoryStats();
 
+        void acceptContainerContent(ItemContainer * cont);
+
         int getInventorySpecificStat(characterStats);
         int getInventoryStrength();
         int getInventoryConstitution();

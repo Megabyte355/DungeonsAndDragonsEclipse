@@ -24,8 +24,6 @@ class ChestBuilder: public virtual ItemContainerBuilder
     protected:
         vector<string> possibleItems;
 
-
-
     public:
         ChestBuilder();
         ChestBuilder(int pmapLevel, int pcharacterLevel);

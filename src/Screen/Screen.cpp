@@ -15,6 +15,7 @@ Screen::Screen(std::string name)
     active = false;
     paused = false;
     instanceId = instanceIdCounter++;
+    audio = AudioManager::getInstance();
 }
 
 

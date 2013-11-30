@@ -19,7 +19,7 @@ Moblin::Moblin(void){
 
 Moblin::Moblin(int level):Character(level){
     
-    setStartingLevel(level);
+    setLevel(level);
     generateAbilityScores();
     setAC(); 
     this->setHP();
