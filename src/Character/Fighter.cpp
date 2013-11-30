@@ -95,3 +95,23 @@ void Fighter::printChar(){
 Fighter::~Fighter(){
     //empty
 }
+
+void Fighter::equipItem(Equipment* e) {
+    inventory.equipItem(e);
+}
+
+void Fighter::unequipItem(Equipment* e) {
+    inventory.unequipItem(e);
+}
+
+void Fighter::addSingleItemToBag(Item* e) {
+    inventory.addToBag(e);
+}
+
+void Fighter::removeSingleItemFromBag(Item* e) {
+    inventory.removeFromBag(e);
+}
+
+void Fighter::pickupChestContents(ItemContainer* cont) {
+    inventory.acceptContainerContent(cont);
+}

@@ -7,43 +7,65 @@
 
 #include "Weapon.h"
 
-Weapon::Weapon():Equipment() {
-	name = "Generic Warrior Sword";
-	weaponType = "Sword";
-	range = 1; //WE ASSUME SWORD RANGE IS 1 SQUARE
-	attackBonus = 8;
-	damageBonus = 8;
-	possibleEnchants.push_back(characterStats::ATTACK);
-	possibleEnchants.push_back(characterStats::DAMAGE);
+Weapon::Weapon() :
+        Equipment() {
+    name = "Generic Warrior Sword";
+    weaponType = "Sword";
+    range = 1; //WE ASSUME SWORD RANGE IS 1 SQUARE
+    attackBonus = 8;
+    damageBonus = 8;
+    possibleEnchants.push_back(characterStats::ATTACK);
+    possibleEnchants.push_back(characterStats::DAMAGE);
     enchantEquipment();
-	insertStatistic(characterStats::ATTACK, attackBonus);
-	insertStatistic(characterStats::DAMAGE, damageBonus);
+    insertStatistic(characterStats::ATTACK, attackBonus);
+    insertStatistic(characterStats::DAMAGE, damageBonus);
+
+    if (textureName.empty()) {
+        textureName = "assets/sword.png";
+    }
 
 }
 
-Weapon::Weapon(string pname, int pvalue, int pweight, int pattackBonus, int pdamageBonus, string pweaponType, string ptextureName):Equipment(pname, pvalue, pweight, ptextureName){
-	weaponType = pweaponType;
-    if(weaponType == "Sword"){
+Weapon::Weapon(string pname, int pvalue, int pweight, int pattackBonus, int pdamageBonus, string pweaponType,
+        string ptextureName) :
+        Equipment(pname, pvalue, pweight, ptextureName) {
+    weaponType = pweaponType;
+    if (weaponType == "Sword") {
         range = 1;
-    }else if(weaponType == "Bow"){
+        if (textureName.empty()) {
+            textureName = "assets/sword.png";
+        }
+    }
+    else if (weaponType == "Bow") {
         range = 6;
+        if (textureName.empty()) {
+            textureName = "assets/bow.png";
+        }
     }
     attackBonus = pattackBonus;
     damageBonus = pdamageBonus;
-	possibleEnchants.push_back(characterStats::ATTACK);
-	possibleEnchants.push_back(characterStats::DAMAGE);
+    possibleEnchants.push_back(characterStats::ATTACK);
+    possibleEnchants.push_back(characterStats::DAMAGE);
     enchantEquipment();
-	insertStatistic(characterStats::ATTACK, attackBonus);
-	insertStatistic(characterStats::DAMAGE, damageBonus);
+    insertStatistic(characterStats::ATTACK, attackBonus);
+    insertStatistic(characterStats::DAMAGE, damageBonus);
 }
 
-Weapon::Weapon(int charLevel, bool isRandom, string pweaponType, string ptextureName):Equipment(charLevel, isRandom, ptextureName){
+Weapon::Weapon(int charLevel, bool isRandom, string pweaponType, string ptextureName) :
+        Equipment(charLevel, isRandom, ptextureName) {
     name = "Randomly Generated Weapon";
     weaponType = pweaponType;
-    if(weaponType == "Sword"){
+    if (weaponType == "Sword") {
         range = 1;
-    }else if(weaponType == "Bow"){
-        range = rand()%charLevel + 5;
+        if (textureName.empty()) {
+            textureName = "assets/sword.png";
+        }
+    }
+    else if (weaponType == "Bow") {
+        range = 6;
+        if (textureName.empty()) {
+            textureName = "assets/bow.png";
+        }
     }
     attackBonus = (rand() % charLevel) + 8;
     damageBonus = (rand() % charLevel) + 8;
@@ -53,28 +75,30 @@ Weapon::Weapon(int charLevel, bool isRandom, string pweaponType, string ptexture
     insertStatistic(characterStats::ATTACK, attackBonus);
     insertStatistic(characterStats::DAMAGE, damageBonus);
     generateRandomStats(charLevel);
+
+    if (ptextureName.empty()) {
+        textureName = "assets/sword.png";
+    }
 }
 
 Weapon::~Weapon() {
 }
 
-int Weapon::getAttackBonus()
-{
+int Weapon::getAttackBonus() {
     return attackBonus;
 }
 
-int Weapon::getDamageBonus()
-{
+int Weapon::getDamageBonus() {
     return damageBonus;
 }
 
-string Weapon::toString(){
-	stringstream ss;
-	ss << Equipment::toString();
-	ss << "Weapon Type: " << weaponType << endl;
-	return ss.str();
+string Weapon::toString() {
+    stringstream ss;
+    ss << Equipment::toString();
+    ss << "Weapon Type: " << weaponType << endl;
+    return ss.str();
 }
 
-string Weapon::getClassName(){
-	return "Weapon";
+string Weapon::getClassName() {
+    return "Weapon";
 }

@@ -215,3 +215,9 @@ string CharacterItemManager::displayInventoryStats() {
     }
     return ss.str();
 }
+
+void CharacterItemManager::acceptContainerContent(ItemContainer * cont){
+    for(auto it: cont->getList()){
+        bag.addItem(it);
+    }
+}

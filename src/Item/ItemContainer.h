@@ -35,8 +35,10 @@ public:
 	
 	void addItem(Item * it);
 	void removeItem(Item * it);
+
 	bool isItemInContainer(Item * e);
-//	string getContainerTypeEnumString(int enumVal);
+
+
 
 };
 
