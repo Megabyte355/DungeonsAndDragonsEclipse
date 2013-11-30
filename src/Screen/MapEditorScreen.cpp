@@ -21,24 +21,6 @@ void MapEditorScreen::initialize()
     active = true;
 
     tileOptionList = new MapTileOptionList(625,225,150,350,5);
-//    MenuOption * opt;
-//    opt = new MenuOption(200, 200, 25, "Create new map");
-//    opt->setVisibility(true);
-//    opt->setCallback(std::bind(&MapEditorScreen::goToNewGameScreen, this));
-//    menuOptions.push_back(opt);
-//    opt = new MenuOption(200, 300, 25, "Load pre-made map");
-//    opt->setVisibility(true);
-//    opt->setCallback(std::bind(&MapEditorScreen::goToEditorMenuScreen, this));
-//    menuOptions.push_back(opt);
-//    opt = new MenuOption(200, 400, 25, "Load saved map");
-//    opt->setVisibility(true);
-//    opt->setCallback(std::bind(&MapEditorScreen::goToCreditScreen, this));
-//
-//    opt = new MenuOption(200, 550, 25, "Back");
-//    opt->setVisibility(true);
-//    opt->setCallback(std::bind(&MapEditorScreen::goToCreditScreen, this));
-//    menuOptions.push_back(opt);
-//    opt = nullptr;
 }
 
 void MapEditorScreen::reset()
