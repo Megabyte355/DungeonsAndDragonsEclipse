@@ -25,7 +25,7 @@ class Weapon: public Equipment
     public:
 
         Weapon();
-        Weapon(string name, int value, int weight, int attackBonus, int damageBonus, string pweaponType, int range);
+        Weapon(string name, int value, int weight, int attackBonus, int damageBonus, string pweaponType);
         Weapon(int charLevel, bool isRandom, string pweaponType);
         virtual ~Weapon();
         string toString() override;

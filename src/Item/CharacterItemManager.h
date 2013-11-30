@@ -33,18 +33,20 @@ class CharacterItemManager
          * 3- Item itself (actual instance)
          */
 
-        Helmet * helmet;
-        Armor * armor;
-        Shield * shield;
-        Bracers * bracers;
-        Ring * ring;
-        Belt * belt;
-        Boots * boots;
-        Weapon * weapon;
+        Helmet * equippedHelmet;
+        Armor * equippedArmor;
+        Shield * equippedShield;
+        Bracers * equippedBracers;
+        Ring * equippedRing;
+        Belt * equippedBelt;
+        Boots * equippedBoots;
+        Weapon * equippedWeapon;
 
         map<characterStats, int> inventoryStats;
 
         ItemContainer bag;
+
+		void appendStatsInMap(map<characterStats, int> localMap, map<characterStats, int> &localContainer);
 
     public:
 
@@ -65,19 +67,18 @@ class CharacterItemManager
 
 
         void calculateInventoryStats();
-        void appendStatsInMap(map<characterStats, int> localMap, map<characterStats, int> &localContainer);
         string displayInventoryStats();
 
         ItemContainer getBag() {return bag;}
 
-        Armor * getArmor() {return armor;}
-        Belt * getBelt() {return belt;}
-        Boots * getBoots() {return boots;}
-        Bracers * getBracers(){return bracers;}
-        Helmet * getHelmet() {return helmet;}
-        Ring * getRing() {return ring;}
-        Shield * getShield() {return shield;}
-        Weapon * getWeapon() {return weapon;}
+        Armor * getArmor() {return equippedArmor;}
+        Belt * getBelt() {return equippedBelt;}
+        Boots * getBoots() {return equippedBoots;}
+        Bracers * getBracers(){return equippedBracers;}
+        Helmet * getHelmet() {return equippedHelmet;}
+        Ring * getRing() {return equippedRing;}
+        Shield * getShield() {return equippedShield;}
+        Weapon * getWeapon() {return equippedWeapon;}
 };
 
 #endif /* CHARACTERITEMMANAGER_H_ */

@@ -12,17 +12,42 @@ using namespace std;
 CharacterItemManager::CharacterItemManager() {
     cout << "Creating CharacterItemManager!" << endl;
 
+    equippedHelmet = nullptr;
+    equippedArmor = nullptr;
+    equippedShield = nullptr;
+    equippedBracers = nullptr;
+    equippedRing = nullptr;
+    equippedBelt = nullptr;
+    equippedBoots = nullptr;
+    equippedWeapon = nullptr;
 }
 
 CharacterItemManager::~CharacterItemManager() {
-    delete helmet;
-    delete armor;
-    delete shield;
-    delete bracers;
-    delete ring;
-    delete belt;
-    delete boots;
-    delete weapon;
+
+    if (equippedHelmet != nullptr) {
+        delete equippedHelmet;
+    }
+    if (equippedArmor != nullptr) {
+        delete equippedArmor;
+    }
+    if (equippedShield != nullptr) {
+        delete equippedShield;
+    }
+    if (equippedBracers != nullptr) {
+        delete equippedBracers;
+    }
+    if (equippedRing != nullptr) {
+        delete equippedRing;
+    }
+    if (equippedBelt != nullptr) {
+        delete equippedBelt;
+    }
+    if (equippedBoots != nullptr) {
+        delete equippedBoots;
+    }
+    if (equippedWeapon != nullptr) {
+        delete equippedWeapon;
+    }
 
     inventoryStats.clear();
 }
@@ -38,108 +63,32 @@ void CharacterItemManager::equipItem(Equipment * e) {
     if (*equipped != nullptr) {
         unequipItem(*equipped); //Unequips the correct attribute
     }
-    *equipped = e; //Equips item
 
-//    COMMENTED BEFORE TEST
-//    if (isItemInBag(e)) {
-//        //Must check what type of equipment is being passed.
-//        switch (e->getClassName()) {
-//            case "Helmet":
-//                if (helmet != nullptr) {
-//                    bag.addItem(helmet);
-//                }
-//                helmet = e;
-//                break;
-//            case "Armor":
-//                if (armor != nullptr) {
-//                    bag.addItem(armor);
-//                }
-//                armor = e;
-//                break;
-//            case "Shield":
-//                if (shield != nullptr) {
-//                    bag.addItem(shield);
-//                }
-//                shield = e;
-//                break;
-//            case "Bracers":
-//                if (bracers != nullptr) {
-//                    bag.addItem(bracers);
-//                }
-//                bracers = e;
-//                break;
-//            case "Ring":
-//                if (ring != nullptr) {
-//                    bag.addItem(ring);
-//                }
-//                ring = e;
-//                break;
-//            case "Belt":
-//                if (belt != nullptr) {
-//                    bag.addItem(belt);
-//                }
-//                belt = e;
-//                break;
-//            case "Boots":
-//                if (boots != nullptr) {
-//                    bag.addItem(boots);
-//                }
-//                boots = e;
-//                break;
-//            case "Weapon":
-//                if (weapon != nullptr) {
-//                    bag.addItem(weapon);
-//                }
-//                weapon = e;
-//                break;
-//        }
-//        cout << e->getClassName() << " has been equipped" << endl;
-//        bag.removeItem(e);
-//    }
+    cout << "Equipping " << e->getClassName() << " to Inventory!" << endl;
+
+    *equipped = e; //Equips item
 }
 
 Equipment ** CharacterItemManager::getEquipmentSlot(Equipment * e) {
     if (dynamic_cast<Helmet *>(e) != nullptr)
-        return (Equipment **)&helmet;
+        return (Equipment **) &equippedHelmet;
     else if (dynamic_cast<Armor *>(e) != nullptr)
-        return (Equipment **)&armor;
+        return (Equipment **) &equippedArmor;
     else if (dynamic_cast<Shield *>(e) != nullptr)
-        return (Equipment **)&shield;
+        return (Equipment **) &equippedShield;
     else if (dynamic_cast<Bracers *>(e) != nullptr)
-        return (Equipment **)&bracers;
+        return (Equipment **) &equippedBracers;
     else if (dynamic_cast<Ring *>(e) != nullptr)
-        return (Equipment **)&ring;
+        return (Equipment **) &equippedRing;
     else if (dynamic_cast<Belt *>(e) != nullptr)
-        return (Equipment **)&belt;
+        return (Equipment **) &equippedBelt;
     else if (dynamic_cast<Boots *>(e) != nullptr)
-        return (Equipment **)&boots;
+        return (Equipment **) &equippedBoots;
     else if (dynamic_cast<Weapon *>(e) != nullptr)
-        return (Equipment **)&weapon;
+        return (Equipment **) &equippedWeapon;
     else
         return nullptr;
 }
-
-//Equipment ** CharacterItemManager::isItemEquipped(Equipment * e) {
-//
-//    if(helmet == e)
-//        return &helmet;
-//    else if(armor == e)
-//        return &armor;
-//    else if(shield == e)
-//        return &shield;
-//    else if(bracers == e)
-//        return &bracers;
-//    else if(ring == e)
-//        return &ring;
-//    else if(belt == e)
-//        return &belt;
-//    else if(boots == e)
-//        return &boots;
-//    else if(weapon == e)
-//        return &weapon;
-//    else
-//        return nullptr;
-//}
 
 //Method assumes user can click on equipped item and pass that as argument
 void CharacterItemManager::unequipItem(Equipment * e) {
@@ -164,7 +113,8 @@ map<characterStats, int> CharacterItemManager::getInventoryStats() {
     return inventoryStats;
 }
 
-void CharacterItemManager::appendStatsInMap(map<characterStats, int> localMap, map<characterStats, int> &localContainer) {
+void CharacterItemManager::appendStatsInMap(map<characterStats, int> localMap,
+        map<characterStats, int> &localContainer) {
     for (std::map<characterStats, int>::iterator it = localMap.begin(); it != localMap.end(); ++it) {
         if (localMap.find(it->first) == localMap.end()) {
             localContainer[it->first] = it->second;  //not found, generates entry
@@ -179,37 +129,36 @@ void CharacterItemManager::calculateInventoryStats() {
     map<characterStats, int> localMap;
     map<characterStats, int> localContainer;
 
-
-    if (helmet != nullptr) {
-        localMap = helmet->getEquipmentStats();
+    if (equippedHelmet != nullptr) {
+        localMap = equippedHelmet->getEquipmentStats();
         appendStatsInMap(localMap, localContainer);
     }
-    if (armor != nullptr) {
-        localMap = armor->getEquipmentStats();
+    if (equippedArmor != nullptr) {
+        localMap = equippedArmor->getEquipmentStats();
         appendStatsInMap(localMap, localContainer);
     }
-    if (shield != nullptr) {
-        localMap = shield->getEquipmentStats();
-       appendStatsInMap(localMap, localContainer);
-    }
-    if (bracers != nullptr) {
-        localMap = bracers->getEquipmentStats();
+    if (equippedShield != nullptr) {
+        localMap = equippedShield->getEquipmentStats();
         appendStatsInMap(localMap, localContainer);
     }
-    if (ring != nullptr) {
-        localMap = ring->getEquipmentStats();
+    if (equippedBracers != nullptr) {
+        localMap = equippedBracers->getEquipmentStats();
         appendStatsInMap(localMap, localContainer);
     }
-    if (belt != nullptr) {
-        localMap = belt->getEquipmentStats();
+    if (equippedRing != nullptr) {
+        localMap = equippedRing->getEquipmentStats();
         appendStatsInMap(localMap, localContainer);
     }
-    if (boots != nullptr) {
-        localMap = boots->getEquipmentStats();
+    if (equippedBelt != nullptr) {
+        localMap = equippedBelt->getEquipmentStats();
         appendStatsInMap(localMap, localContainer);
     }
-    if (weapon != nullptr) {
-        localMap = weapon->getEquipmentStats();
+    if (equippedBoots != nullptr) {
+        localMap = equippedBoots->getEquipmentStats();
+        appendStatsInMap(localMap, localContainer);
+    }
+    if (equippedWeapon != nullptr) {
+        localMap = equippedWeapon->getEquipmentStats();
         appendStatsInMap(localMap, localContainer);
     }
     inventoryStats = localContainer;
@@ -218,8 +167,8 @@ void CharacterItemManager::calculateInventoryStats() {
 string CharacterItemManager::displayInventoryStats() {
     stringstream ss;
 
-    ss << "Displaying statistics added by character's Inventory!" << endl << "==============================" << endl
-            << endl;
+    ss << "Displaying statistics added by character's Inventory!" << endl
+            << "=====================================================" << endl << endl;
 
     for (std::map<characterStats, int>::iterator it = inventoryStats.begin(); it != inventoryStats.end(); ++it) {
 

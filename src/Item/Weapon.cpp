@@ -21,9 +21,13 @@ Weapon::Weapon():Equipment() {
 
 }
 
-Weapon::Weapon(string pname, int pvalue, int pweight, int pattackBonus, int pdamageBonus, string pweaponType, int prange):Equipment(pname, pvalue, pweight){
+Weapon::Weapon(string pname, int pvalue, int pweight, int pattackBonus, int pdamageBonus, string pweaponType):Equipment(pname, pvalue, pweight){
 	weaponType = pweaponType;
-	range = prange;
+    if(weaponType == "Sword"){
+        range = 1;
+    }else if(weaponType == "Bow"){
+        range = 6;
+    }
     attackBonus = pattackBonus;
     damageBonus = pdamageBonus;
 	possibleEnchants.push_back(characterStats::ATTACK);
