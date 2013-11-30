@@ -327,6 +327,7 @@ void EditorMenuScreen::premadeSlotUp()
 
 void EditorMenuScreen::goToCharacterEditorScreen()
 {
+	ScreenManager::requestScreenChange("EditorMenuScreen", "CharacterEditorScreen");
 }
 
 void EditorMenuScreen::goToCharacterEditorScreenWithPremade()
