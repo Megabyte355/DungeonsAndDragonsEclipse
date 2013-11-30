@@ -61,7 +61,17 @@ void MapTile::draw()
         TextureRenderer::getInstance()->drawTexture("floor", boundary.x, boundary.y, boundary.w, boundary.h);
         TextureRenderer::getInstance()->drawTexture("end", boundary.x, boundary.y, boundary.w, boundary.h);
     }
-    else if (cell->getType() == Cell::CellType::Empty)
+    else if (cell->getType() == Cell::CellType::Monster)
+    {
+        TextureRenderer::getInstance()->drawTexture("floor", boundary.x, boundary.y, boundary.w, boundary.h);
+        TextureRenderer::getInstance()->drawTexture("monster", boundary.x, boundary.y, boundary.w, boundary.h);
+    }
+    else if (cell->getType() == Cell::CellType::Treasure)
+    {
+        TextureRenderer::getInstance()->drawTexture("floor", boundary.x, boundary.y, boundary.w, boundary.h);
+        TextureRenderer::getInstance()->drawTexture("treasure", boundary.x, boundary.y, boundary.w, boundary.h);
+    }
+    else
     {
         TextureRenderer::getInstance()->drawTexture("empty", boundary.x, boundary.y, boundary.w, boundary.h);
     }

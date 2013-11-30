@@ -47,7 +47,7 @@ void AudioManager::load_files(){
 
 void AudioManager::playMusic(int i){
 
-	bool dontplay;
+	bool dontplay = false;
 	if(song==i){
 		dontplay = true;
 	}
@@ -70,11 +70,11 @@ void AudioManager::playMusic(int i){
 			song=2;
 			break;
 		default:
-			music = NULL;
+			music = nullptr;
 			break;
 	}
 
-	if(music!=NULL&&!dontplay)
+	if(music!=0 && !dontplay)
         int i = Mix_PlayMusic( music, -1 );
 
 }

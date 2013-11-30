@@ -17,7 +17,7 @@ class Cell
     public:
         enum CellType
         {
-            Wall, Floor, Start, End, Empty
+            Wall, Floor, Start, End, Monster, Treasure
         };
 
         // Constructors

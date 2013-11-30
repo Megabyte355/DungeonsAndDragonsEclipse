@@ -21,7 +21,6 @@ void CreditScreen::initialize()
 {
     active = true;
 
-
     audio->playMusic(2);
     MenuOption * opt;
     opt = new MenuOption(350, 500, 25, "Back");
@@ -49,36 +48,31 @@ void CreditScreen::draw()
     TextureRenderer * textures = TextureRenderer::getInstance();
     TextRenderer * texts = TextRenderer::getInstance();
 
-
     textures->drawTexture("menu_screen", 0, 0, GameConfig::SCREEN_WIDTH, GameConfig::SCREEN_HEIGHT);
-    textures->drawTexture("gary",140,150,30,38);
-    textures->drawTexture("tiff",473,152,30,38);
-    textures->drawTexture("tim",465,350,33,40);
-    textures->drawTexture("kev",140,350,30,37);
+    textures->drawTexture("gary", 140, 150, 30, 38);
+    textures->drawTexture("tiff", 473, 152, 30, 38);
+    textures->drawTexture("tim", 465, 350, 33, 40);
+    textures->drawTexture("kev", 140, 350, 30, 37);
     texts->setSettings("retganon", 45, TextRenderer::white, TextRenderer::blue);
     texts->renderTextWithShadow(229, 39, "Credits");
 
-    texts->renderTextWithShadow(175,190,"Graphics");
-    texts->renderTextWithShadow(175,225,"Map");
+    texts->renderTextWithShadow(175, 190, "Graphics");
+    texts->renderTextWithShadow(175, 225, "Map");
 
+    texts->renderTextWithShadow(500, 190, "Character");
+    texts->renderTextWithShadow(500, 225, "GUI");
 
-    texts->renderTextWithShadow(500,190,"Character");
-    texts->renderTextWithShadow(500,225,"GUI");
+    texts->renderTextWithShadow(175, 390, "Inventory");
+    texts->renderTextWithShadow(175, 425, "Equipment");
 
-    texts->renderTextWithShadow(175,390,"Inventory");
-    texts->renderTextWithShadow(175,425,"Equipment");
-
-    texts->renderTextWithShadow(500,390,"Audio");
-    texts->renderTextWithShadow(500,425,"Combat");
-
-
+    texts->renderTextWithShadow(500, 390, "Audio");
+    texts->renderTextWithShadow(500, 425, "Combat");
 
     texts->setSettings("triforce", 45, TextRenderer::white, TextRenderer::blue);
     texts->renderTextWithShadow(175, 150, "Gary");
     texts->renderTextWithShadow(175, 350, "Kevin");
     texts->renderTextWithShadow(500, 150, "Tiffany");
     texts->renderTextWithShadow(500, 350, "Tim");
-
 
     texts->setSettings("retganon", 40, TextRenderer::white, TextRenderer::blue);
     for (auto option : menuOptions)
@@ -120,9 +114,5 @@ void CreditScreen::handleEvents(SDL_Event& event)
 
 void CreditScreen::goBack()
 {
-    // TODO When new screen is complete, fix this
-//    ScreenManager::requestScreenChange("", "");
-
-	ScreenManager::requestScreenChange("CreditScreen", "MainMenuScreen");
-    std::cout << "New Game" << std::endl;
+    ScreenManager::requestScreenChange(getScreenName(), "MainMenuScreen");
 }
