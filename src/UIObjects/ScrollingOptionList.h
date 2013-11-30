@@ -12,6 +12,7 @@
 #include <SDL.h>
 #include "Button.h"
 #include "TextureRenderer.h"
+#include "ListOption.h"
 
 class ScrollingOptionList
 {
@@ -23,6 +24,7 @@ class ScrollingOptionList
         virtual void draw();
         virtual void handleEvents(SDL_Event &);
 
+        void updateOptionVisibility();
     protected:
         int x;
         int y;
@@ -30,6 +32,7 @@ class ScrollingOptionList
         int totalHeight;
         int optionsToDisplay;
         int optionHeight;
+        int buttonHeight;
         int currentIndex;
         Button * up;
         Button * down;

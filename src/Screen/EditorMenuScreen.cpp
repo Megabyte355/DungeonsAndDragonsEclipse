@@ -292,21 +292,21 @@ void EditorMenuScreen::goToMapEditorScreen()
 {
     PersistentData::getInstance()->setMapLoadMode(PersistentData::MapLoadMode::NewMap);
     PersistentData::getInstance()->setMapLoadSize(newMapWidth, newMapHeight);
-    ScreenManager::requestScreenChange(getScreenName(), "MapScreen");
+    ScreenManager::requestScreenChange(getScreenName(), "MapEditorScreen");
 }
 
 void EditorMenuScreen::goToMapEditorScreenWithPremade()
 {
     PersistentData::getInstance()->setMapLoadMode(PersistentData::MapLoadMode::Premade);
     PersistentData::getInstance()->setMapLoadPremade(premadeSlot);
-    ScreenManager::requestScreenChange(getScreenName(), "MapScreen");
+    ScreenManager::requestScreenChange(getScreenName(), "MapEditorScreen");
 }
 
 void EditorMenuScreen::goToMapEditorScreenWithSaved()
 {
     PersistentData::getInstance()->setMapLoadMode(PersistentData::MapLoadMode::SavedSlot);
     PersistentData::getInstance()->setMapLoadSlot(fileSlot);
-    ScreenManager::requestScreenChange(getScreenName(), "MapScreen");
+    ScreenManager::requestScreenChange(getScreenName(), "MapEditorScreen");
 }
 
 void EditorMenuScreen::goToCharacterEditorScreen()

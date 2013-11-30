@@ -14,6 +14,7 @@
 #include "GameConfig.h"
 #include "MenuOption.h"
 #include "ScreenManager.h"
+#include "MapTileOptionList.h"
 
 class MapEditorScreen: public virtual Screen
 {
@@ -26,7 +27,6 @@ class MapEditorScreen: public virtual Screen
         void update(float) override;
         void draw() override;
         void handleEvents(SDL_Event &event) override;
-
 
     private:
 
@@ -45,6 +45,8 @@ class MapEditorScreen: public virtual Screen
         // Size of tiles
         int mapTileWidth;
         int mapTileHeight;
+
+        MapTileOptionList * tileOptionList;
 
 };
 

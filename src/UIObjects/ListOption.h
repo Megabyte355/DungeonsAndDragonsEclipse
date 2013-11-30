@@ -20,6 +20,8 @@ class ListOption : public virtual Clickable
         virtual void update() = 0;
         virtual void draw() = 0;
         virtual void handleEvents(SDL_Event &) = 0;
+
+        void setCoordinates(int x, int y);
 };
 
 #endif /* LISTOPTION_H_ */

@@ -16,3 +16,9 @@ ListOption::~ListOption()
 {
 }
 
+
+void ListOption::setCoordinates(int x, int y)
+{
+    boundary.x = x;
+    boundary.y = y;
+}
