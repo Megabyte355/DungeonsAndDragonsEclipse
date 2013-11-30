@@ -18,8 +18,8 @@ protected:
 	int intBonus;
 public:
 	Ring();
-	Ring(string name, int value, int weight, int charismanBonus, int wisdomBonus, int intBonus);
-	Ring(int charLevel, bool isRandom);
+	Ring(string name, int value, int weight, int charismanBonus, int wisdomBonus, int intBonus, string ptextureName);
+	Ring(int charLevel, bool isRandom, string ptextureName);
 	virtual ~Ring();
 	string toString() override;
 	string getClassName();

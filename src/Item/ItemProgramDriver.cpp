@@ -52,27 +52,27 @@
 //	CharacterItemManager test;
 //
 //
-//	//CREATING Pre-made Beginner Equipment Set - Stats must be validated!
-//	Armor beginnerArmor("Special Armor", 100, 15, "Medium", 4);
-//	Helmet beginnerHelmet("Cool Helmet", 75, 10, 2);
-//	Belt beginnerBelt("Barbaric Belt", 150, 10, 5);
-//	Boots beginnerBoots("Overpowered Boots", 500, 20, 8, 10);
-//	Ring beginnerRing("Fancy Ring", 80, 5, 2,1,0);
-//	Shield beginnerShield("Beginner Shield", 120, 35, 4, 3, "Medium");
-//	Weapon beginnerSword("Beginner Sword", 300, 30, 8, 10, "Sword");
-//	Weapon beginnerBow("Beginner Sword", 300, 30, 8, 10, "Bow");
+//    //CREATING Pre-made Beginner Equipment Set - Stats must be validated!
+//    Armor beginnerArmor("Special Armor", 100, 15, "Medium", 4, "");
+//    Helmet beginnerHelmet("Cool Helmet", 75, 10, 2, "");
+//    Belt beginnerBelt("Barbaric Belt", 150, 10, 5, "");
+//    Boots beginnerBoots("Overpowered Boots", 500, 20, 8, 10, "");
+//    Ring beginnerRing("Fancy Ring", 80, 5, 2,1,0, "");
+//    Shield beginnerShield("Beginner Shield", 120, 35, 4, 3, "Medium", "");
+//    Weapon beginnerSword("Beginner Sword", 300, 30, 8, 10, "Sword", "");
+//    Weapon beginnerBow("Beginner Sword", 300, 30, 8, 10, "Bow", "");
 //
-//	int characterLevel = 1;
+//    int characterLevel = 1;
 //
-//	Helmet genHelmet(characterLevel, true);
-//	Armor genArmor(characterLevel, true);
-//	Shield genShield(characterLevel, true);
-//	Bracers genBracers(characterLevel, true);
-//	Ring genRing(characterLevel, true);
-//	Belt genBelt(characterLevel, true);
-//	Boots genBoots(characterLevel, true);
-//	Weapon genSword(characterLevel, true, "Sword");
-//	Weapon genBow(characterLevel, true, "Bow");
+//    Helmet genHelmet(characterLevel, true, "");
+//    Armor genArmor(characterLevel, true, "");
+//    Shield genShield(characterLevel, true, "");
+//    Bracers genBracers(characterLevel, true, "");
+//    Ring genRing(characterLevel, true, "");
+//    Belt genBelt(characterLevel, true, "");
+//    Boots genBoots(characterLevel, true, "");
+//    Weapon genSword(characterLevel, true, "Sword", "");
+//    Weapon genBow(characterLevel, true, "Bow", "");
 //
 //
 //	test.addToBag(&genHelmet);
@@ -90,8 +90,8 @@
 //
 //	test.equipItem(&genHelmet);
 //	test.equipItem(&genBelt);
-//	
-//	
+//
+//
 //	if(test.getBelt() != nullptr)
 //		test.getBelt()->toString();
 //
@@ -100,4 +100,4 @@
 //
 //	return 0;
 //
-////}
+//}

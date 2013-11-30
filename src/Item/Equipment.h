@@ -32,8 +32,8 @@ class Equipment: public Item
         //string getStatsEnumString(int);
 
         Equipment();
-        Equipment(string pname, int pvalue, int pweight);
-        Equipment(int charLevel, bool isRandom);
+        Equipment(string pname, int pvalue, int pweight, string ptextureName);
+        Equipment(int charLevel, bool isRandom, string ptextureName);
         virtual ~Equipment();
 
         virtual void enchantEquipment();

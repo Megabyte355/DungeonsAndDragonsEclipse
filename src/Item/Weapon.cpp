@@ -21,7 +21,7 @@ Weapon::Weapon():Equipment() {
 
 }
 
-Weapon::Weapon(string pname, int pvalue, int pweight, int pattackBonus, int pdamageBonus, string pweaponType):Equipment(pname, pvalue, pweight){
+Weapon::Weapon(string pname, int pvalue, int pweight, int pattackBonus, int pdamageBonus, string pweaponType, string ptextureName):Equipment(pname, pvalue, pweight, ptextureName){
 	weaponType = pweaponType;
     if(weaponType == "Sword"){
         range = 1;
@@ -37,7 +37,7 @@ Weapon::Weapon(string pname, int pvalue, int pweight, int pattackBonus, int pdam
 	insertStatistic(characterStats::DAMAGE, damageBonus);
 }
 
-Weapon::Weapon(int charLevel, bool isRandom, string pweaponType):Equipment(charLevel, isRandom){
+Weapon::Weapon(int charLevel, bool isRandom, string pweaponType, string ptextureName):Equipment(charLevel, isRandom, ptextureName){
     name = "Randomly Generated Weapon";
     weaponType = pweaponType;
     if(weaponType == "Sword"){

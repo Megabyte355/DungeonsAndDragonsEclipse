@@ -19,27 +19,28 @@ class Item
 {
     protected:
 
-		string name;
+        string name;
         int value;
         int weight;
+        string textureName;
 
     public:
         Item();
-        Item(int v, int w, string n);
-        Item(int charLevel, bool isRandom);
+        Item(int pvalue, int pweight, string pname, string ptextureName);
+        Item(int charLevel, bool isRandom, string ptextureName);
         virtual ~Item();
 
-		virtual string toString();
+        virtual string toString();
+        bool virtual isEqual(Item it);
 
-		string getName();
-		void setName(string pname);
+        string getName();
+        void setName(string pname);
         int getValue();
         void setValue(int value);
         int getWeight();
         void setWeight(int weight);
-
-        bool virtual isEqual(Item it);
-
+        string getTextureName();
+        void setTextureName(string str);
 };
 
 #endif /* ITEM_H_ */

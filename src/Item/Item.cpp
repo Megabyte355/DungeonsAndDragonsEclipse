@@ -13,15 +13,22 @@ Item::Item() {
 	weight = 0;
 }
 
-Item::Item(int v, int w, string pname){
+Item::Item(int pvalue, int pweight, string pname, string ptextureName){
 	name = pname;
-    value = v;
-    weight = w;
+    value = pvalue;
+    weight = pweight;
+    if(!ptextureName.empty()){
+        textureName = ptextureName;
+    }
 }
 
-Item::Item(int charLevel, bool isRandom){
+Item::Item(int charLevel, bool isRandom, string ptextureName){
+    name = "Random Generated Equipment";
     value = 100*(rand() % charLevel +1);
     weight = 10*(rand() % charLevel +1);
+    if(!ptextureName.empty()){
+        textureName = ptextureName;
+    }
 }
 
 Item::~Item() {
@@ -53,6 +60,14 @@ int Item::getWeight()
 void Item::setWeight(int weight)
 {
     this->weight = weight;
+}
+
+string Item::getTextureName() {
+    return textureName;
+}
+
+void Item::setTextureName(string str) {
+    this->textureName = str;
 }
 
 bool Item::isEqual(Item it) {

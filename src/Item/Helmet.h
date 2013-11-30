@@ -19,8 +19,8 @@ class Helmet: public Equipment
     public:
 
         Helmet();
-		Helmet(string pname, int pvalue, int pweight, int parmorBonus);
-		Helmet(int charLevel, bool isRandom);
+		Helmet(string pname, int pvalue, int pweight, int parmorBonus, string ptextureName);
+		Helmet(int charLevel, bool isRandom, string ptextureName);
         virtual ~Helmet();
 		string toString() override;
 		string getClassName();
