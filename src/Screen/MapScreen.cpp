@@ -93,7 +93,7 @@ void MapScreen::draw()
                     if (mt != nullptr && (mt->i == validPath[i].x) && (mt->j == validPath[i].y))
                     {
                         // Draw the path
-                        textures->drawTexture("dot", mt->x, mt->y, mt->w, mt->h);
+                        textures->drawTexture("transparent_white", mt->x, mt->y, mt->w, mt->h);
                     }
                 }
             }

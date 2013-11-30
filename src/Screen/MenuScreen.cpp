@@ -114,13 +114,7 @@ void MenuScreen::handleEvents(SDL_Event &event)
             }
         }
     }
-//    else if (event.type == SDL_MOUSEMOTION)
-//    {
-//        for (auto o : menuOptions)
-//        {
-//            o->handleEvents(event);
-//        }
-//    }
+
 }
 
 void MenuScreen::reset()

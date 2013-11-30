@@ -19,13 +19,13 @@ class Button: public virtual Clickable
     public:
         Button(int x, int y, int padding, std::string label);
         Button(int x, int y, int w, int h, std::string label);
-        ~Button();
+        virtual ~Button();
 
-        void update() override;
-        void draw() override;
-        void handleEvents(SDL_Event &) override;
+        virtual void update() override;
+        virtual void draw() override;
+        virtual void handleEvents(SDL_Event &) override;
 
-    private:
+    protected:
         std::string label;
         SDL_Rect labelBoundary;
 };

@@ -9,8 +9,6 @@
 #define ARENAMAPBUILDER_H_
 
 #include "MapBuilder.h"
-#include "DummyItemChest.h"
-#include "DummyMonster.h"
 
 class ArenaMapBuilder : public virtual MapBuilder
 {

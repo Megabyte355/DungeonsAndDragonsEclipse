@@ -54,7 +54,7 @@ class CharacterItemManager
         virtual ~CharacterItemManager();
 
         bool isItemInBag(Item * e);
-        Equipment ** isItemEquipped(Equipment * e);
+        bool isItemEquipped(Equipment * e);
         Equipment ** getEquipmentSlot(Equipment * e) ;
 
         void equipItem(Equipment * e);
@@ -65,6 +65,16 @@ class CharacterItemManager
 
         map<characterStats, int> getInventoryStats();
 
+        int getInventorySpecificStat(characterStats);
+        int getInventoryStrength();
+        int getInventoryConstitution();
+        int getInventoryDexterity();
+        int getInventoryIntelligence();
+        int getInventoryWisdom();
+        int getInventoryCharisma();
+        int getInventoryArmor();
+        int getInventoryAttack();
+        int getInventoryDamage();
 
         void calculateInventoryStats();
         string displayInventoryStats();

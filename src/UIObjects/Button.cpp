@@ -41,29 +41,30 @@ void Button::update()
 
 void Button::draw()
 {
-    TextRenderer * texts = TextRenderer::getInstance();
-    texts->setSettings("retganon", 20, TextRenderer::white);
-
-    if (clicked)
+    if (visible)
     {
-        TextureRenderer::getInstance()->drawTexture("red_button_down", boundary.x, boundary.y, boundary.w, boundary.h);
-    }
-    else
-    {
-        if (hover)
+        TextRenderer * texts = TextRenderer::getInstance();
+        if (clicked)
         {
-            TextureRenderer::getInstance()->drawTexture("red_button_hover", boundary.x, boundary.y, boundary.w,
+            TextureRenderer::getInstance()->drawTexture("red_button_down", boundary.x, boundary.y, boundary.w,
                     boundary.h);
         }
         else
         {
-            TextureRenderer::getInstance()->drawTexture("red_button_normal", boundary.x, boundary.y, boundary.w,
-                    boundary.h);
+            if (hover)
+            {
+                TextureRenderer::getInstance()->drawTexture("red_button_hover", boundary.x, boundary.y, boundary.w,
+                        boundary.h);
+            }
+            else
+            {
+                TextureRenderer::getInstance()->drawTexture("red_button_normal", boundary.x, boundary.y, boundary.w,
+                        boundary.h);
+            }
         }
+        texts->renderText(labelBoundary.x, labelBoundary.y, label);
+        texts = nullptr;
     }
-
-    texts->renderText(labelBoundary.x, labelBoundary.y, label);
-    texts = nullptr;
 }
 
 void Button::handleEvents(SDL_Event &event)
@@ -80,7 +81,7 @@ void Button::handleEvents(SDL_Event &event)
         }
         else if (event.type == SDL_MOUSEBUTTONUP)
         {
-            if (clicked && intersect(event.button.x, event.button.y))
+            if (clicked && callback != nullptr && intersect(event.button.x, event.button.y))
             {
                 callback();
             }

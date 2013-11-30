@@ -33,6 +33,8 @@ class Weapon: public Equipment
 
         int getRange() const {return range;}
         void setRange(int range) {this->range = range;}
+        int getAttackBonus();
+        int getDamageBonus();
         const string& getWeaponType() const {return weaponType;}
 };
 
