@@ -14,14 +14,14 @@ Bracers::Bracers():Equipment() {
     enchantEquipment();
 }
 
-Bracers::Bracers(string pname, int pvalue, int pweight):Equipment(pname, pvalue, pweight){
+Bracers::Bracers(string pname, int pvalue, int pweight, string ptextureName):Equipment(pname, pvalue, pweight, ptextureName){
     name = pname;
     possibleEnchants.push_back(characterStats::ARMOR);
     possibleEnchants.push_back(characterStats::STRENGTH);
     enchantEquipment();
 }
 
-Bracers::Bracers(int charLevel, bool isRandom):Equipment(charLevel, isRandom){
+Bracers::Bracers(int charLevel, bool isRandom, string ptextureName):Equipment(charLevel, isRandom, ptextureName){
     name = "Randomly Generated Bracers";
     possibleEnchants.push_back(characterStats::ARMOR);
     possibleEnchants.push_back(characterStats::STRENGTH);

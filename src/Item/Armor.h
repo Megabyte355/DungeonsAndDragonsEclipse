@@ -20,8 +20,8 @@ class Armor: public Equipment
 		string armorType;
     public:
         Armor();
-		Armor(string pname, int pvalue, int pweight, string parmorType, int parmorBonus);
-		Armor(int charLevel, bool isRandom);
+		Armor(string pname, int pvalue, int pweight, string parmorType, int parmorBonus, string ptextureName);
+		Armor(int charLevel, bool isRandom, string ptextureName);
         virtual ~Armor();
 		string toString() override;
 		string getClassName();

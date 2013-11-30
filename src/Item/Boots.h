@@ -17,8 +17,8 @@ protected:
 	int dexBonus;
 public:
 	Boots();
-	Boots(string pname, int pvalue, int pweight, int parmorBonus, int pdexBonus);
-	Boots(int charLevel, bool isRandom);
+	Boots(string pname, int pvalue, int pweight, int parmorBonus, int pdexBonus, string ptextureName);
+	Boots(int charLevel, bool isRandom, string ptextureName);
 	virtual ~Boots();
 	string toString() override;
 	string getClassName();

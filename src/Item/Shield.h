@@ -20,8 +20,8 @@ protected:
 	
 public:
 	Shield();
-	Shield(string name, int value, int weight, int armorBonus, int strBonus, string shieldType);
-	Shield(int charLevel, bool isRandom);
+	Shield(string name, int value, int weight, int armorBonus, int strBonus, string shieldType, string ptextureName);
+	Shield(int charLevel, bool isRandom, string ptextureName);
 	virtual ~Shield();
 	string toString() override;
 	string getClassName();

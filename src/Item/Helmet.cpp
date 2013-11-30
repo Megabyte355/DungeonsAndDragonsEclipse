@@ -19,15 +19,16 @@ Helmet::Helmet():Equipment(){
 	insertStatistic(characterStats::ARMOR, armorBonus);
 }
 
-Helmet::Helmet(string pname, int pvalue, int pweight, int parmorBonus):Equipment(pname, pvalue, pweight){
+Helmet::Helmet(string pname, int pvalue, int pweight, int parmorBonus, string ptextureName):Equipment(pname, pvalue, pweight, ptextureName){
+    armorBonus = parmorBonus;
     possibleEnchants.push_back(characterStats::ARMOR);
 	possibleEnchants.push_back(characterStats::INTELLIGENCE);
 	possibleEnchants.push_back(characterStats::WISDOM);
     enchantEquipment();
-	insertStatistic(characterStats::ARMOR, parmorBonus);
+	insertStatistic(characterStats::ARMOR, armorBonus);
 }
 
-Helmet::Helmet(int charLevel, bool isRandom):Equipment(charLevel, isRandom){
+Helmet::Helmet(int charLevel, bool isRandom, string ptextureName):Equipment(charLevel, isRandom, ptextureName){
     name = "Randomly Generated Helmet";
     armorBonus = rand() % charLevel;
     possibleEnchants.push_back(characterStats::ARMOR);

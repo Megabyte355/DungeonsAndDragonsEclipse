@@ -19,10 +19,10 @@ string getStatsEnumString(int enumVal) {
 Equipment::Equipment():Item(){
 }
 
-Equipment::Equipment(string pname, int pvalue, int pweight):Item(pvalue, pweight, pname) {
+Equipment::Equipment(string pname, int pvalue, int pweight, string ptextureName):Item(pvalue, pweight, pname, ptextureName) {
 }
 
-Equipment::Equipment(int charLevel, bool isRandom):Item(charLevel, isRandom){
+Equipment::Equipment(int charLevel, bool isRandom, string ptextureName):Item(charLevel, isRandom, ptextureName){
 
 }
 

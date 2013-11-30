@@ -17,7 +17,7 @@ Armor::Armor():Equipment() {
 	insertStatistic(characterStats::ARMOR, armorBonus);
 }
 
-Armor::Armor(string pname, int pvalue, int pweight, string parmorType, int parmorBonus):Equipment(pname, pvalue, pweight){
+Armor::Armor(string pname, int pvalue, int pweight, string parmorType, int parmorBonus, string ptextureName):Equipment(pname, pvalue, pweight, ptextureName){
 	name = pname;
     armorType = parmorType;
     armorBonus = parmorBonus;
@@ -27,7 +27,7 @@ Armor::Armor(string pname, int pvalue, int pweight, string parmorType, int parmo
 
 }
 
-Armor::Armor(int charLevel, bool isRandom):Equipment(charLevel, isRandom){
+Armor::Armor(int charLevel, bool isRandom, string ptextureName):Equipment(charLevel, isRandom, ptextureName){
     name = "Randomly Generated Armor";
     armorBonus = rand() % charLevel;
     armorType = "Light";
