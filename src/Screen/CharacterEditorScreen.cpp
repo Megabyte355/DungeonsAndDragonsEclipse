@@ -208,7 +208,6 @@ void CharacterEditorScreen::handleEvents(SDL_Event &event)
         case SDL_TEXTINPUT:
             // Add new text to the end of text?
             //strcat(text, event.text.text);
-            break;
         case SDL_KEYDOWN:
             if (event.key.keysym.sym == SDLK_ESCAPE)
             {
@@ -271,7 +270,7 @@ void CharacterEditorScreen::levelDown()
 void CharacterEditorScreen::sortForBully()
 {
     //sorted from lowest ===> highest ability score
-   std::sort(newFighter->rolls.begin(), newFighter->getRolls().end());
+   std::sort(newFighter->rolls.begin(), newFighter->rolls.end());
    newFighter->setWis(newFighter->getRolls().at(0));
    newFighter->setCha(newFighter->getRolls().at(1));
    newFighter->setInt(newFighter->getRolls().at(2));
@@ -284,7 +283,7 @@ void CharacterEditorScreen::sortForBully()
 void CharacterEditorScreen::sortForNimble()
 {
    //sorted from lowest ===> highest ability score
-	std::sort(newFighter->rolls.begin(), newFighter->getRolls().end());
+	std::sort(newFighter->rolls.begin(), newFighter->rolls.end());
    newFighter->setWis(newFighter->getRolls().at(0));
    newFighter->setCha(newFighter->getRolls().at(1));
    newFighter->setInt(newFighter->getRolls().at(2));
@@ -296,20 +295,20 @@ void CharacterEditorScreen::sortForNimble()
 void CharacterEditorScreen::sortForTank()
 {
    //sorted from lowest ===> highest ability score
-//   std::sort(newFighter->rolls.begin(), newFighter->getRolls().end());
-//   newFighter->setWis(newFighter->getRolls().at(0));
-//   newFighter->setCha(newFighter->getRolls().at(1));
-//   newFighter->setInt(newFighter->getRolls().at(2));
-//   newFighter->setStr(newFighter->getRolls().at(3));
-//   newFighter->setDex(newFighter->getRolls().at(4));
-//   newFighter->setCon(newFighter->getRolls().at(5));
+   std::sort(newFighter->rolls.begin(), newFighter->rolls.end());
+   newFighter->setWis(newFighter->getRolls().at(0));
+   newFighter->setCha(newFighter->getRolls().at(1));
+   newFighter->setInt(newFighter->getRolls().at(2));
+   newFighter->setStr(newFighter->getRolls().at(3));
+   newFighter->setDex(newFighter->getRolls().at(4));
+   newFighter->setCon(newFighter->getRolls().at(5));
 
-   newFighter->setCon(newFighter->getHighestAbilityScore());
-   newFighter->setDex(newFighter->getHighestAbilityScore());
-   newFighter->setStr(newFighter->getHighestAbilityScore());
-   newFighter->setInt(newFighter->getHighestAbilityScore());
-   newFighter->setCha(newFighter->getHighestAbilityScore());
-   newFighter->setWis(newFighter->getHighestAbilityScore());
+   //newFighter->setCon(newFighter->getHighestAbilityScore());
+   //newFighter->setDex(newFighter->getHighestAbilityScore());
+   //newFighter->setStr(newFighter->getHighestAbilityScore());
+   //newFighter->setInt(newFighter->getHighestAbilityScore());
+   //newFighter->setCha(newFighter->getHighestAbilityScore());
+   //newFighter->setWis(newFighter->getHighestAbilityScore());
 }
 
 void CharacterEditorScreen::reroll()

@@ -13,6 +13,8 @@ AudioManager* AudioManager::instance = nullptr;
 
 
 AudioManager::AudioManager(){
+    music = nullptr;
+    sfx = nullptr;
 }
 
 AudioManager::~AudioManager(){}

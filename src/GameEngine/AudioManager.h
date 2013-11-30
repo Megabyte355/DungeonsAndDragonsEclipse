@@ -25,8 +25,8 @@ class AudioManager
 
         static AudioManager * getInstance();
 
-        Mix_Music *music = NULL;
-        Mix_Chunk *sfx = NULL;
+        Mix_Music *music;
+        Mix_Chunk *sfx;
       //  std::map Soundmap pair<>
         //std::map<Mix_Music, int> musicMap;
 //        std::map<Mix_Chunk, int> soundMap;
