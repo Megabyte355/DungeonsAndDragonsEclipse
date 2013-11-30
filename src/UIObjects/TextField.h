@@ -24,6 +24,7 @@ class TextField: public virtual Clickable
 
         bool isFocused();
         std::string getText();
+        void setText(std::string);
 
     protected:
         static TextField * focusedTextField;

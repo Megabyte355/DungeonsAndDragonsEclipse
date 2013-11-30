@@ -11,6 +11,7 @@ PersistentData * PersistentData::instance = nullptr;
 
 PersistentData::PersistentData()
 {
+    currentChar = nullptr;
     currentMap = nullptr;
     savedMaps.resize(10);
     premadeMaps.resize(10);

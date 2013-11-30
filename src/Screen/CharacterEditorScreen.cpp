@@ -257,6 +257,7 @@ void CharacterEditorScreen::gotoSaveCharacterScreen()
     PersistentData * temp = PersistentData::getInstance();
     temp->setCharLoadSlot(0);
     temp->saveCharToCurrentSlot(newFighter);
+    temp->loadCharFromCurrentSlot();
     cout << "Character has been saved!" << endl;
 }
 

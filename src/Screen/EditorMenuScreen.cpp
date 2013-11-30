@@ -23,7 +23,7 @@ EditorMenuScreen::~EditorMenuScreen()
 
 void EditorMenuScreen::initialize()
 {
-	audio->playMusic(2);
+    audio->playMusic(2);
     active = true;
     currentChoices = nullptr;
 
@@ -132,7 +132,7 @@ void EditorMenuScreen::reset()
 
 void EditorMenuScreen::update(float deltaTime)
 {
-    if(widthText != nullptr && heightText != nullptr)
+    if (widthText != nullptr && heightText != nullptr)
     {
         widthText->update();
         heightText->update();
@@ -301,7 +301,7 @@ void EditorMenuScreen::goToMapEditorScreen()
     ss.clear();
     ss << heightText->getText();
     ss >> newMapHeight;
-    if(newMapWidth > 1 && newMapHeight > 1)
+    if (newMapWidth > 1 && newMapHeight > 1)
     {
         PersistentData::getInstance()->setMapLoadMode(PersistentData::MapLoadMode::NewMap);
         PersistentData::getInstance()->setMapLoadSize(newMapWidth, newMapHeight);
@@ -339,7 +339,10 @@ void EditorMenuScreen::goToCharacterEditorScreenWithPremade()
 
 void EditorMenuScreen::goToCharacterEditorScreenWithSaved()
 {
-    // TODO
+    if (PersistentData::getInstance()->getCurrentChar() != nullptr)
+    {
+        ScreenManager::requestScreenChange(getScreenName(), "CharacterStatScreen");
+    }
 }
 
 void EditorMenuScreen::premadeSlotDown()

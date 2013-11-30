@@ -27,7 +27,7 @@ TextField::~TextField()
 
 void TextField::update()
 {
-    if(focusedTextField != nullptr)
+    if (focusedTextField != nullptr)
     {
         // Manually set nullptr if there are no focused textfields
         if (!focusedTextField->isFocused())
@@ -114,4 +114,9 @@ bool TextField::isFocused()
 std::string TextField::getText()
 {
     return text;
+}
+
+void TextField::setText(std::string s)
+{
+    text = s;
 }
