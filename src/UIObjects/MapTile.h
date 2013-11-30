@@ -8,27 +8,29 @@
 #ifndef MAPTILE_H_
 #define MAPTILE_H_
 
+#include <functional>
+#include <SDL.h>
 #include "Cell.h"
 #include "Map.h"
 #include "TextureRenderer.h"
-#include <SDL.h>
-#include <functional>
+#include "Clickable.h"
 
 // Temporary for Assignment3
 
-class MapTile
+class MapTile : public virtual Clickable
 {
     public:
-        int x, y, w, h;
-
         // Index of cell on mapModel
         int i;
         int j;
 
         MapTile(Map *, int, int, int, int, int, int);
         ~MapTile();
-        void handleEvents(SDL_Event &);
-        void draw();
+        void update() override;
+        void handleEvents(SDL_Event &) override;
+        void draw() override;
+
+        SDL_Rect getBoundary();
 
         std::function<Cell::CellType()> getSelectedCellType;
     private:

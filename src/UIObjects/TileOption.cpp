@@ -49,7 +49,6 @@ void TileOption::handleEvents(SDL_Event& event)
             hover = false;
         }
     }
-
 }
 
 void TileOption::draw()
