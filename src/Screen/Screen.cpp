@@ -15,6 +15,7 @@ Screen::Screen(std::string name)
     active = false;
     paused = false;
     instanceId = instanceIdCounter++;
+    audio = AudioManager::getInstance();
 }
 
 
@@ -27,7 +28,7 @@ int Screen::getInstanceId()
     return instanceId;
 }
 
-std::string Screen::getName()
+std::string Screen::getScreenName()
 {
     return uniqueName;
 }

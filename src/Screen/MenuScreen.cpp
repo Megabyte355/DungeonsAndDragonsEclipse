@@ -10,6 +10,7 @@
 MenuScreen::MenuScreen() :
         Screen("MenuScreen")
 {
+
 }
 
 MenuScreen::~MenuScreen()
@@ -28,16 +29,17 @@ void MenuScreen::initialize()
     currentTime = 0;
 
     Button * button = new Button(305, 325, 200, 50, "Character Editor");
-    button->setOnClick(std::bind(&MenuScreen::goToCharacterScreen, this));
+    button->setCallback(std::bind(&MenuScreen::goToCharacterScreen, this));
     menuOptions.push_back(button);
 
     button = new Button(305, 400, 200, 50, "Map Editor");
-    button->setOnClick(std::bind(&MenuScreen::goToMapScreen, this));
+    button->setCallback(std::bind(&MenuScreen::goToMapScreen, this));
     menuOptions.push_back(button);
     button = nullptr;
 
     pressAnyKeyDisplay = true;
     showMenu = false;
+
 }
 
 void MenuScreen::update(float deltaTime)
@@ -94,7 +96,7 @@ void MenuScreen::handleEvents(SDL_Event &event)
     {
         active = false;
     }
-    else if (event.type == SDL_MOUSEBUTTONDOWN || event.type == SDL_KEYDOWN)
+    else if (event.type == SDL_MOUSEBUTTONDOWN || event.type == SDL_KEYDOWN || event.type == SDL_MOUSEMOTION || event.type == SDL_MOUSEBUTTONUP)
     {
         if (!showMenu)
         {
@@ -114,13 +116,7 @@ void MenuScreen::handleEvents(SDL_Event &event)
             }
         }
     }
-    else if (event.type == SDL_MOUSEMOTION)
-    {
-        for (auto o : menuOptions)
-        {
-            o->handleEvents(event);
-        }
-    }
+
 }
 
 void MenuScreen::reset()

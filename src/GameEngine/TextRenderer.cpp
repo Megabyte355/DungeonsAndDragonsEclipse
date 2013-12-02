@@ -72,12 +72,17 @@ void TextRenderer::setRenderer(SDL_Renderer * ren)
     renderer = ren;
 }
 
-void TextRenderer::setColor(SDL_Color c)
+void TextRenderer::setCurrentColor(SDL_Color c)
 {
     currentColor = c;
 }
 
-void TextRenderer::setFont(std::string fontName)
+void TextRenderer::setShadowColor(SDL_Color c)
+{
+    shadowColor = c;
+}
+
+void TextRenderer::setCurrentFont(std::string fontName)
 {
     std::map<std::string, std::string>::iterator it = fontPathMap.find(fontName);
     if (it != fontPathMap.end())
@@ -86,22 +91,33 @@ void TextRenderer::setFont(std::string fontName)
     }
 }
 
-void TextRenderer::setFontSize(int size)
+void TextRenderer::setCurrentFontSize(int size)
 {
     currentFontSize = size;
 }
 
 void TextRenderer::setSettings(std::string font, int size, SDL_Color color)
 {
-    setFont(font);
-    setFontSize(size);
-    setColor(color);
+    setCurrentFont(font);
+    setCurrentFontSize(size);
+    setCurrentColor(color);
 }
+
+void TextRenderer::setSettings(std::string font, int size, SDL_Color color, SDL_Color shadow)
+{
+    setCurrentFont(font);
+    setCurrentFontSize(size);
+    setCurrentColor(color);
+    setShadowColor(shadow);
+}
+
 
 void TextRenderer::loadFontPaths()
 {
-    // Font from one of my favorite games
+    // Font from our favorite games
     fontPathMap["starcraft_font"] = "assets/starcraft_font.ttf";
+    fontPathMap["triforce"] = "assets/Triforce.ttf";
+    fontPathMap["retganon"] = "assets/RetGanon.ttf";
 
     // Arial fonts
     fontPathMap["arial"] = "assets/arial.ttf";
@@ -121,30 +137,16 @@ void TextRenderer::loadFontPaths()
     fontPathMap["calibri_light"] = "assets/calibril.ttf";
     fontPathMap["calibri_light_italic"] = "assets/calibrili.ttf";
     fontPathMap["calibri_bold_italic"] = "assets/calibriz.ttf";
-
 }
 
 void TextRenderer::renderText(int x, int y, std::string message, std::string fontName, SDL_Color color, int fontSize)
 {
     if (renderer != nullptr && fontPathMap.find(fontName) != fontPathMap.end())
     {
-//        if (fontMap.find(fontName) == fontMap.end())
-//        {
-//            std::map<int, TTF_Font*> fontSizeMap;
-//            fontMap[fontName] = fontSizeMap;
-//            fontMap[fontName][fontSize] = loadPath(fontPathMap[fontName].c_str(), fontSize);
-//        }
-//        else if (fontMap[fontName].find(fontSize) == fontMap[fontName].end())
-//        {
-//            fontMap[fontName][fontSize] = loadPath(fontPathMap[fontName].c_str(), fontSize);
-//        }
-
-        // Open the font with custom font size
-//        TTF_Font *font = nullptr;
-//        font = fontMap[fontName][fontSize];
         TTF_Font * font = getFont(fontName, fontSize);
         if (font == nullptr)
         {
+            // TODO throw an exception instead
             std::cout << "Failed to load font: " << fontName.c_str() << TTF_GetError() << std::endl;
         }
 
@@ -177,25 +179,19 @@ void TextRenderer::renderText(int x, int y, std::string message)
     renderText(x, y, message, currentFont, currentColor, currentFontSize);
 }
 
+
+void TextRenderer::renderTextWithShadow(int x, int y, std::string message)
+{
+    renderText(x + 2, y + 2, message, currentFont, shadowColor, currentFontSize);
+    renderText(x, y, message, currentFont, currentColor, currentFontSize);
+}
+
+
 SDL_Rect TextRenderer::queryTextSize(int x, int y, std::string message)
 {
     SDL_Rect pos;
     if (renderer != nullptr && fontPathMap.find(currentFont) != fontPathMap.end())
     {
-//        if (fontMap.find(currentFont) == fontMap.end())
-//        {
-//            std::map<int, TTF_Font*> fontSizeMap;
-//            fontMap[currentFont] = fontSizeMap;
-//            fontMap[currentFont][currentFontSize] = loadPath(fontPathMap[currentFont].c_str(), currentFontSize);
-//        }
-//        else if (fontMap[currentFont].find(currentFontSize) == fontMap[currentFont].end())
-//        {
-//            fontMap[currentFont][currentFontSize] = loadPath(fontPathMap[currentFont].c_str(), currentFontSize);
-//        }
-
-        // Open the font with custom font size
-//        TTF_Font *font = nullptr;
-//        font = fontMap[currentFont][currentFontSize];
         TTF_Font * font = getFont(currentFont, currentFontSize);
         if (font == nullptr)
         {
@@ -232,6 +228,26 @@ TTF_Font * TextRenderer::loadPath(const std::string &fontFile, int fontSize)
         std::cout << "Failed to load font: " << fontFile.c_str() << TTF_GetError() << std::endl;
     }
     return font;
+}
+
+SDL_Color TextRenderer::getCurrentColor() const
+{
+    return currentColor;
+}
+
+const std::string& TextRenderer::getCurrentFont() const
+{
+    return currentFont;
+}
+
+int TextRenderer::getCurrentFontSize() const
+{
+    return currentFontSize;
+}
+
+SDL_Color TextRenderer::getShadowColor() const
+{
+    return shadowColor;
 }
 
 TTF_Font * TextRenderer::getFont(std::string font, int size)

@@ -9,13 +9,11 @@
 
 Map::Map()
 {
-    fileHandler = nullptr;
-    initialize(10, 10);
+    level = 1;
 }
 
 Map::Map(int width, int height)
 {
-    fileHandler = nullptr;
     initialize(width, height);
 }
 
@@ -51,6 +49,16 @@ int Map::getWidth()
 int Map::getHeight()
 {
     return mapHeight;
+}
+
+int Map::getLevel()
+{
+    return level;
+}
+
+void Map::setLevel(int level)
+{
+    this->level = level;
 }
 
 std::shared_ptr<Cell> Map::getCell(int x, int y)
@@ -147,6 +155,42 @@ void Map::setEndCell(int x, int y)
     }
 }
 
+void Map::setOccupant(CellOccupant * o, CellLocation l)
+{
+    return setOccupant(o, l.x, l.y);
+}
+
+void Map::setOccupant(CellOccupant * o, int x, int y)
+{
+    std::shared_ptr<Cell> cell = getCell(x, y);
+    if (cell != nullptr)
+    {
+        cell->setOccupant(o);
+    }
+}
+
+CellOccupant * Map::getOccupant(CellLocation l)
+{
+    return getOccupant(l.x, l.y);
+}
+
+CellOccupant * Map::getOccupant(int x, int y)
+{
+    std::shared_ptr<Cell> cell = getCell(x, y);
+    return cell != nullptr ? cell->getOccupant() : nullptr;
+}
+
+bool Map::isOccupiable(CellLocation l)
+{
+    return isOccupiable(l.x, l.y);
+}
+
+bool Map::isOccupiable(int x, int y)
+{
+    std::shared_ptr<Cell> cell = getCell(x, y);
+    return cell != nullptr && cell->isOccupiable();
+}
+
 bool Map::validateMap()
 {
     /*
@@ -217,12 +261,6 @@ bool Map::isValidCell(CellLocation loc)
     return isValidCell(loc.x, loc.y);
 }
 
-bool Map::isOccupiable(CellLocation loc)
-{
-    std::shared_ptr<Cell> temp = getCell(loc.x, loc.y);
-    return temp != nullptr && temp->isOccupiable();
-}
-
 std::string Map::toFileString()
 {
     std::stringstream ss;
@@ -249,10 +287,6 @@ std::string Map::toFileString()
             else if (currentType == Cell::CellType::End)
             {
                 ss << "E";
-            }
-            else if (currentType == Cell::CellType::Empty)
-            {
-                ss << "_";
             }
             else
             {
@@ -320,10 +354,6 @@ void Map::fromFileString(std::string input)
                     else if (c == 'E')
                     {
                         matrix[col][row]->setType(Cell::CellType::End);
-                    }
-                    else
-                    {
-                        matrix[col][row]->setType(Cell::CellType::Empty);
                     }
                 }
             }

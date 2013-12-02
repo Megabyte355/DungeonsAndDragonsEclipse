@@ -7,6 +7,7 @@
 
 #include "Game.h"
 #include "GameConfig.h"
+#include "AudioManager.h"
 #include <iostream>
 #include <memory>
 
@@ -30,6 +31,8 @@ int main(int argc, char** argv)
     float now = 0;
     float lastTick = 0;
     float deltaTime = 0;
+
+
 
     // Game loop logic
     while (config->gameIsRunning)

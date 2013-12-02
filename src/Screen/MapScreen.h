@@ -8,6 +8,7 @@
 #ifndef MAPSCREEN_H_
 #define MAPSCREEN_H_
 
+#include <functional>
 #include "GameConfig.h"
 #include "ScreenManager.h"
 #include "TextureRenderer.h"
@@ -17,7 +18,9 @@
 #include "Map.h"
 #include "MapTile.h"
 #include "TileOption.h"
-#include <functional>
+#include "ArenaMapBuilder.h"
+#include "MapDirector.h"
+#include "PersistentData.h"
 
 class MapScreen : public virtual Screen
 {
@@ -30,38 +33,36 @@ class MapScreen : public virtual Screen
         void handleEvents(SDL_Event &event) override;
         void reset() override;
 
-        static void queryMapSize();
         void initData(int,int);
+        void initDataWithLoadedMap();
+        void initDataWithArenaBuilder();
 
         Cell::CellType selectedCellType();
         void selectTileOption(Cell::CellType);
-        static void returnToMenu();
+        void returnToMenu();
+        void saveMap();
+        void validatePath();
+        bool pathCheckRequest;
+        void setupOptions();
+        
+        static int mapWidth;
+        static int mapHeight;
 
-
-        static void validatePath();
-        static bool pathCheckRequest;
     private:
         TextureRenderer * textures;
         TextRenderer * texts;
 
-        static int mapWidth;
-        static int mapHeight;
-
         Map * mapModel;
 
         bool firstLoop;
-
-
         bool displayRed;
         bool displayGreen;
+
         std::vector<TileOption*> tileOptions;
         std::vector<Button*> optionLabels;
         std::vector<MapTile*> mapTiles;
-
         std::vector<CellLocation> validPath;
-
         Cell::CellType selectedTile;
-
 };
 
 #endif /* MAPSCREEN_H_ */

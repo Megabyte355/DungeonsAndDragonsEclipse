@@ -4,7 +4,7 @@
  *  Created on: Oct 31, 2013
  *      Author: Gary
  */
-
+#include "AudioManager.h"
 #include "Game.h"
 
 Game::Game(void)
@@ -68,6 +68,15 @@ void Game::initialize()
     GameConfig::getInstance()->gameIsRunning = true;
 
     std::cout << "Game Started" << std::endl;
+
+//    AudioManager am;
+//
+//    am = AudioManager::getInstance();
+//    	    if(am.init())
+//    			if(am.load_files()){
+//    				am.run();
+//    				std::cout<<"running";
+//    			}
 }
 
 void Game::update(float gameTime)

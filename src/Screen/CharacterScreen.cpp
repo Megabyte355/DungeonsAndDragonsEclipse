@@ -26,12 +26,12 @@ void CharacterScreen::initialize()
     texts = TextRenderer::getInstance();
 
     Button * option = new Button(700, 0, 15, "Back");
-    option->setOnClick(returnToMenu);
+    option->setCallback(std::bind(&CharacterScreen::returnToMenu, this));
     options.push_back(option);
     option->toggleVisibility();
 
     option = new Button(300, 250, 15, "Begin Character Creation");
-    option->setOnClick(beginCharacterCreation);
+    option->setCallback(std::bind(&CharacterScreen::beginCharacterCreation, this));
     options.push_back(option);
     option->toggleVisibility();
 
@@ -42,36 +42,35 @@ void CharacterScreen::update(float deltaTime)
 {
     if (characterCreation)
     {
-        std::cout << "Entering Character Creator..." << std::endl;
-
-        CharacterDriver * creator = new CharacterDriver();
-        creator->runProgram();
-
-        Fighter * f = (creator->returnFighter());
-
-
-        std::cout << "Do you want to save the Fighter in a file?" << std::endl;
-        std::cout << "(Enter 1 to say Yes)" << std::endl;
-        std::cout << "Answer: ";
-
-        int choice = 0;
-        std::cin >> choice;
-        if(choice == 1)
-        {
-            FileIO writer("Fighter_", ".txt");
-            writer.save(1, f->toFileString());
-            std::cout << "File saved." << std::endl;
-        }
-        else
-        {
-            std::cout << "Fighter is being discarded." << std::endl;
-        }
-
-        characterCreation = false;
-        delete creator;
-        delete f;
-        creator = nullptr;
-        f = nullptr;
+//        std::cout << "Entering Character Creator..." << std::endl;
+//
+//        CharacterDriver * creator = new CharacterDriver();
+//        creator->runProgram();
+//
+//        Fighter * f = (creator->returnFighter());
+//
+//        std::cout << "Do you want to save the Fighter in a file?" << std::endl;
+//        std::cout << "(Enter 1 to say Yes)" << std::endl;
+//        std::cout << "Answer: ";
+//
+//        int choice = 0;
+//        std::cin >> choice;
+//        if (choice == 1)
+//        {
+//            FileIO writer("Fighter_", ".txt");
+//            writer.save(1, f->toFileString());
+//            std::cout << "File saved." << std::endl;
+//        }
+//        else
+//        {
+//            std::cout << "Fighter is being discarded." << std::endl;
+//        }
+//
+//        characterCreation = false;
+//        delete creator;
+//        delete f;
+//        creator = nullptr;
+//        f = nullptr;
     }
 }
 
@@ -108,12 +107,8 @@ void CharacterScreen::handleEvents(SDL_Event &event)
                 active = false;
             }
             break;
+        case SDL_MOUSEBUTTONUP:
         case SDL_MOUSEBUTTONDOWN:
-            for (auto o : options)
-            {
-                o->handleEvents(event);
-            }
-            break;
         case SDL_MOUSEMOTION:
             for (auto o : options)
             {

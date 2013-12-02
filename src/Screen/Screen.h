@@ -9,6 +9,7 @@
 #define SCREEN_H_
 
 #include <string>
+#include "AudioManager.h"
 
 //#include "Game.h"
 
@@ -25,12 +26,13 @@ class Screen
         bool active;
         bool paused;
         int getInstanceId();
-        virtual std::string getName();
+        std::string getScreenName();
         virtual void initialize() = 0;
         virtual void update(float) = 0;
         virtual void draw() = 0;
         virtual void handleEvents(SDL_Event &event) = 0;
         virtual void reset() = 0;
+        AudioManager * audio;
 
     private:
         std::string uniqueName;

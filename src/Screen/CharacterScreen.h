@@ -13,7 +13,6 @@
 #include "TextureRenderer.h"
 #include "TextRenderer.h"
 #include "Button.h"
-#include "CharacterDriver.h"
 #include "FileIO.h"
 
 #include <iostream>
@@ -32,8 +31,8 @@ class CharacterScreen : public virtual Screen
         void reset() override;
 
         // Function pointers
-        static void returnToMenu();
-        static void beginCharacterCreation();
+        void returnToMenu();
+        void beginCharacterCreation();
     private:
         TextureRenderer * textures;
         TextRenderer * texts;

@@ -86,5 +86,10 @@ std::vector<CellLocation> Cell::getNeighbors()
 
 bool Cell::isOccupiable()
 {
-    return type == Floor || type == Start || type == End;
+    return type == Floor || type == Start || type == End || type == Monster || type == Treasure;
+}
+
+bool Cell::isOccupied()
+{
+    return occupant != nullptr;
 }

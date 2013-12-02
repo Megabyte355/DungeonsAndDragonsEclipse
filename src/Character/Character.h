@@ -1,4 +1,4 @@
-/*
+/* 
  * File:   Character.h
  * Author: Tiffany Ip 9341943
  *
@@ -8,26 +8,21 @@
 #ifndef CHARACTER_H
 #define	CHARACTER_H
 #include "Observable.h"
+#include "CellOccupant.h"
 #include <string>
 #include <vector>
-#include <cstdlib>
-#include "Recordable.h"
-#include <sstream>
 using namespace std;
 
-struct item
-{    //placeholder for the item system
-        string name;
-};
-
-class Character: public virtual Observable, public virtual Recordable
+class Character: public Observable, CellOccupant
 {
     protected:
         string charName;
+        string charType;
+
         int level;
         int hitPoints;
         int armorClass;
-        vector<int> rolls; // for the dice rolls for ability scores
+        int speed;
 
         //ability scores
         int str;
@@ -37,51 +32,101 @@ class Character: public virtual Observable, public virtual Recordable
         int wis;
         int cha;
 
-        //others
-        int baseAttack;
-        int damageBonus;
+        //ability modifiers
+        int strMod;
+        int dexMod;
+        int conMod;
+        int intMod;
+        int wisMod;
+        int chaMod;
 
-        item helmet, ring1, ring2, weapon, shield, armor, belt, boots;
+        //others
+        int baseAttackBonus1, baseAttackBonus2, baseAttackBonus3, baseAttackBonus4;
 
     public:
         Character();
-        Character(string charName, int level);
+        Character(string name, int level);
+        Character(int level);
 
+        vector<int> rolls; // (6,10); // for the dice rolls for ability scores
+        void makeRolls();
+        vector<int> getRolls();
+        void assignRandomScores();
         //setters
-        virtual void setName(string charName);
-        virtual void setStartingLevel(int level);
-        virtual void setHP();
-        virtual void setAC();
-        virtual void setStr(int str, int strMod);
-        virtual void setDex(int dex, int dexMod);
-        virtual void setCon(int con, int conMod);
-        virtual void setInt(int intel, int intMod);
-        virtual void setWis(int wis, int wisMod);
-        virtual void setCha(int cha, int chaMod);
-        virtual void setBaseAttack();
-        virtual void setDamageBonus();
-        virtual void generateAbilityScores();
-        virtual void chooseAbilityScores();
+        void setName(string name);
+        void setLevel(int level);
+        void setType(string charType);
+
+        virtual void setHP()=0;
+        virtual void setSpeed()=0;
+        void setAC();
+        void setStr(int str);
+        void setDex(int dex);
+        void setCon(int con);
+        void setInt(int intel);
+        void setWis(int wis);
+        void setCha(int cha);
+
+        void setStrMod(int str);
+        void setDexMod(int dex);
+        void setConMod(int con);
+        void setIntMod(int intel);
+        void setWisMod(int wis);
+        void setChaMod(int cha);
+
+        void setAttackBonuses();
+        void setBaseAttackBonus1();
+        void setBaseAttackBonus2();
+        void setBaseAttackBonus3();
+        void setBaseAttackBonus4();
+
+        void generateAbilityScores();
+        void chooseAbilityScores();
 
         //getters
-        virtual string getName();
-        virtual int getLevel();
-        virtual int getHP();
-        virtual int getAC();
-        virtual int getStr();
-        virtual int getDex();
-        virtual int getCon();
-        virtual int getInt();
-        virtual int getWis();
-        virtual int getCha();
-        virtual int getBaseAttack();
-        virtual int getHitDie();
-        virtual int getBaseAttackBonus();
-        virtual int getDamageBonus();
-        virtual int getAbilityModifier(double aScore);
+        string getName();
+        int getLevel();
+        int getHP();
+        virtual int getAC()=0;
+        int getSpeed();
 
-        std::string toFileString();
-        void fromFileString(std::string);
+        int getStr();
+        int getDex();
+        int getCon();
+        int getInt();
+        int getWis();
+        int getCha();
+
+        int getStrMod();
+        int getDexMod();
+        int getConMod();
+        int getIntMod();
+        int getWisMod();
+        int getChaMod();
+
+        virtual int attack1();
+        virtual int attack2();
+        virtual int attack3();
+        virtual int attack4();
+
+        int getBaseAttackBonus1();
+        int getBaseAttackBonus2();
+        int getBaseAttackBonus3();
+        int getBaseAttackBonus4();
+
+        int getHitDie();
+        int getAbilityModifier(double aScore);
+        int getHighestAbilityScore();
+
+        //combat
+        bool hasAttack1();
+        bool hasAttack2();
+        bool hasAttack3();
+        bool hasAttack4();
+        int rollDie(int type);
+        int rollD20();
+        virtual int rollDamage();
+        void takeDamage(int dmg);
 };
 
 #endif	/* CHARACTER_H */

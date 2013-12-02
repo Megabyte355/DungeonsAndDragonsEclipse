@@ -1,4 +1,4 @@
-/*
+/* 
  * File:   Fighter.h
  * Author: Tiffany Ip 9341943
  *
@@ -8,29 +8,51 @@
 #ifndef FIGHTER_H
 #define	FIGHTER_H
 #include "Character.h"
+#include "BullyBuilder.h"
 #include <string>
+#include <stdlib.h>
+#include <time.h>
+#include <iostream>
+#include "CharacterItemManager.h"
+
+
 
 using namespace std;
 
-class Fighter: public Character
+class Fighter : public Character 
 {
     static const int hitDie = 10;
-
+    
     public:
-        Fighter(std::string name, int level);
-        void setHP(); //overrides the Character setHP()
-        void setAC();
-        void setStr(int str, int strMod);
-        void setDex(int dex, int dexMod);
-        void setCon(int con, int conMod);
-        void setInt(int intel, int intMod);
-        void setWis(int wis, int wisMod);
-        void setCha(int cha, int chaMod);
-        void setBaseAttack();
-        void setDamageBonus();
+        Fighter();
+        Fighter(string name, int level);
+        virtual void setHP();
+        virtual void setSpeed();
+        
+        void levelUp();
+        void levelUpHP();
+
+        CharacterItemManager inventory;
+        
+        int rollDamage();
+        int getAC();
         int getHitDie();
-        int getBaseAttackBonus();
-        void printChar();
+        int attack1();
+        int attack2();
+        int attack3();
+        int attack4();
+        
+        //INVENTORY RELATED STUFF
+        void equipItem(Equipment * e);
+        void unequipItem(Equipment * e);
+        void addSingleItemToBag(Item * e);
+        void removeSingleItemFromBag(Item * e);
+        void pickupChestContents(ItemContainer * cont);
+
+//	void notifyAll(); //overriding
+	void printChar();
+        
+        ~Fighter();
 };
 #endif	/* FIGHTER_H */
 
